@@ -1,51 +1,61 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
 import {
   ArrowRight,
   Award,
-  Banknote,
-  Briefcase,
-  Building2,
-  CalendarDays,
-  Gavel,
-  Landmark,
-  Lightbulb,
+  CheckCircle2,
+  Cpu,
+  ExternalLink,
+  HeartHandshake,
+  Linkedin,
+  Mail,
+  Menu,
   Network,
-  Quote,
+  Phone,
   Scale,
-  ScrollText,
-  Search,
   ShieldCheck,
-  UserRound,
+  UserCheck,
   Users,
+  X,
 } from "lucide-react";
 
-import logoAsset from "@/assets/bacon-legal-logo.png.asset.json";
-import heroCourthouse from "@/assets/hero-courthouse.jpg";
-import heroOffice from "@/assets/hero-office.jpg";
-import insightLibrary from "@/assets/insight-library.jpg";
-import insightMeeting from "@/assets/insight-meeting.jpg";
-import insightSkyline from "@/assets/insight-skyline.jpg";
+import heroCourthouse from "../assets/hero-courthouse.jpg";
+
+const BRAND_LOGO =
+  "https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/8N8gUJT4F7aiDg9OX4et/media/65a5ca712aaf1b9cc10a896a.png";
+const HERO_IMAGE = heroCourthouse;
+const ABOUT_IMAGE =
+  "https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/8N8gUJT4F7aiDg9OX4et/media/645bf82a57b9cc3fd1141da4.webp";
+const SERVICES_IMAGE =
+  "https://images.unsplash.com/photo-1606836591695-4d58a73eba1e?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb";
+const PLACEMENTS_IMAGE =
+  "https://images.unsplash.com/photo-1603796846097-bee99e4a601f?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb";
+const KEVIN_IMAGE =
+  "https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/8N8gUJT4F7aiDg9OX4et/media/646450b39fc03548dd058860.jpeg";
+const MARQUE_IMAGE =
+  "https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/8N8gUJT4F7aiDg9OX4et/media/646453ef9fc035b938058d43.jpeg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Bacon Legal Recruiting | Specialist Legal Recruitment" },
+      { title: "Bacon Legal Recruiting | Attorney Search Experts" },
       {
         name: "description",
         content:
-          "Bacon Legal Recruiting connects exceptional legal talent with leading law firms and in-house legal departments across the United States.",
+          "Bacon Legal Recruiting — Attorney Search Experts. Founded and led by attorneys and industry experts, specializing in permanent legal placement for law firms and corporations nationwide.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       {
         property: "og:title",
-        content: "Bacon Legal Recruiting | Specialist Legal Recruitment",
+        content: "Bacon Legal Recruiting | Attorney Search Experts",
       },
       {
         property: "og:description",
         content:
-          "Specialist legal recruitment for law firms and in-house legal teams — partners, counsel, associates and general counsel.",
+          "Attorney Search Experts. Founded and led by attorneys and industry experts, we understand that the right candidate is the perfect mix of experience, skill and compatibility.",
       },
+      { property: "og:image", content: BRAND_LOGO },
     ],
   }),
   component: Index,
@@ -53,559 +63,868 @@ export const Route = createFileRoute("/")({
 
 const nav = [
   ["Home", "#top"],
-  ["About", "#about"],
-  ["Services", "#services"],
-  ["Candidates", "#candidates"],
-  ["Clients", "#clients"],
-  ["Insights", "#insights"],
+  ["Why Choose Us", "#why-choose-us"],
+  ["About Us", "#about"],
+  ["Our Services", "#services"],
+  ["Our Team", "#leadership"],
+  ["Careers", "#careers"],
   ["Contact", "#contact"],
 ] as const;
 
-const stats = [
-  { icon: CalendarDays, value: "20+", label: "Years of Experience" },
-  { icon: Landmark, value: "500+", label: "Law Firms Partnered" },
-  { icon: Users, value: "10,000+", label: "Legal Professionals Placed" },
-  { icon: Award, value: "95%", label: "Client Satisfaction" },
-];
-
-const services = [
+const whyChooseCards = [
   {
-    icon: UserRound,
-    name: "Permanent Placement",
-    copy: "Long-term hiring solutions for law firms and in-house legal departments.",
+    icon: Scale,
+    title: "Experienced Legal Experts",
+    copy: "As attorneys and legal industry experts, we have a unique understanding of what is needed to fill a position with the right candidate.",
   },
   {
-    icon: Briefcase,
-    name: "Contract & Interim",
-    copy: "Flexible staffing for short-term mandates and project-based legal work.",
+    icon: UserCheck,
+    title: "Service Focused",
+    copy: "At Bacon Legal Recruiting, we are laser focused on presenting firms with high quality talent and helping candidates find a work environment with great culture where they can excel.",
   },
   {
-    icon: Search,
-    name: "Executive Search",
-    copy: "Identifying and attracting senior legal talent for leadership roles.",
-  },
-  {
-    icon: Lightbulb,
-    name: "Market Insights",
-    copy: "In-depth legal market intelligence to guide your hiring strategy.",
-  },
-];
-
-const values = [
-  {
-    icon: ShieldCheck,
-    name: "Industry Specialists",
-    copy: "Recruiters with deep legal market knowledge, not generalists.",
+    icon: HeartHandshake,
+    title: "Relationship Driven",
+    copy: "We believe in taking care of our clients, and we work hard to build strong long-term relationships. We are proud that so many rely on us for all of their search needs.",
   },
   {
     icon: Network,
-    name: "Extensive Network",
-    copy: "Access to top legal talent across the country and every practice area.",
+    title: "Vast Network",
+    copy: "Because of our background in the legal industry and our many contacts throughout the region, we have access to a wide range of highly qualified attorneys.",
+  },
+  {
+    icon: Cpu,
+    title: "Technology",
+    copy: "We utilize the latest technology to streamline our process and optimize our solutions so we can deliver for you in a timely manner.",
   },
   {
     icon: Award,
-    name: "Proven Results",
-    copy: "A track record of successful placements and long-term partnerships.",
+    title: "Satisfaction Guarantee",
+    copy: "Our results speak for themselves. We will work until we successfully place a candidate in every position we have been tasked to fill. We guarantee success.",
   },
-  {
-    icon: UserRound,
-    name: "Personal Approach",
-    copy: "A dedicated consultant who understands your goals from day one.",
-  },
-];
-
-const practiceAreas = [
-  { icon: Building2, name: "Corporate" },
-  { icon: Gavel, name: "Litigation" },
-  { icon: Lightbulb, name: "Intellectual Property" },
-  { icon: Landmark, name: "Real Estate" },
-  { icon: Users, name: "Employment" },
-  { icon: ScrollText, name: "Tax" },
-  { icon: Banknote, name: "Banking & Finance" },
-  { icon: Scale, name: "Compliance" },
-];
-
-const audiences = [
-  {
-    icon: Landmark,
-    name: "For Law Firms",
-    copy: "We act as an extension of your team to find legal talent that fits your culture, your clients and your growth plans.",
-    cta: "Learn more",
-    href: "#clients",
-  },
-  {
-    icon: UserRound,
-    name: "For Candidates",
-    copy: "Discover exceptional opportunities with leading firms and in-house legal organisations — always confidentially.",
-    cta: "Browse roles",
-    href: "#candidates",
-  },
-  {
-    icon: Briefcase,
-    name: "Our Services",
-    copy: "End-to-end recruitment solutions tailored to your mandate, from single hires to full practice-group moves.",
-    cta: "Explore services",
-    href: "#services",
-  },
-];
-
-const insights = [
-  {
-    image: insightLibrary,
-    date: "May 8, 2026",
-    title: "2026 Legal Hiring Trends",
-    copy: "Key shifts shaping compensation, lateral movement and partner demand this year.",
-  },
-  {
-    image: insightMeeting,
-    date: "April 22, 2026",
-    title: "How Firms Attract Top Talent",
-    copy: "What separates firms that win laterals from those that lose them at offer stage.",
-  },
-  {
-    image: insightSkyline,
-    date: "April 10, 2026",
-    title: "In-House vs. Private Practice",
-    copy: "A candid look at the trade-offs legal professionals weigh before moving.",
-  },
-];
-
-const process = [
-  {
-    step: "01",
-    name: "Mandate",
-    copy: "We define the brief with the decision-makers, not an intake form.",
-  },
-  {
-    step: "02",
-    name: "Market Map",
-    copy: "A researched, named universe of candidates before a single approach.",
-  },
-  {
-    step: "03",
-    name: "Approach",
-    copy: "Discreet outreach that protects your reputation and theirs.",
-  },
-  {
-    step: "04",
-    name: "Close",
-    copy: "Compensation, conflicts and transition handled to signature.",
-  },
-];
-
-const firms = [
-  "Kirkland & Ellis",
-  "Latham & Watkins",
-  "Simpson Thacher",
-  "Morgan Lewis",
-  "White & Case",
 ];
 
 function Index() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [formSubmitted, setFormSubmitted] = useState(false);
+
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background text-foreground selection:bg-brass selection:text-ink">
       {/* Header */}
-      <header className="sticky top-0 z-40 border-b border-border bg-background/92 backdrop-blur">
+      <header className="sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur-md transition-all">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-6 py-4">
-          <a href="#top" className="flex shrink-0 items-center">
+          <a
+            href="#top"
+            id="header-brand-logo"
+            className="flex shrink-0 items-center transition-opacity hover:opacity-90"
+            aria-label="Bacon Legal Recruiting Home"
+          >
             <img
-              src={logoAsset.url}
-              alt="Bacon Legal Recruiting — Kevin Bacon Executive Recruiting"
+              src={BRAND_LOGO}
+              alt="Bacon Legal Recruiting — Attorney Search Experts"
               width={329}
               height={106}
-              className="h-10 w-auto"
+              className="h-9 sm:h-10 w-auto object-contain"
             />
           </a>
-          <nav className="hidden items-center gap-7 lg:flex">
+
+          {/* Desktop Navigation */}
+          <nav className="hidden items-center gap-7 lg:flex" aria-label="Main Navigation">
             {nav.map(([label, href]) => (
               <a
                 key={label}
                 href={href}
-                className="text-[0.7rem] font-medium tracking-[0.14em] uppercase text-muted-foreground transition-colors hover:text-ink"
+                className="text-[0.72rem] font-medium tracking-[0.14em] uppercase text-muted-foreground transition-colors hover:text-ink"
               >
                 {label}
               </a>
             ))}
           </nav>
-          <a
-            href="#contact"
-            className="shrink-0 bg-brass px-5 py-2.5 text-[0.7rem] font-medium tracking-[0.14em] uppercase text-ink transition-opacity hover:opacity-90"
-          >
-            Get in Touch
-          </a>
+
+          <div className="flex items-center gap-3">
+            <a
+              href="#contact"
+              id="header-cta-button"
+              className="shrink-0 bg-brass px-5 py-2.5 text-[0.7rem] font-semibold tracking-[0.15em] uppercase text-ink transition-opacity hover:opacity-90 shadow-sm"
+            >
+              Connect With Us
+            </a>
+
+            {/* Mobile Menu Toggle */}
+            <button
+              type="button"
+              id="mobile-menu-toggle"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="inline-flex items-center justify-center p-2 text-ink lg:hidden focus:outline-none"
+              aria-label="Toggle Navigation Menu"
+            >
+              {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
+          </div>
         </div>
+
+        {/* Mobile Navigation Drawer */}
+        {mobileMenuOpen && (
+          <div className="border-b border-border bg-background px-6 py-5 lg:hidden">
+            <nav className="flex flex-col gap-4">
+              {nav.map(([label, href]) => (
+                <a
+                  key={label}
+                  href={href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="text-sm font-medium tracking-wider uppercase text-muted-foreground transition-colors hover:text-ink py-1 border-b border-border/40"
+                >
+                  {label}
+                </a>
+              ))}
+              <a
+                href="#contact"
+                onClick={() => setMobileMenuOpen(false)}
+                className="mt-2 text-center bg-brass py-3 text-xs font-semibold tracking-widest uppercase text-ink"
+              >
+                Connect With Us
+              </a>
+            </nav>
+          </div>
+        )}
       </header>
 
       <main id="top">
-        {/* Hero */}
-        <section className="relative bg-ink text-ink-foreground">
-          <div className="mx-auto grid max-w-6xl items-stretch lg:grid-cols-[1.05fr_1fr]">
-            <div className="px-6 py-20 lg:py-28 lg:pr-14">
-              <p className="eyebrow text-brass">Legal talent. Lasting impact.</p>
-              <h1 className="mt-7 text-4xl leading-[1.08] sm:text-5xl lg:text-[3.4rem]">
-                Connecting <span className="text-brass">Exceptional Legal</span> Talent with Leading
-                Law Firms
+        {/* HERO SECTION */}
+        <section id="hero" className="relative bg-ink text-ink-foreground overflow-hidden">
+          <div className="mx-auto grid max-w-6xl items-stretch lg:grid-cols-[1.1fr_0.9fr]">
+            <div className="flex flex-col justify-center px-6 py-20 lg:py-28 lg:pr-12 z-10">
+              <p className="eyebrow text-brass">Bacon Legal Recruiting</p>
+              <h1 className="mt-6 text-4xl leading-[1.1] sm:text-5xl lg:text-[3.5rem] font-normal">
+                Attorney Search <span className="text-brass">Experts</span>
               </h1>
-              <p className="mt-7 max-w-lg text-base leading-relaxed text-ink-foreground/70">
-                Specialist legal recruitment across the United States. Trusted by law firms,
-                in-house legal departments and the professionals who build them.
+              <p className="mt-7 max-w-xl text-base sm:text-lg leading-relaxed text-ink-foreground/80">
+                Founded and led by attorneys and industry experts, we understand that the right
+                candidate is the perfect mix of experience, skill and compatibility.
               </p>
+
+              {/* Supporting section text */}
+              <div className="mt-8 border-l-2 border-brass/60 pl-5 py-1">
+                <p className="text-sm sm:text-base leading-relaxed text-ink-foreground/85">
+                  At Bacon Legal Recruiting, we understand that each client has its own unique
+                  niche, needs and culture.
+                </p>
+                <p className="mt-2 text-sm sm:text-base font-medium text-brass">
+                  Finding the right fit for organizations and individual candidates is our
+                  specialty.
+                </p>
+              </div>
+
               <div className="mt-10 flex flex-wrap items-center gap-4">
                 <a
-                  href="#clients"
-                  className="bg-brass px-7 py-3.5 text-xs font-medium tracking-[0.16em] uppercase text-ink transition-opacity hover:opacity-90"
+                  href="#contact"
+                  id="hero-primary-cta"
+                  className="bg-brass px-8 py-3.5 text-xs font-semibold tracking-[0.16em] uppercase text-ink transition-opacity hover:opacity-90 shadow-md"
                 >
-                  For Clients
+                  Connect With Us
                 </a>
                 <a
-                  href="#candidates"
-                  className="border border-ink-foreground/40 px-7 py-3.5 text-xs font-medium tracking-[0.16em] uppercase text-ink-foreground transition-colors hover:bg-ink-foreground hover:text-ink"
+                  href="#why-choose-us"
+                  id="hero-secondary-cta"
+                  className="border border-ink-foreground/30 px-7 py-3.5 text-xs font-medium tracking-[0.16em] uppercase text-ink-foreground transition-colors hover:bg-ink-foreground/10 hover:border-ink-foreground/60"
                 >
-                  For Candidates
+                  Why Choose Us
                 </a>
               </div>
             </div>
-            <div className="relative min-h-[320px] lg:min-h-full">
+
+            <div className="relative min-h-[360px] lg:min-h-full">
               <img
-                src={heroCourthouse}
-                alt="Marble columns of a courthouse facade at golden hour"
+                src={HERO_IMAGE}
+                alt="Bacon Legal Recruiting — Attorney Search Experts"
                 width={1600}
                 height={1104}
-                className="absolute inset-0 h-full w-full object-cover"
+                className="absolute inset-0 h-full w-full object-cover object-center"
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/25 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/30 to-transparent lg:bg-gradient-to-r lg:from-ink lg:via-ink/20 lg:to-transparent" />
             </div>
           </div>
         </section>
 
-        {/* Stats */}
-        <section className="border-b border-border bg-secondary">
-          <div className="mx-auto grid max-w-6xl grid-cols-2 px-6 md:grid-cols-4">
-            {stats.map((s) => (
-              <div
-                key={s.label}
-                className="flex items-center gap-4 border-border py-9 md:border-r md:last:border-r-0 md:pl-6 md:first:pl-0"
-              >
-                <s.icon className="h-7 w-7 shrink-0 text-brass" strokeWidth={1.25} />
-                <div>
-                  <p className="font-sans text-2xl leading-none text-ink tabular-nums">{s.value}</p>
-                  <p className="mt-2 text-[0.7rem] tracking-[0.12em] uppercase text-muted-foreground">
-                    {s.label}
-                  </p>
-                </div>
-              </div>
-            ))}
+        {/* WHY CHOOSE BACON LEGAL RECRUITING */}
+        <section id="why-choose-us" className="mx-auto max-w-6xl px-6 py-24">
+          <div className="max-w-2xl">
+            <p className="eyebrow text-brass">Why Choose Us</p>
+            <h2 className="rule-brass mt-4 text-3xl sm:text-4xl text-ink">
+              Why Choose Bacon Legal Recruiting
+            </h2>
+            <p className="mt-6 text-base leading-relaxed text-muted-foreground">
+              Finding the right fit for organizations and individual candidates is our specialty.
+              Here is what sets our search practice apart:
+            </p>
           </div>
-        </section>
 
-        {/* About */}
-        <section id="about" className="mx-auto max-w-6xl px-6 py-24">
-          <div className="grid items-center gap-14 lg:grid-cols-2">
-            <div>
-              <p className="eyebrow text-brass">About Us</p>
-              <h2 className="rule-brass mt-5 text-4xl text-ink">Experts in Legal Recruitment</h2>
-              <p className="mt-8 text-base leading-relaxed text-muted-foreground">
-                We partner with top law firms and in-house legal teams to recruit the very best
-                legal talent. Every search is run personally by a consultant who knows the market,
-                the practice and the people in it.
-              </p>
-              <p className="mt-5 text-base leading-relaxed text-muted-foreground">
-                Our deep industry knowledge and extensive network deliver results that last —
-                placements that stay, and partnerships that compound over years.
-              </p>
-              <a
-                href="#services"
-                className="mt-9 inline-flex items-center gap-2 border border-ink px-6 py-3 text-xs font-medium tracking-[0.16em] uppercase text-ink transition-colors hover:bg-ink hover:text-ink-foreground"
-              >
-                Learn More
-              </a>
-            </div>
-            <img
-              src={heroOffice}
-              alt="Boardroom of a modern law firm at dusk"
-              width={1600}
-              height={1104}
-              loading="lazy"
-              className="w-full object-cover"
-              style={{ boxShadow: "var(--shadow-elegant)" }}
-            />
-          </div>
-        </section>
-
-        {/* Services */}
-        <section id="services" className="border-y border-border bg-secondary">
-          <div className="mx-auto max-w-6xl px-6 py-24 text-center">
-            <p className="eyebrow text-brass">Our Services</p>
-            <h2 className="mt-5 text-4xl text-ink">Tailored Recruitment Solutions</h2>
-            <div className="mt-16 grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
-              {services.map((s) => (
-                <article key={s.name} className="flex flex-col items-center px-2">
-                  <s.icon className="h-8 w-8 text-brass" strokeWidth={1.25} />
-                  <h3 className="mt-6 text-xl text-ink">{s.name}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{s.copy}</p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Why us */}
-        <section className="mx-auto max-w-6xl px-6 py-24">
-          <div className="max-w-xl">
-            <p className="eyebrow text-brass">Why Bacon Legal</p>
-            <h2 className="rule-brass mt-5 text-4xl text-ink">We recruit. You succeed.</h2>
-          </div>
-          <div className="mt-14 grid gap-px border-t border-border sm:grid-cols-2 lg:grid-cols-4">
-            {values.map((v) => (
-              <article
-                key={v.name}
-                className="border-b border-border py-9 lg:border-r lg:px-7 lg:last:border-r-0 lg:first:pl-0"
-              >
-                <v.icon className="h-7 w-7 text-brass" strokeWidth={1.25} />
-                <h3 className="mt-5 text-lg text-ink">{v.name}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{v.copy}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        {/* Practice areas */}
-        <section className="border-y border-border bg-secondary">
-          <div className="mx-auto max-w-6xl px-6 py-20">
-            <p className="eyebrow text-center text-muted-foreground">Practice Areas We Cover</p>
-            <div className="mt-12 grid grid-cols-2 gap-10 sm:grid-cols-4 lg:grid-cols-8">
-              {practiceAreas.map((p) => (
-                <div key={p.name} className="flex flex-col items-center text-center">
-                  <p.icon className="h-6 w-6 text-brass" strokeWidth={1.25} />
-                  <p className="mt-4 text-xs leading-snug text-ink">{p.name}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Candidates CTA band */}
-        <section id="candidates" className="bg-ink text-ink-foreground">
-          <div className="mx-auto grid max-w-6xl items-center gap-10 px-6 py-16 md:grid-cols-[1.4fr_auto]">
-            <div>
-              <h2 className="text-3xl">Looking for Your Next Opportunity?</h2>
-              <p className="mt-4 max-w-xl text-sm leading-relaxed text-ink-foreground/70">
-                Explore exceptional roles with leading law firms and in-house legal teams. We never
-                circulate your résumé — conversations begin off the record and stay there until you
-                decide otherwise.
-              </p>
-            </div>
-            <a
-              href="#contact"
-              className="justify-self-start bg-brass px-8 py-3.5 text-xs font-medium tracking-[0.16em] uppercase text-ink transition-opacity hover:opacity-90 md:justify-self-end"
-            >
-              Browse Roles
-            </a>
-          </div>
-        </section>
-
-        {/* Audiences */}
-        <section id="clients" className="mx-auto max-w-6xl px-6 py-24">
-          <div className="grid gap-px border-t border-border md:grid-cols-3">
-            {audiences.map((a) => (
-              <article
-                key={a.name}
-                className="border-b border-border py-10 md:border-r md:px-8 md:last:border-r-0 md:first:pl-0"
-              >
-                <a.icon className="h-8 w-8 text-brass" strokeWidth={1.25} />
-                <h3 className="mt-6 text-2xl text-ink">{a.name}</h3>
-                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{a.copy}</p>
-                <a
-                  href={a.href}
-                  className="mt-7 inline-flex items-center gap-2 text-xs font-medium tracking-[0.14em] uppercase text-ink transition-colors hover:text-brass"
+          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {whyChooseCards.map((card, idx) => {
+              const Icon = card.icon;
+              return (
+                <article
+                  key={card.title}
+                  id={`why-card-${idx + 1}`}
+                  className="flex flex-col border border-border bg-card p-8 transition-all hover:border-brass/50 hover:shadow-md"
                 >
-                  {a.cta}
-                  <ArrowRight className="h-3.5 w-3.5" />
-                </a>
-              </article>
-            ))}
+                  <div className="flex h-12 w-12 items-center justify-center rounded-sm bg-secondary text-brass">
+                    <Icon className="h-6 w-6" strokeWidth={1.5} />
+                  </div>
+                  <h3 className="mt-6 text-xl font-normal text-ink">{card.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground flex-1">
+                    {card.copy}
+                  </p>
+                </article>
+              );
+            })}
           </div>
         </section>
 
-        {/* Process */}
-        <section className="bg-ink text-ink-foreground">
+        {/* ABOUT US */}
+        <section id="about" className="border-t border-border bg-secondary/50">
           <div className="mx-auto max-w-6xl px-6 py-24">
-            <div className="max-w-xl">
-              <p className="eyebrow text-brass">Our Approach</p>
-              <h2 className="mt-5 text-4xl">A retained process, in four movements.</h2>
-            </div>
-            <div className="mt-16 grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
-              {process.map((p) => (
-                <div key={p.step} className="border-t border-brass/40 pt-6">
-                  <p className="font-sans text-2xl text-brass tabular-nums">{p.step}</p>
-                  <h3 className="mt-3 text-xl">{p.name}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-ink-foreground/70">{p.copy}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Insights */}
-        <section id="insights" className="mx-auto max-w-6xl px-6 py-24">
-          <div className="grid gap-12 lg:grid-cols-[0.8fr_2.2fr]">
-            <div>
-              <p className="eyebrow text-brass">Insights</p>
-              <h2 className="rule-brass mt-5 text-3xl text-ink">Recent Insights</h2>
-              <p className="mt-7 text-sm leading-relaxed text-muted-foreground">
-                Stay informed with the latest legal hiring trends, compensation data and market
-                updates from our consultants.
-              </p>
-              <a
-                href="#contact"
-                className="mt-7 inline-flex items-center gap-2 text-xs font-medium tracking-[0.14em] uppercase text-ink transition-colors hover:text-brass"
-              >
-                View all insights
-                <ArrowRight className="h-3.5 w-3.5" />
-              </a>
-            </div>
-            <div className="grid gap-8 sm:grid-cols-3">
-              {insights.map((i) => (
-                <article key={i.title}>
-                  <img
-                    src={i.image}
-                    alt={i.title}
-                    width={1200}
-                    height={900}
-                    loading="lazy"
-                    className="aspect-[4/3] w-full object-cover"
-                  />
-                  <p className="mt-5 text-[0.7rem] tracking-[0.14em] uppercase text-muted-foreground tabular-nums">
-                    {i.date}
-                  </p>
-                  <h3 className="mt-2 text-lg leading-snug text-ink">{i.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{i.copy}</p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Testimonial */}
-        <section className="bg-ink text-ink-foreground">
-          <div className="mx-auto max-w-3xl px-6 py-20 text-center">
-            <Quote className="mx-auto h-7 w-7 text-brass" strokeWidth={1.25} />
-            <blockquote className="mt-7 font-display text-2xl leading-relaxed italic sm:text-3xl">
-              “Bacon Legal consistently delivers high-quality candidates who make an immediate
-              impact. Two firms, four weeks, no leaks — that is rare in this market.”
-            </blockquote>
-            <figcaption className="eyebrow mt-8 text-ink-foreground/60">
-              Managing Partner — AmLaw 100 Firm
-            </figcaption>
-          </div>
-        </section>
-
-        {/* Firms strip */}
-        <section className="border-b border-border bg-secondary">
-          <div className="mx-auto max-w-6xl px-6 py-14 text-center">
-            <p className="eyebrow text-muted-foreground">Some of the firms we work with</p>
-            <div className="mt-9 grid grid-cols-2 items-center gap-8 sm:grid-cols-3 lg:grid-cols-5">
-              {firms.map((f) => (
-                <p key={f} className="font-display text-lg text-ink/70">
-                  {f}
+            <div className="grid items-center gap-14 lg:grid-cols-12">
+              <div className="lg:col-span-7">
+                <p className="eyebrow text-brass">About Us</p>
+                <h2 className="rule-brass mt-4 text-3xl sm:text-4xl text-ink">
+                  Experience. Reputation. Results.
+                </h2>
+                <p className="mt-4 text-lg font-medium text-ink/80 italic font-display">
+                  Trusted legal placement you can count on.
                 </p>
-              ))}
+
+                <div className="mt-7 space-y-4 text-sm sm:text-base leading-relaxed text-muted-foreground">
+                  <p>
+                    At Bacon Legal Recruiting, we know that your team drives your success. We
+                    specialize in identifying and attracting the very top attorneys for law firms
+                    and corporations. We have a skilled and client friendly team motivated to
+                    achieve excellence.
+                  </p>
+                  <p>
+                    We recruit directly from the “passive” workforce. These are attorneys in the top
+                    of the talent pool that are not job searching. We do not use job boards as the
+                    overall talent pool on job boards has a disproportionately high percentage of
+                    lower performers.
+                  </p>
+                  <p>
+                    As an attorney of more than 25 years himself, our founder and CEO, Kevin Bacon,
+                    knows the industry intricately from the inside out. After working as a private
+                    practice attorney and legislator, Kevin realized that there is a demand for
+                    experienced, skilled, knowledgeable and well-connected legal recruiters. His
+                    reputation in the legal and political world is impeccable, and he excels at
+                    finding the perfect fit for each role.
+                  </p>
+                  <p>
+                    Some of Kevin's many strengths are his ability to understand a situation and
+                    source a successful solution. Having served in the Ohio House of Representatives
+                    from 2007 to 2010, and as a state senator for the 3rd District of the Ohio
+                    Senate from 2011 to 2018, Kevin understands how to work with many different
+                    types of people and achieve measurable success.
+                  </p>
+                  <p>
+                    Kevin has built a team here at Bacon Legal Recruiting that has a proven track
+                    record of permanent placements for our law firms and corporations. Each and
+                    every client is our number one client, and our focus is getting you the best
+                    partner, associate or in-house counsel attorney.
+                  </p>
+                </div>
+
+                <div className="mt-8 border-l-2 border-brass pl-5 py-2 bg-background/60">
+                  <p className="text-base font-medium text-ink">
+                    At Bacon Legal Recruiting, we know the attorney you choose will make a
+                    difference.
+                  </p>
+                  <p className="mt-1 text-sm text-brass font-medium">
+                    Let us help you find the right one.
+                  </p>
+                </div>
+
+                <div className="mt-8">
+                  <a
+                    href="#contact"
+                    id="about-cta-button"
+                    className="inline-flex items-center gap-2 bg-brass px-7 py-3.5 text-xs font-semibold tracking-[0.16em] uppercase text-ink transition-opacity hover:opacity-90"
+                  >
+                    Connect With Us
+                    <ArrowRight className="h-4 w-4" />
+                  </a>
+                </div>
+              </div>
+
+              <div className="lg:col-span-5">
+                <div className="relative">
+                  <img
+                    src={ABOUT_IMAGE}
+                    alt="Bacon Legal Recruiting executive team"
+                    width={1200}
+                    height={1400}
+                    loading="lazy"
+                    className="w-full object-cover rounded-sm border border-border shadow-lg"
+                  />
+                  <div className="absolute -bottom-6 -left-6 hidden sm:block bg-ink text-ink-foreground p-6 max-w-xs border border-brass/40 shadow-xl">
+                    <p className="text-xs uppercase tracking-widest text-brass font-medium">
+                      25+ Years Experience
+                    </p>
+                    <p className="mt-2 text-sm leading-relaxed text-ink-foreground/80">
+                      Led by former attorney & legislator Kevin Bacon, delivering discreet permanent
+                      placements nationwide.
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* Contact */}
-        <section id="contact" className="mx-auto max-w-6xl px-6 py-24">
-          <div className="grid gap-14 lg:grid-cols-2">
-            <div>
-              <p className="eyebrow text-brass">Contact</p>
-              <h2 className="rule-brass mt-5 text-4xl text-ink">Begin a conversation.</h2>
-              <p className="mt-8 max-w-md text-sm leading-relaxed text-muted-foreground">
-                Share the outline of your mandate or your own situation. Every enquiry is read and
-                answered by Kevin Bacon within one business day.
-              </p>
-              <dl className="mt-10 space-y-5 text-sm">
-                <div>
-                  <dt className="eyebrow text-muted-foreground">Email</dt>
-                  <dd className="mt-1 text-ink">kevin@baconlegalrecruiting.com</dd>
-                </div>
-                <div>
-                  <dt className="eyebrow text-muted-foreground">Telephone</dt>
-                  <dd className="mt-1 text-ink tabular-nums">+1 (312) 555-0184</dd>
-                </div>
-                <div>
-                  <dt className="eyebrow text-muted-foreground">Offices</dt>
-                  <dd className="mt-1 text-ink">Chicago · New York · Remote nationwide</dd>
-                </div>
-              </dl>
+        {/* OUR SERVICES */}
+        <section id="services" className="mx-auto max-w-6xl px-6 py-24">
+          <div className="grid items-center gap-14 lg:grid-cols-12">
+            <div className="order-2 lg:order-1 lg:col-span-5">
+              <img
+                src={SERVICES_IMAGE}
+                alt="Law firm boardroom consultation"
+                width={1200}
+                height={1200}
+                loading="lazy"
+                className="w-full object-cover rounded-sm border border-border shadow-lg"
+              />
             </div>
-            <form
-              className="bg-card p-8"
-              style={{ boxShadow: "var(--shadow-elegant)" }}
-              onSubmit={(e) => e.preventDefault()}
-            >
-              <div className="grid gap-5">
-                <label className="block">
-                  <span className="eyebrow text-muted-foreground">Name</span>
-                  <input
-                    required
-                    className="mt-2 w-full border-b border-border bg-transparent pb-2 text-sm text-foreground outline-none focus:border-brass"
-                  />
-                </label>
-                <label className="block">
-                  <span className="eyebrow text-muted-foreground">Email</span>
-                  <input
-                    required
-                    type="email"
-                    className="mt-2 w-full border-b border-border bg-transparent pb-2 text-sm text-foreground outline-none focus:border-brass"
-                  />
-                </label>
-                <label className="block">
-                  <span className="eyebrow text-muted-foreground">I am a</span>
-                  <select className="mt-2 w-full border-b border-border bg-transparent pb-2 text-sm text-foreground outline-none focus:border-brass">
-                    <option>Hiring firm or legal department</option>
-                    <option>Candidate</option>
-                  </select>
-                </label>
-                <label className="block">
-                  <span className="eyebrow text-muted-foreground">Details</span>
-                  <textarea
-                    rows={4}
-                    className="mt-2 w-full resize-none border-b border-border bg-transparent pb-2 text-sm text-foreground outline-none focus:border-brass"
-                  />
-                </label>
-                <button
-                  type="submit"
-                  className="mt-2 bg-ink px-7 py-3.5 text-xs font-medium tracking-[0.16em] uppercase text-ink-foreground transition-opacity hover:opacity-90"
-                >
-                  Send Enquiry
-                </button>
+
+            <div className="order-1 lg:order-2 lg:col-span-7">
+              <p className="eyebrow text-brass">Our Services</p>
+              <p className="mt-2 text-sm font-medium tracking-wide text-muted-foreground uppercase">
+                Committed to professionalism.
+              </p>
+              <h2 className="rule-brass mt-3 text-3xl sm:text-4xl text-ink">
+                The legal search firm with an edge.
+              </h2>
+
+              <div className="mt-7 space-y-4 text-sm sm:text-base leading-relaxed text-muted-foreground">
+                <p>
+                  Whether you're searching for partners, associates or in-house counsel attorneys,
+                  our extensive experience and intimate knowledge of the legal profession gives us a
+                  unique edge.
+                </p>
+                <p>
+                  Because our firm is run by a former practicing attorney and market experts, we
+                  understand not just the practice of law, but the “business of law,” and we know
+                  where to find quality candidates.
+                </p>
+                <p className="font-medium text-ink">
+                  We routinely talk to hundreds of attorneys all over the United States every week.
+                </p>
+                <p>
+                  Every client is our top priority, and because of this along with our high
+                  placement success rate, we operate on many repeat engagements from current happy
+                  clients as well as referrals.
+                </p>
               </div>
-            </form>
+
+              {/* Service categories */}
+              <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4 border-t border-border pt-6">
+                <div className="border border-border p-4 bg-secondary/30">
+                  <h4 className="text-base font-medium text-ink">Partner Search</h4>
+                  <p className="mt-1 text-xs text-muted-foreground">
+                    Lateral partners, practice group acquisitions, and firm mergers.
+                  </p>
+                </div>
+                <div className="border border-border p-4 bg-secondary/30">
+                  <h4 className="text-base font-medium text-ink">Associate Placement</h4>
+                  <p className="mt-1 text-xs text-muted-foreground">
+                    High-achieving associates across corporate, litigation, IP & specialized niches.
+                  </p>
+                </div>
+                <div className="border border-border p-4 bg-secondary/30">
+                  <h4 className="text-base font-medium text-ink">In-House Counsel</h4>
+                  <p className="mt-1 text-xs text-muted-foreground">
+                    General Counsel and corporate legal team recruitment for enterprise
+                    organizations.
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-8">
+                <a
+                  href="#contact"
+                  id="services-cta-button"
+                  className="inline-flex items-center gap-2 bg-brass px-7 py-3.5 text-xs font-semibold tracking-[0.16em] uppercase text-ink transition-opacity hover:opacity-90"
+                >
+                  Connect With Us
+                  <ArrowRight className="h-4 w-4" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* OUR PLACEMENTS */}
+        <section id="placements" className="bg-ink text-ink-foreground py-24">
+          <div className="mx-auto max-w-6xl px-6">
+            <div className="grid items-center gap-14 lg:grid-cols-12">
+              <div className="lg:col-span-7">
+                <p className="eyebrow text-brass">Our Track Record</p>
+                <h2 className="mt-4 text-3xl sm:text-4xl text-ink-foreground font-normal">
+                  Our Placements
+                </h2>
+                <p className="mt-4 text-lg font-medium text-brass italic font-display">
+                  We work with each client until their search request is filled.
+                </p>
+
+                {/* Prominent Visual Statistic block */}
+                <div className="mt-8 flex items-baseline gap-4 border-y border-brass/30 py-6">
+                  <span className="font-display text-6xl sm:text-7xl font-light text-brass tabular-nums">
+                    97%
+                  </span>
+                  <div>
+                    <p className="text-lg sm:text-xl font-medium text-ink-foreground">
+                      Success rate placing candidates in long term roles.
+                    </p>
+                    <p className="mt-1 text-xs tracking-wider uppercase text-ink-foreground/60">
+                      Proven Permanent Retention
+                    </p>
+                  </div>
+                </div>
+
+                <div className="mt-8 space-y-4 text-sm sm:text-base leading-relaxed text-ink-foreground/80">
+                  <p>
+                    We have access to well over 500,000 attorney profiles in our database which is
+                    constantly updated.
+                  </p>
+                  <p>
+                    We have recruiters working for Bacon Legal Recruiting that have a network of
+                    recruiter partners across the United States that conduct searches for us in
+                    almost every legal market.
+                  </p>
+                  <p className="font-medium text-ink-foreground">
+                    Our candidates are high quality experienced professionals who are well
+                    positioned to make significant contributions to the organizations they join.
+                  </p>
+                </div>
+
+                <div className="mt-10">
+                  <a
+                    href="#contact"
+                    id="placements-cta-button"
+                    className="inline-flex items-center gap-2 bg-brass px-8 py-3.5 text-xs font-semibold tracking-[0.16em] uppercase text-ink transition-opacity hover:opacity-90"
+                  >
+                    Connect With Us
+                    <ArrowRight className="h-4 w-4" />
+                  </a>
+                </div>
+              </div>
+
+              <div className="lg:col-span-5">
+                <div className="relative">
+                  <img
+                    src={PLACEMENTS_IMAGE}
+                    alt="Attorneys collaborating in modern law firm"
+                    width={1200}
+                    height={1200}
+                    loading="lazy"
+                    className="w-full object-cover rounded-sm border border-brass/30 shadow-2xl"
+                  />
+                  <div className="mt-4 border-l-2 border-brass pl-4">
+                    <p className="text-xs uppercase tracking-widest text-brass">
+                      500,000+ Attorney Profiles
+                    </p>
+                    <p className="mt-1 text-xs text-ink-foreground/70">
+                      Constantly refreshed nationwide legal database and partner recruiter network.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* OUR TEAM / LEADERSHIP */}
+        <section id="leadership" className="mx-auto max-w-6xl px-6 py-24">
+          <div className="max-w-2xl">
+            <p className="eyebrow text-brass">Our Leadership</p>
+            <h2 className="rule-brass mt-4 text-3xl sm:text-4xl text-ink">Our Leadership Team</h2>
+            <p className="mt-6 text-base leading-relaxed text-muted-foreground">
+              Directly engaged with every client and search assignment to guarantee personalized
+              focus, industry acumen, and exceptional placement results.
+            </p>
+          </div>
+
+          <div className="mt-14 grid gap-10 sm:grid-cols-2">
+            {/* Team Member 1: Kevin Bacon */}
+            <article
+              id="team-kevin-bacon"
+              className="flex flex-col border border-border bg-card p-8 shadow-sm transition-all hover:border-brass/50 hover:shadow-md"
+            >
+              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-sm bg-secondary border border-border">
+                <img
+                  src={KEVIN_IMAGE}
+                  alt="Kevin Bacon — Founder & CEO of Bacon Legal Recruiting"
+                  width={800}
+                  height={600}
+                  loading="lazy"
+                  className="h-full w-full object-cover object-top"
+                />
+              </div>
+
+              <div className="mt-6 flex items-baseline justify-between gap-4">
+                <div>
+                  <h3 className="text-2xl text-ink font-normal">Kevin Bacon</h3>
+                  <p className="text-xs font-semibold uppercase tracking-wider text-brass mt-1">
+                    Founder & CEO
+                  </p>
+                </div>
+                <a
+                  href="https://www.linkedin.com/in/kevin-bacon-esq-8169993/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-secondary text-ink transition-colors hover:bg-brass hover:text-ink"
+                  aria-label="Kevin Bacon LinkedIn Profile"
+                >
+                  <Linkedin className="h-4 w-4" />
+                </a>
+              </div>
+
+              <p className="mt-4 text-sm leading-relaxed text-muted-foreground flex-1">
+                Kevin heads up strategy, technology, and client service. As the ultimate
+                relationship builder, Kevin spends a lot of time on the phone with clients and
+                candidates. He oversees the team and is personally engaged with every client and
+                candidate.
+              </p>
+            </article>
+
+            {/* Team Member 2: Marqué Bressler-Preininger */}
+            <article
+              id="team-marque-preininger"
+              className="flex flex-col border border-border bg-card p-8 shadow-sm transition-all hover:border-brass/50 hover:shadow-md"
+            >
+              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-sm bg-secondary border border-border">
+                <img
+                  src={MARQUE_IMAGE}
+                  alt="Marqué Bressler-Preininger — Exec. Dir. of Legal Search"
+                  width={800}
+                  height={600}
+                  loading="lazy"
+                  className="h-full w-full object-cover object-top"
+                />
+              </div>
+
+              <div className="mt-6 flex items-baseline justify-between gap-4">
+                <div>
+                  <h3 className="text-2xl text-ink font-normal">Marqué Bressler-Preininger</h3>
+                  <p className="text-xs font-semibold uppercase tracking-wider text-brass mt-1">
+                    Exec. Dir. of Legal Search
+                  </p>
+                </div>
+                <a
+                  href="https://www.linkedin.com/in/marque-preininger/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-secondary text-ink transition-colors hover:bg-brass hover:text-ink"
+                  aria-label="Marqué Bressler-Preininger LinkedIn Profile"
+                >
+                  <Linkedin className="h-4 w-4" />
+                </a>
+              </div>
+
+              <p className="mt-4 text-sm leading-relaxed text-muted-foreground flex-1">
+                Marqué heads up legal recruiting. She spent almost three decades in the residential
+                and commercial housing industry building a well established and sizable network
+                throughout the country. Marqué also oversees company operations.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        {/* CAREERS SECTION */}
+        <section id="careers" className="border-t border-border bg-secondary/40 py-20">
+          <div className="mx-auto max-w-6xl px-6">
+            <div className="border border-border bg-card p-10 sm:p-14 shadow-sm">
+              <div className="grid items-center gap-10 lg:grid-cols-12">
+                <div className="lg:col-span-8">
+                  <p className="eyebrow text-brass">Careers</p>
+                  <h2 className="mt-4 text-3xl sm:text-4xl text-ink font-normal">
+                    Explore Opportunities for Legal Talent
+                  </h2>
+                  <div className="mt-6 space-y-3 text-sm sm:text-base leading-relaxed text-muted-foreground">
+                    <p>
+                      At Bacon Legal Recruiting, finding the right fit for organizations and
+                      individual candidates is our specialty.
+                    </p>
+                    <p>
+                      We recruit directly from the “passive” workforce. These are attorneys in the
+                      top of the talent pool that are not job searching on public boards. Whether
+                      you are a partner considering a lateral move, an experienced associate looking
+                      for your next challenge, or seeking an in-house corporate role, all
+                      conversations begin off the record and stay strictly confidential.
+                    </p>
+                  </div>
+                </div>
+                <div className="lg:col-span-4 flex flex-col justify-center items-start lg:items-end">
+                  <a
+                    href="#contact"
+                    id="careers-cta-button"
+                    className="w-full sm:w-auto text-center bg-brass px-8 py-4 text-xs font-semibold tracking-[0.16em] uppercase text-ink transition-opacity hover:opacity-90 shadow-sm"
+                  >
+                    Connect With Us
+                  </a>
+                  <p className="mt-3 text-xs text-muted-foreground text-center lg:text-right">
+                    Discreet, confidential consultations.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* NATIONAL ASSOCIATION OF LEGAL SEARCH CONSULTANTS (NALSC) */}
+        <section id="nalsc" className="border-t border-border bg-background py-20">
+          <div className="mx-auto max-w-6xl px-6">
+            <div className="border-l-4 border-brass bg-secondary/30 p-8 sm:p-12">
+              <p className="eyebrow text-brass">Professional Standards & Affiliations</p>
+              <h2 className="mt-3 text-2xl sm:text-3xl text-ink font-normal">
+                National Association of Legal Search Consultants (NALSC)
+              </h2>
+
+              <div className="mt-5 space-y-4 text-sm sm:text-base leading-relaxed text-muted-foreground">
+                <p>
+                  Kevin Bacon Executive Recruiting, DBA “Bacon Legal Recruiting” was accepted into,
+                  and continues to be a member of, the National Association of Legal Search
+                  Consultants (NALSC).
+                </p>
+                <p className="font-medium text-ink">
+                  To be a member of NALSC, members must comply with all its ethical requirements.
+                </p>
+              </div>
+
+              <div className="mt-5">
+                <a
+                  href="https://www.nalsc.org/code-of-ethics/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 border border-ink px-5 py-2.5 text-xs font-semibold tracking-[0.14em] uppercase text-ink transition-colors hover:bg-ink hover:text-ink-foreground"
+                >
+                  NALSC Code of Ethics
+                  <ExternalLink className="h-3.5 w-3.5" />
+                </a>
+              </div>
+
+              {/* ULPQ Information Section */}
+              <div className="mt-10 border-t border-border/80 pt-8">
+                <h3 className="text-lg font-medium text-ink">
+                  Universal Lateral Partner Questionnaire (ULPQ) Information
+                </h3>
+                <div className="mt-3 space-y-3 text-sm leading-relaxed text-muted-foreground">
+                  <p>
+                    Law Firms, Corporations and Attorneys that are interested in obtaining
+                    information and forms for the Universal Lateral Partner Questionnaire (ULPQ),
+                    please see the following link.
+                  </p>
+                  <p>
+                    Members of NALSC work tirelessly with law firms across the United States to
+                    create these documents to streamline the initial communications between search
+                    firms and law firms and eliminate the repetition of putting together separate
+                    LPQ’s when presenting partner candidates to multiple law firms.
+                  </p>
+                </div>
+                <div className="mt-5">
+                  <a
+                    href="https://www.nalsc.org/u-lpq-information/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 bg-secondary border border-border px-5 py-2.5 text-xs font-semibold tracking-[0.14em] uppercase text-ink transition-colors hover:bg-ink hover:text-ink-foreground hover:border-ink"
+                  >
+                    ULPQ Information
+                    <ExternalLink className="h-3.5 w-3.5" />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* CONTACT SECTION */}
+        <section id="contact" className="border-t border-border bg-secondary/50 py-24">
+          <div className="mx-auto max-w-6xl px-6">
+            <div className="grid gap-14 lg:grid-cols-12 items-start">
+              <div className="lg:col-span-5">
+                <p className="eyebrow text-brass">Contact</p>
+                <h2 className="rule-brass mt-4 text-3xl sm:text-4xl text-ink">
+                  Begin a conversation.
+                </h2>
+                <p className="mt-6 text-base leading-relaxed text-muted-foreground">
+                  Share the outline of your search request or background. Every inquiry is handled
+                  with complete discretion and answered promptly by our leadership team.
+                </p>
+
+                <dl className="mt-10 space-y-6 text-sm">
+                  <div className="flex items-start gap-4">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-sm bg-background border border-border text-brass">
+                      <Mail className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <dt className="eyebrow text-muted-foreground">Email</dt>
+                      <dd className="mt-1">
+                        <a
+                          href="mailto:admin@baconlegalrecruiting.com"
+                          className="text-base text-ink font-medium hover:text-brass transition-colors"
+                        >
+                          admin@baconlegalrecruiting.com
+                        </a>
+                      </dd>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-sm bg-background border border-border text-brass">
+                      <Phone className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <dt className="eyebrow text-muted-foreground">Telephone</dt>
+                      <dd className="mt-1">
+                        <a
+                          href="tel:+16145782655"
+                          className="text-base text-ink font-medium hover:text-brass transition-colors tabular-nums"
+                        >
+                          614-578-2655
+                        </a>
+                      </dd>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-sm bg-background border border-border text-brass">
+                      <ShieldCheck className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <dt className="eyebrow text-muted-foreground">Search Scope</dt>
+                      <dd className="mt-1 text-sm text-ink leading-relaxed">
+                        National Reach · Partners, Associates & In-House Counsel
+                      </dd>
+                    </div>
+                  </div>
+                </dl>
+              </div>
+
+              <div className="lg:col-span-7">
+                <form
+                  id="contact-form"
+                  className="bg-card p-8 sm:p-10 border border-border shadow-md rounded-sm"
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    setFormSubmitted(true);
+                  }}
+                >
+                  <h3 className="text-xl font-medium text-ink">Send an Inquiry</h3>
+                  <p className="mt-1 text-xs text-muted-foreground">
+                    All communications are strictly confidential.
+                  </p>
+
+                  {formSubmitted ? (
+                    <div className="mt-8 rounded-sm border border-brass/50 bg-secondary/50 p-8 text-center">
+                      <CheckCircle2 className="mx-auto h-10 w-10 text-brass" />
+                      <h4 className="mt-4 text-xl font-normal text-ink">Inquiry Received</h4>
+                      <p className="mt-2 text-sm text-muted-foreground max-w-md mx-auto">
+                        Thank you for reaching out to Bacon Legal Recruiting. We will review your
+                        mandate or inquiry and respond promptly.
+                      </p>
+                      <button
+                        type="button"
+                        onClick={() => setFormSubmitted(false)}
+                        className="mt-6 border border-ink px-6 py-2.5 text-xs font-semibold tracking-widest uppercase text-ink hover:bg-ink hover:text-ink-foreground transition-colors"
+                      >
+                        Send Another Message
+                      </button>
+                    </div>
+                  ) : (
+                    <div className="mt-8 grid gap-5">
+                      <label className="block">
+                        <span className="eyebrow text-muted-foreground">Name</span>
+                        <input
+                          required
+                          placeholder="Your full name"
+                          className="mt-2 w-full border-b border-border bg-transparent pb-2 text-sm text-foreground outline-none transition-colors focus:border-brass placeholder:text-muted-foreground/50"
+                        />
+                      </label>
+
+                      <div className="grid sm:grid-cols-2 gap-5">
+                        <label className="block">
+                          <span className="eyebrow text-muted-foreground">Email</span>
+                          <input
+                            required
+                            type="email"
+                            placeholder="name@firm.com"
+                            className="mt-2 w-full border-b border-border bg-transparent pb-2 text-sm text-foreground outline-none transition-colors focus:border-brass placeholder:text-muted-foreground/50"
+                          />
+                        </label>
+
+                        <label className="block">
+                          <span className="eyebrow text-muted-foreground">Phone (Optional)</span>
+                          <input
+                            type="tel"
+                            placeholder="Direct contact number"
+                            className="mt-2 w-full border-b border-border bg-transparent pb-2 text-sm text-foreground outline-none transition-colors focus:border-brass placeholder:text-muted-foreground/50"
+                          />
+                        </label>
+                      </div>
+
+                      <label className="block">
+                        <span className="eyebrow text-muted-foreground">I am a</span>
+                        <select className="mt-2 w-full border-b border-border bg-transparent pb-2 text-sm text-foreground outline-none transition-colors focus:border-brass">
+                          <option>Hiring law firm or legal department</option>
+                          <option>Partner or associate seeking lateral opportunity</option>
+                          <option>Attorney seeking in-house counsel position</option>
+                          <option>General inquiry</option>
+                        </select>
+                      </label>
+
+                      <label className="block">
+                        <span className="eyebrow text-muted-foreground">Details</span>
+                        <textarea
+                          rows={4}
+                          required
+                          placeholder="Please share details of your search requirements, timing, or practice area background..."
+                          className="mt-2 w-full resize-none border-b border-border bg-transparent pb-2 text-sm text-foreground outline-none transition-colors focus:border-brass placeholder:text-muted-foreground/50"
+                        />
+                      </label>
+
+                      <button
+                        type="submit"
+                        id="contact-submit-button"
+                        className="mt-4 bg-ink px-8 py-3.5 text-xs font-semibold tracking-[0.16em] uppercase text-ink-foreground transition-opacity hover:opacity-90 shadow-sm"
+                      >
+                        Send Inquiry
+                      </button>
+                    </div>
+                  )}
+                </form>
+              </div>
+            </div>
           </div>
         </section>
       </main>
 
+      {/* FOOTER */}
       <footer className="bg-ink text-ink-foreground">
-        <div className="mx-auto grid max-w-6xl gap-10 px-6 py-14 md:grid-cols-[1.4fr_1fr_1fr]">
+        <div className="mx-auto grid max-w-6xl gap-10 px-6 py-16 md:grid-cols-[1.4fr_1fr_1fr]">
           <div>
             <img
-              src={logoAsset.url}
+              src={BRAND_LOGO}
               alt="Bacon Legal Recruiting"
               width={329}
               height={106}
               loading="lazy"
               className="h-10 w-auto brightness-0 invert"
             />
-            <p className="mt-5 max-w-sm text-sm leading-relaxed text-ink-foreground/60">
-              Specialist legal recruitment for law firms and in-house legal departments across the
-              United States.
+            <p className="mt-5 max-w-sm text-sm leading-relaxed text-ink-foreground/75 font-light">
+              Bacon Legal Recruiting — Attorney Search Experts. Specialist legal recruiting and
+              permanent placement for law firms and corporations nationwide.
             </p>
           </div>
+
           <div>
             <p className="eyebrow text-brass">Navigate</p>
-            <ul className="mt-5 space-y-2.5 text-sm text-ink-foreground/70">
-              {nav.slice(1).map(([label, href]) => (
+            <ul className="mt-5 space-y-2.5 text-sm text-ink-foreground/75">
+              {nav.map(([label, href]) => (
                 <li key={label}>
                   <a href={href} className="transition-colors hover:text-brass">
                     {label}
@@ -614,19 +933,40 @@ function Index() {
               ))}
             </ul>
           </div>
+
           <div>
             <p className="eyebrow text-brass">Contact</p>
-            <ul className="mt-5 space-y-2.5 text-sm text-ink-foreground/70">
-              <li>kevin@baconlegalrecruiting.com</li>
-              <li className="tabular-nums">+1 (312) 555-0184</li>
-              <li>Chicago · New York</li>
+            <ul className="mt-5 space-y-3 text-sm text-ink-foreground/75">
+              <li>
+                <a
+                  href="mailto:admin@baconlegalrecruiting.com"
+                  className="hover:text-brass transition-colors"
+                >
+                  admin@baconlegalrecruiting.com
+                </a>
+              </li>
+              <li>
+                <a
+                  href="tel:+16145782655"
+                  className="hover:text-brass transition-colors tabular-nums"
+                >
+                  614-578-2655
+                </a>
+              </li>
+              <li className="pt-2 text-xs text-ink-foreground/60 border-t border-ink-foreground/10">
+                Member, National Association of Legal Search Consultants (NALSC)
+              </li>
             </ul>
           </div>
         </div>
+
         <div className="border-t border-ink-foreground/10">
-          <p className="mx-auto max-w-6xl px-6 py-6 text-xs text-ink-foreground/50 tabular-nums">
-            © {new Date().getFullYear()} Bacon Legal Recruiting. All rights reserved.
-          </p>
+          <div className="mx-auto flex max-w-6xl flex-col sm:flex-row items-center justify-between gap-4 px-6 py-6 text-xs text-ink-foreground/60">
+            <p>© 2025. Kevin Bacon Legal Recruiting. All Rights Reserved.</p>
+            <p className="tracking-widest uppercase text-[0.65rem] text-brass">
+              Attorney Search Experts
+            </p>
+          </div>
         </div>
       </footer>
     </div>
