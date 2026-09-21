@@ -20,9 +20,9 @@ import {
 } from "lucide-react";
 
 import heroCourthouse from "../assets/hero-courthouse.jpg";
+import uploadedLogo from "../assets/bacon-legal-logo.png";
 
-const BRAND_LOGO =
-  "https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/8N8gUJT4F7aiDg9OX4et/media/65a5ca712aaf1b9cc10a896a.png";
+const BRAND_LOGO = uploadedLogo;
 const HERO_IMAGE = heroCourthouse;
 const ABOUT_IMAGE =
   "https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/8N8gUJT4F7aiDg9OX4et/media/645bf82a57b9cc3fd1141da4.webp";
@@ -111,20 +111,20 @@ function Index() {
   return (
     <div className="min-h-screen bg-background text-foreground selection:bg-brass selection:text-ink">
       {/* Header */}
-      <header className="sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur-md transition-all">
-        <div className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-6 py-4">
+      <header className="sticky top-0 z-40 border-b border-border bg-[#FFFFFF] transition-all">
+        <div className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-6 py-3 sm:py-3.5 md:py-4 bg-[#FFFFFF]">
           <a
             href="#top"
             id="header-brand-logo"
-            className="flex shrink-0 items-center transition-opacity hover:opacity-90"
+            className="flex shrink-0 items-center transition-opacity hover:opacity-90 bg-[#FFFFFF]"
             aria-label="Bacon Legal Recruiting Home"
           >
             <img
               src={BRAND_LOGO}
               alt="Bacon Legal Recruiting — Attorney Search Experts"
-              width={329}
-              height={106}
-              className="h-9 sm:h-10 w-auto object-contain"
+              width={1536}
+              height={1024}
+              className="h-20 sm:h-24 md:h-28 lg:h-32 w-auto object-contain"
             />
           </a>
 
@@ -165,7 +165,7 @@ function Index() {
 
         {/* Mobile Navigation Drawer */}
         {mobileMenuOpen && (
-          <div className="border-b border-border bg-background px-6 py-5 lg:hidden">
+          <div className="border-b border-border bg-[#FFFFFF] px-6 py-5 lg:hidden">
             <nav className="flex flex-col gap-4">
               {nav.map(([label, href]) => (
                 <a
@@ -910,10 +910,10 @@ function Index() {
             <img
               src={BRAND_LOGO}
               alt="Bacon Legal Recruiting"
-              width={329}
-              height={106}
+              width={1536}
+              height={1024}
               loading="lazy"
-              className="h-10 w-auto brightness-0 invert"
+              className="h-16 sm:h-20 w-auto object-contain rounded-sm"
             />
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-ink-foreground/75 font-light">
               Bacon Legal Recruiting — Attorney Search Experts. Specialist legal recruiting and
