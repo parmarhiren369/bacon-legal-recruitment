@@ -171,13 +171,35 @@ const insights = [
 ];
 
 const process = [
-  { step: "01", name: "Mandate", copy: "We define the brief with the decision-makers, not an intake form." },
-  { step: "02", name: "Market Map", copy: "A researched, named universe of candidates before a single approach." },
-  { step: "03", name: "Approach", copy: "Discreet outreach that protects your reputation and theirs." },
-  { step: "04", name: "Close", copy: "Compensation, conflicts and transition handled to signature." },
+  {
+    step: "01",
+    name: "Mandate",
+    copy: "We define the brief with the decision-makers, not an intake form.",
+  },
+  {
+    step: "02",
+    name: "Market Map",
+    copy: "A researched, named universe of candidates before a single approach.",
+  },
+  {
+    step: "03",
+    name: "Approach",
+    copy: "Discreet outreach that protects your reputation and theirs.",
+  },
+  {
+    step: "04",
+    name: "Close",
+    copy: "Compensation, conflicts and transition handled to signature.",
+  },
 ];
 
-const firms = ["Kirkland & Ellis", "Latham & Watkins", "Simpson Thacher", "Morgan Lewis", "White & Case"];
+const firms = [
+  "Kirkland & Ellis",
+  "Latham & Watkins",
+  "Simpson Thacher",
+  "Morgan Lewis",
+  "White & Case",
+];
 
 function Index() {
   return (
@@ -221,8 +243,8 @@ function Index() {
             <div className="px-6 py-20 lg:py-28 lg:pr-14">
               <p className="eyebrow text-brass">Legal talent. Lasting impact.</p>
               <h1 className="mt-7 text-4xl leading-[1.08] sm:text-5xl lg:text-[3.4rem]">
-                Connecting <span className="text-brass">Exceptional Legal</span> Talent with
-                Leading Law Firms
+                Connecting <span className="text-brass">Exceptional Legal</span> Talent with Leading
+                Law Firms
               </h1>
               <p className="mt-7 max-w-lg text-base leading-relaxed text-ink-foreground/70">
                 Specialist legal recruitment across the United States. Trusted by law firms,
@@ -281,13 +303,11 @@ function Index() {
           <div className="grid items-center gap-14 lg:grid-cols-2">
             <div>
               <p className="eyebrow text-brass">About Us</p>
-              <h2 className="rule-brass mt-5 text-4xl text-ink">
-                Experts in Legal Recruitment
-              </h2>
+              <h2 className="rule-brass mt-5 text-4xl text-ink">Experts in Legal Recruitment</h2>
               <p className="mt-8 text-base leading-relaxed text-muted-foreground">
                 We partner with top law firms and in-house legal teams to recruit the very best
-                legal talent. Every search is run personally by a consultant who knows the
-                market, the practice and the people in it.
+                legal talent. Every search is run personally by a consultant who knows the market,
+                the practice and the people in it.
               </p>
               <p className="mt-5 text-base leading-relaxed text-muted-foreground">
                 Our deep industry knowledge and extensive network deliver results that last —
@@ -370,9 +390,9 @@ function Index() {
             <div>
               <h2 className="text-3xl">Looking for Your Next Opportunity?</h2>
               <p className="mt-4 max-w-xl text-sm leading-relaxed text-ink-foreground/70">
-                Explore exceptional roles with leading law firms and in-house legal teams. We
-                never circulate your résumé — conversations begin off the record and stay there
-                until you decide otherwise.
+                Explore exceptional roles with leading law firms and in-house legal teams. We never
+                circulate your résumé — conversations begin off the record and stay there until you
+                decide otherwise.
               </p>
             </div>
             <a
@@ -501,8 +521,8 @@ function Index() {
               <p className="eyebrow text-brass">Contact</p>
               <h2 className="rule-brass mt-5 text-4xl text-ink">Begin a conversation.</h2>
               <p className="mt-8 max-w-md text-sm leading-relaxed text-muted-foreground">
-                Share the outline of your mandate or your own situation. Every enquiry is read
-                and answered by Kevin Bacon within one business day.
+                Share the outline of your mandate or your own situation. Every enquiry is read and
+                answered by Kevin Bacon within one business day.
               </p>
               <dl className="mt-10 space-y-5 text-sm">
                 <div>
@@ -578,8 +598,8 @@ function Index() {
               className="h-10 w-auto brightness-0 invert"
             />
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-ink-foreground/60">
-              Specialist legal recruitment for law firms and in-house legal departments across
-              the United States.
+              Specialist legal recruitment for law firms and in-house legal departments across the
+              United States.
             </p>
           </div>
           <div>
