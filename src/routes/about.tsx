@@ -1,0 +1,243 @@
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { ArrowRight, Linkedin } from "lucide-react";
+import { SiteHeader } from "../components/SiteHeader";
+import { SiteFooter } from "../components/SiteFooter";
+import kevinPhoto from "../assets/kevin.png";
+import marquePhoto from "../assets/marque.png";
+
+export const Route = createFileRoute("/about")({
+  head: () => ({
+    meta: [
+      { title: "About Us | Bacon Legal Recruiting" },
+      {
+        name: "description",
+        content:
+          "About Bacon Legal Recruiting — Experience. Reputation. Results. Founded and led by former attorney and legislator Kevin Bacon, delivering discreet permanent placements nationwide.",
+      },
+    ],
+  }),
+  component: AboutPage,
+});
+
+const KEVIN_IMAGE = kevinPhoto;
+const MARQUE_IMAGE = marquePhoto;
+const ABOUT_IMAGE = kevinPhoto;
+
+function AboutPage() {
+  return (
+    <div className="min-h-screen bg-background text-foreground selection:bg-brass selection:text-ink">
+      <SiteHeader />
+
+      <main>
+        {/* HERO / INTRO BANNER */}
+        <section className="bg-ink text-ink-foreground py-20 lg:py-24 border-b border-border">
+          <div className="mx-auto max-w-6xl px-6">
+            <div className="max-w-3xl">
+              <p className="eyebrow text-brass">About Us</p>
+              <h1 className="mt-4 text-4xl sm:text-5xl lg:text-[3.25rem] font-normal leading-[1.15]">
+                Experience. Reputation. <span className="text-brass">Results.</span>
+              </h1>
+              <p className="mt-6 text-base sm:text-lg leading-relaxed text-ink-foreground/80 font-display italic">
+                Trusted legal placement you can count on.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* SECTION 1: ABOUT US CONTENT FIRST */}
+        <section id="about" className="mx-auto max-w-6xl px-6 py-24">
+          <div className="grid items-center gap-14 lg:grid-cols-12">
+            <div className="lg:col-span-7">
+              <p className="eyebrow text-brass">Our Firm</p>
+              <h2 className="rule-brass mt-4 text-3xl sm:text-4xl text-ink">
+                Attorneys Recruiting Attorneys
+              </h2>
+              <p className="mt-4 text-lg font-medium text-ink/80 italic font-display">
+                Discreet search solutions tailored to your firm’s unique culture.
+              </p>
+
+              <div className="mt-7 space-y-4 text-sm sm:text-base leading-relaxed text-muted-foreground">
+                <p>
+                  At Bacon Legal Recruiting, we know that your team drives your success. We
+                  specialize in identifying and attracting the very top attorneys for law firms and
+                  corporations. We have a skilled and client friendly team motivated to achieve
+                  excellence.
+                </p>
+                <p>
+                  We recruit directly from the “passive” workforce. These are attorneys in the top
+                  of the talent pool that are not job searching. We do not use job boards as the
+                  overall talent pool on job boards has a disproportionately high percentage of
+                  lower performers.
+                </p>
+                <p>
+                  As an attorney of more than 25 years himself, our founder and CEO, Kevin Bacon,
+                  knows the industry intricately from the inside out. After working as a private
+                  practice attorney and legislator, Kevin realized that there is a demand for
+                  experienced, skilled, knowledgeable and well-connected legal recruiters. His
+                  reputation in the legal and political world is impeccable, and he excels at
+                  finding the perfect fit for each role.
+                </p>
+                <p>
+                  Some of Kevin's many strengths are his ability to understand a situation and
+                  source a successful solution. Having served in the Ohio House of Representatives
+                  from 2007 to 2010, and as a state senator for the 3rd District of the Ohio Senate
+                  from 2011 to 2018, Kevin understands how to work with many different types of
+                  people and achieve measurable success.
+                </p>
+                <p>
+                  Kevin has built a team here at Bacon Legal Recruiting that has a proven track
+                  record of permanent placements for our law firms and corporations. Each and every
+                  client is our number one client, and our focus is getting you the best partner,
+                  associate or in-house counsel attorney.
+                </p>
+              </div>
+
+              <div className="mt-8 border-l-2 border-brass pl-5 py-2 bg-secondary/50">
+                <p className="text-base font-medium text-ink">
+                  At Bacon Legal Recruiting, we know the attorney you choose will make a difference.
+                </p>
+                <p className="mt-1 text-sm text-brass font-medium">
+                  Let us help you find the right one.
+                </p>
+              </div>
+
+              <div className="mt-8">
+                <Link
+                  to="/contact"
+                  id="about-cta-button"
+                  className="inline-flex items-center gap-2 bg-brass px-7 py-3.5 text-xs font-semibold tracking-[0.16em] uppercase text-ink transition-opacity hover:opacity-90 shadow-sm"
+                >
+                  Connect With Us
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+              </div>
+            </div>
+
+            <div className="lg:col-span-5">
+              <div className="relative">
+                <img
+                  src={ABOUT_IMAGE}
+                  alt="Kevin Bacon — Founder & CEO of Bacon Legal Recruiting"
+                  width={1122}
+                  height={1402}
+                  loading="lazy"
+                  className="w-full aspect-[4/5] object-cover object-top rounded-sm border border-border shadow-lg"
+                />
+                <div className="absolute -bottom-6 -left-6 hidden sm:block bg-ink text-ink-foreground p-6 max-w-xs border border-brass/40 shadow-xl">
+                  <p className="text-xs uppercase tracking-widest text-brass font-medium">
+                    25+ Years Experience
+                  </p>
+                  <p className="mt-2 text-sm leading-relaxed text-ink-foreground/80">
+                    Led by former attorney & legislator Kevin Bacon, delivering discreet permanent
+                    placements nationwide.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* SECTION 2: LEADERSHIP TEAM DIRECTLY BELOW RENAMED TO "OUR LEADS" */}
+        <section id="leads" className="border-t border-border bg-secondary/40 py-24">
+          <div className="mx-auto max-w-6xl px-6">
+            <div className="max-w-2xl">
+              <p className="eyebrow text-brass">Our Leadership</p>
+              <h2 className="rule-brass mt-4 text-3xl sm:text-4xl text-ink">Our Leads</h2>
+              <p className="mt-6 text-base leading-relaxed text-muted-foreground">
+                Directly engaged with every client and search assignment to guarantee personalized
+                focus, industry acumen, and exceptional placement results.
+              </p>
+            </div>
+
+            <div className="mt-14 grid gap-10 sm:grid-cols-2">
+              {/* Lead 1: Kevin Bacon */}
+              <article
+                id="lead-kevin-bacon"
+                className="flex flex-col border border-border bg-card p-8 shadow-sm transition-all hover:border-brass/50 hover:shadow-md"
+              >
+                <div className="relative aspect-[4/5] w-full overflow-hidden rounded-sm bg-secondary border border-border">
+                  <img
+                    src={KEVIN_IMAGE}
+                    alt="Kevin Bacon — Founder & CEO of Bacon Legal Recruiting"
+                    width={1122}
+                    height={1402}
+                    loading="lazy"
+                    className="h-full w-full object-cover object-top"
+                  />
+                </div>
+
+                <div className="mt-6 flex items-baseline justify-between gap-4">
+                  <div>
+                    <h3 className="text-2xl text-ink font-normal">Kevin Bacon</h3>
+                    <p className="text-xs font-semibold uppercase tracking-wider text-brass mt-1">
+                      Founder & CEO
+                    </p>
+                  </div>
+                  <a
+                    href="https://www.linkedin.com/in/kevin-bacon-esq-8169993/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-secondary text-ink transition-colors hover:bg-brass hover:text-ink"
+                    aria-label="Kevin Bacon LinkedIn Profile"
+                  >
+                    <Linkedin className="h-4 w-4" />
+                  </a>
+                </div>
+
+                <p className="mt-4 text-sm leading-relaxed text-muted-foreground flex-1">
+                  Kevin heads up strategy, technology, and client service. As the ultimate
+                  relationship builder, Kevin spends a lot of time on the phone with clients and
+                  candidates. He oversees the team and is personally engaged with every client and
+                  candidate.
+                </p>
+              </article>
+
+              {/* Lead 2: Marqué Bressler-Preininger */}
+              <article
+                id="lead-marque-preininger"
+                className="flex flex-col border border-border bg-card p-8 shadow-sm transition-all hover:border-brass/50 hover:shadow-md"
+              >
+                <div className="relative aspect-[4/5] w-full overflow-hidden rounded-sm bg-secondary border border-border">
+                  <img
+                    src={MARQUE_IMAGE}
+                    alt="Marqué Bressler-Preininger — Exec. Dir. of Legal Search"
+                    width={1086}
+                    height={1448}
+                    loading="lazy"
+                    className="h-full w-full object-cover object-top"
+                  />
+                </div>
+
+                <div className="mt-6 flex items-baseline justify-between gap-4">
+                  <div>
+                    <h3 className="text-2xl text-ink font-normal">Marqué Bressler-Preininger</h3>
+                    <p className="text-xs font-semibold uppercase tracking-wider text-brass mt-1">
+                      Exec. Dir. of Legal Search
+                    </p>
+                  </div>
+                  <a
+                    href="https://www.linkedin.com/in/marque-preininger/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-secondary text-ink transition-colors hover:bg-brass hover:text-ink"
+                    aria-label="Marqué Bressler-Preininger LinkedIn Profile"
+                  >
+                    <Linkedin className="h-4 w-4" />
+                  </a>
+                </div>
+
+                <p className="mt-4 text-sm leading-relaxed text-muted-foreground flex-1">
+                  Marqué heads up legal recruiting. She spent almost three decades in the
+                  residential and commercial housing industry building a well established and
+                  sizable network throughout the country. Marqué also oversees company operations.
+                </p>
+              </article>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <SiteFooter />
+    </div>
+  );
+}
