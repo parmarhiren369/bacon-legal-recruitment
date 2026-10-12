@@ -1,0 +1,1 @@
+var e=`/assets/kevin-Dcr9ICAm.png`;export{e as t};
