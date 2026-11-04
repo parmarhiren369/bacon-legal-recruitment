@@ -94,9 +94,7 @@ export function InquiryForm() {
               <option value="Partner or associate seeking lateral opportunity">
                 Partner or associate seeking lateral opportunity
               </option>
-              <option value="In-house counsel recruitment">
-                In-house counsel recruitment
-              </option>
+              <option value="In-house counsel recruitment">In-house counsel recruitment</option>
               <option value="State or Federal Lobbyist recruitment">
                 State or Federal Lobbyist recruitment
               </option>
@@ -165,7 +163,8 @@ export function InquiryForm() {
           </button>
         </div>
         <p className="mt-2 text-[0.68rem] text-muted-foreground italic">
-          Client note: To upload or update this document, replace the PDF file located in {INQUIRY_DOWNLOAD_CONFIG.uploadLocation}.
+          Client note: To upload or update this document, replace the PDF file located in{" "}
+          {INQUIRY_DOWNLOAD_CONFIG.uploadLocation}.
         </p>
       </div>
     </div>

@@ -45,7 +45,9 @@ export function SiteFooter() {
           <p className="eyebrow text-brass">Contact</p>
           <ul className="mt-5 space-y-3 text-sm text-ink-foreground/75">
             <li className="text-ink-foreground/75 leading-relaxed">
-              6852 Bethany Drive<br />Columbus, OH 43081
+              6852 Bethany Drive
+              <br />
+              Columbus, OH 43081
             </li>
             <li>
               <a

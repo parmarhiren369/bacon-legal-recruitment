@@ -155,8 +155,8 @@ function Index() {
                 Why Choose Bacon Legal Recruiting
               </h2>
               <p className="mt-6 text-base leading-relaxed text-muted-foreground">
-                Finding the right fit for organizations and individual candidates across the United States is our specialty.
-                Here is what sets our search practice apart:
+                Finding the right fit for organizations and individual candidates across the United
+                States is our specialty. Here is what sets our search practice apart:
               </p>
             </div>
             <Link
@@ -205,13 +205,16 @@ function Index() {
 
                 <div className="mt-7 space-y-4 text-sm sm:text-base leading-relaxed text-muted-foreground">
                   <p className="text-ink font-medium">
-                    Founded and led by attorneys and industry experts, we understand that the right candidate is the perfect mix of experience, skill and compatibility. We have a national network of talent and recruit in all markets.
+                    Founded and led by attorneys and industry experts, we understand that the right
+                    candidate is the perfect mix of experience, skill and compatibility. We have a
+                    national network of talent and recruit in all markets.
                   </p>
                   <p>
                     At Bacon Legal Recruiting, we know that your team drives your success. We
-                    specialize in identifying and attracting the very top attorneys, State Lobbyists,
-                    and Federal Lobbyists for law firms and corporations across the United States.
-                    We have a skilled and client friendly team motivated to achieve excellence.
+                    specialize in identifying and attracting the very top attorneys, State
+                    Lobbyists, and Federal Lobbyists for law firms and corporations across the
+                    United States. We have a skilled and client friendly team motivated to achieve
+                    excellence.
                   </p>
                   <p>
                     We recruit directly from the “passive” workforce. These are attorneys in the top
@@ -260,7 +263,8 @@ function Index() {
                       25+ Years Experience
                     </p>
                     <p className="mt-2 text-sm leading-relaxed text-ink-foreground/80">
-                      Led by attorney and former State Senator Kevin Bacon, delivering placements and assisting attorneys nationwide.
+                      Led by attorney and former State Senator Kevin Bacon, delivering placements
+                      and assisting attorneys nationwide.
                     </p>
                   </div>
                 </div>
@@ -294,9 +298,9 @@ function Index() {
 
               <div className="mt-7 space-y-4 text-sm sm:text-base leading-relaxed text-muted-foreground">
                 <p>
-                  Whether you're searching for partners, associates, in-house counsel attorneys, State Lobbyists, or Federal Lobbyists,
-                  our extensive experience and intimate knowledge of the legal profession gives us a
-                  unique edge.
+                  Whether you're searching for partners, associates, in-house counsel attorneys,
+                  State Lobbyists, or Federal Lobbyists, our extensive experience and intimate
+                  knowledge of the legal profession gives us a unique edge.
                 </p>
                 <p>
                   Because our firm is run by a former practicing attorney and market experts, we
@@ -319,7 +323,8 @@ function Index() {
                 <div className="border border-border p-4 bg-secondary/30">
                   <h4 className="text-base font-medium text-ink">Associate Placement</h4>
                   <p className="mt-1 text-xs text-muted-foreground">
-                    High-achieving associates across corporate, litigation, IP, Traditional Labor, Employment & specialized niches.
+                    High-achieving associates across corporate, litigation, IP, Traditional Labor,
+                    Employment & specialized niches.
                   </p>
                 </div>
                 <div className="border border-border p-4 bg-secondary/30">
@@ -417,7 +422,8 @@ function Index() {
                       500,000+ Attorney Profiles
                     </p>
                     <p className="mt-1 text-xs text-ink-foreground/70">
-                      Constantly refreshed nationwide legal database and partner recruiter network across the United States.
+                      Constantly refreshed nationwide legal database and partner recruiter network
+                      across the United States.
                     </p>
                   </div>
                 </div>
@@ -444,8 +450,9 @@ function Index() {
                     <p>
                       We recruit directly from the “passive” workforce. Whether you are a partner
                       considering a lateral move, an experienced associate looking for your next
-                      challenge, or seeking an in-house corporate role or government affairs position, all conversations begin off
-                      the record and stay strictly confidential.
+                      challenge, or seeking an in-house corporate role or government affairs
+                      position, all conversations begin off the record and stay strictly
+                      confidential.
                     </p>
                   </div>
                 </div>
@@ -542,8 +549,10 @@ function Index() {
                   Begin a conversation.
                 </h2>
                 <p className="mt-6 text-base leading-relaxed text-muted-foreground">
-                  Consult with an attorney. Share the outline of your search request or background. As a national recruiting firm conducting searches within the United States, every inquiry is handled
-                  with complete discretion and answered promptly by our leadership team.
+                  Consult with an attorney. Share the outline of your search request or background.
+                  As a national recruiting firm conducting searches within the United States, every
+                  inquiry is handled with complete discretion and answered promptly by our
+                  leadership team.
                 </p>
 
                 <div className="mt-8">

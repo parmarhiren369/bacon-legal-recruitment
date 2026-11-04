@@ -51,19 +51,21 @@ function CareersPage() {
                 <div className="mt-6 space-y-4 text-sm sm:text-base leading-relaxed text-muted-foreground">
                   <p>
                     At Bacon Legal Recruiting, finding the right fit for organizations and
-                    individual candidates is our specialty. As a national recruiting firm recruiting exclusively within the United States, we represent partners, skilled attorneys, in-house counsel, State Lobbyists, and Federal Lobbyists.
+                    individual candidates is our specialty. As a national recruiting firm recruiting
+                    exclusively within the United States, we represent partners, skilled attorneys,
+                    in-house counsel, State Lobbyists, and Federal Lobbyists.
                   </p>
                   <p>
-                    We recruit directly from the “passive” workforce. These are attorneys and policy leaders in the top
-                    of the talent pool that are not job searching on public boards. Whether you are
-                    a partner considering a lateral move, an experienced associate looking for your
-                    next challenge, or seeking an in-house corporate role, all conversations begin
-                    off the record and stay strictly confidential.
+                    We recruit directly from the “passive” workforce. These are attorneys and policy
+                    leaders in the top of the talent pool that are not job searching on public
+                    boards. Whether you are a partner considering a lateral move, an experienced
+                    associate looking for your next challenge, or seeking an in-house corporate
+                    role, all conversations begin off the record and stay strictly confidential.
                   </p>
                   <p>
                     We do not use job boards, as the talent pool on public boards often fails to
-                    represent the skilled attorneys our client firms and corporate
-                    departments demand.
+                    represent the skilled attorneys our client firms and corporate departments
+                    demand.
                   </p>
                 </div>
               </div>
@@ -116,7 +118,9 @@ function CareersPage() {
                 </div>
                 <h4 className="text-xl font-medium text-ink">Peer-to-Peer Dialogue</h4>
                 <p className="mt-3 text-sm text-muted-foreground leading-relaxed flex-1">
-                  Consult with an Attorney who comprehends your practice area, client conflicts, and portable business. You converse directly with an experienced former practicing attorney and executive legal search directors.
+                  Consult with an Attorney who comprehends your practice area, client conflicts, and
+                  portable business. You converse directly with an experienced former practicing
+                  attorney and executive legal search directors.
                 </p>
               </div>
 
@@ -126,7 +130,9 @@ function CareersPage() {
                 </div>
                 <h4 className="text-xl font-medium text-ink">Unlisted Opportunities</h4>
                 <p className="mt-3 text-sm text-muted-foreground leading-relaxed flex-1">
-                  Many of our most lucrative lateral partner, General Counsel, and State and Federal Lobbyist assignments are retained exclusively. These opportunities are not posted publicly.
+                  Many of our most lucrative lateral partner, General Counsel, and State and Federal
+                  Lobbyist assignments are retained exclusively. These opportunities are not posted
+                  publicly.
                 </p>
               </div>
             </div>

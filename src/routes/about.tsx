@@ -63,11 +63,11 @@ function AboutPage() {
                   national network of talent and recruit in all markets.
                 </p>
                 <p>
-                  At Bacon Legal Recruiting, we know that your team drives your success. As a national
-                  recruiting firm recruiting strictly within the United States, we specialize in
-                  identifying and attracting the very top attorneys, State Lobbyists, and Federal
-                  Lobbyists for law firms and corporations. We have a skilled and client friendly team
-                  motivated to achieve excellence.
+                  At Bacon Legal Recruiting, we know that your team drives your success. As a
+                  national recruiting firm recruiting strictly within the United States, we
+                  specialize in identifying and attracting the very top attorneys, State Lobbyists,
+                  and Federal Lobbyists for law firms and corporations. We have a skilled and client
+                  friendly team motivated to achieve excellence.
                 </p>
                 <p>
                   We recruit directly from the “passive” workforce. These are attorneys in the top
@@ -134,7 +134,8 @@ function AboutPage() {
                     25+ Years Experience
                   </p>
                   <p className="mt-2 text-sm leading-relaxed text-ink-foreground/80">
-                    Led by attorney and former State Senator Kevin Bacon, delivering placements and assisting attorneys nationwide.
+                    Led by attorney and former State Senator Kevin Bacon, delivering placements and
+                    assisting attorneys nationwide.
                   </p>
                 </div>
               </div>
@@ -157,9 +158,9 @@ function AboutPage() {
                 <div className="mt-6 text-base sm:text-lg leading-relaxed text-foreground/90 space-y-4">
                   <p>
                     We are looking for a full-time legal recruiter to work remotely. Independent
-                    contractors interested in searching for splits are also encouraged to apply.
-                    The recruiter can be located anywhere, but there is a preference for New York
-                    City, Los Angeles, Chicago, and Washington D.C.
+                    contractors interested in searching for splits are also encouraged to apply. The
+                    recruiter can be located anywhere, but there is a preference for New York City,
+                    Los Angeles, Chicago, and Washington D.C.
                   </p>
                 </div>
                 <div className="mt-8 flex flex-wrap items-center gap-4">

@@ -38,7 +38,8 @@ function ServicesPage() {
                 The Legal Search Firm With an <span className="text-brass">Edge.</span>
               </h1>
               <p className="mt-6 text-base sm:text-lg leading-relaxed text-ink-foreground/80 font-display italic">
-                Committed to professionalism, precision, and partnership nationwide across the United States.
+                Committed to professionalism, precision, and partnership nationwide across the
+                United States.
               </p>
             </div>
           </div>
@@ -69,16 +70,23 @@ function ServicesPage() {
 
               <div className="mt-7 space-y-4 text-sm sm:text-base leading-relaxed text-muted-foreground">
                 <p>
-                  Whether you're searching for partners, associates, in-house counsel attorneys, State Lobbyists, or Federal Lobbyists, our extensive experience and intimate knowledge of the legal and legislative professions gives us a unique edge.
+                  Whether you're searching for partners, associates, in-house counsel attorneys,
+                  State Lobbyists, or Federal Lobbyists, our extensive experience and intimate
+                  knowledge of the legal and legislative professions gives us a unique edge.
                 </p>
                 <p>
-                  As a national recruiting firm led by an experienced attorney and market experts, we understand not just the practice of law, but the “business of law,” and we know where to find quality candidates.
+                  As a national recruiting firm led by an experienced attorney and market experts,
+                  we understand not just the practice of law, but the “business of law,” and we know
+                  where to find quality candidates.
                 </p>
                 <p className="font-medium text-ink">
-                  We routinely talk to hundreds of attorneys, policy advocates, and corporate counsel all over the United States every week.
+                  We routinely talk to hundreds of attorneys, policy advocates, and corporate
+                  counsel all over the United States every week.
                 </p>
                 <p>
-                  Every client is our top priority, and because of this along with our 97% retention rate, we operate on many repeat engagements from current happy clients as well as referrals.
+                  Every client is our top priority, and because of this along with our 97% retention
+                  rate, we operate on many repeat engagements from current happy clients as well as
+                  referrals.
                 </p>
               </div>
 
@@ -157,7 +165,8 @@ function ServicesPage() {
                 </div>
                 <h4 className="text-xl font-medium text-ink">State Lobbyists</h4>
                 <p className="mt-3 text-sm text-muted-foreground leading-relaxed flex-1">
-                  State government affairs advocates, legislative directors, and policy counsel with deep institutional capital in state capitals across the United States.
+                  State government affairs advocates, legislative directors, and policy counsel with
+                  deep institutional capital in state capitals across the United States.
                 </p>
                 <div className="mt-6 pt-4 border-t border-border/60 text-xs font-medium text-brass">
                   State Legislative Chambers · Regulatory Advocacy
@@ -171,7 +180,8 @@ function ServicesPage() {
                 </div>
                 <h4 className="text-xl font-medium text-ink">Federal Lobbyists</h4>
                 <p className="mt-3 text-sm text-muted-foreground leading-relaxed flex-1">
-                  Federal government relations professionals, Congressional committee veterans, and regulatory policy experts serving law firm practices and corporations.
+                  Federal government relations professionals, Congressional committee veterans, and
+                  regulatory policy experts serving law firm practices and corporations.
                 </p>
                 <div className="mt-6 pt-4 border-t border-border/60 text-xs font-medium text-brass">
                   Congressional Relations · Federal Agency Affairs
@@ -215,9 +225,9 @@ function ServicesPage() {
                     constantly updated.
                   </p>
                   <p>
-                    As a national recruiting firm, we have recruiters working for Bacon Legal Recruiting that have a network of
-                    recruiter partners across the United States that conduct searches for us in
-                    almost every legal market.
+                    As a national recruiting firm, we have recruiters working for Bacon Legal
+                    Recruiting that have a network of recruiter partners across the United States
+                    that conduct searches for us in almost every legal market.
                   </p>
                   <p className="font-medium text-ink-foreground">
                     Our candidates are high quality experienced professionals who are well
@@ -251,7 +261,8 @@ function ServicesPage() {
                       500,000+ Attorney Profiles
                     </p>
                     <p className="mt-1 text-xs text-ink-foreground/70">
-                      Constantly refreshed nationwide legal database and partner recruiter network across the United States.
+                      Constantly refreshed nationwide legal database and partner recruiter network
+                      across the United States.
                     </p>
                   </div>
                 </div>

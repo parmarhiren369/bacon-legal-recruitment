@@ -33,7 +33,8 @@ function ContactPage() {
                 Begin a <span className="text-brass">Conversation.</span>
               </h1>
               <p className="mt-6 text-base sm:text-lg leading-relaxed text-ink-foreground/80 font-display italic">
-                Consult with an attorney. Every inquiry is handled with complete discretion and answered promptly by our leadership team.
+                Consult with an attorney. Every inquiry is handled with complete discretion and
+                answered promptly by our leadership team.
               </p>
             </div>
           </div>
@@ -49,7 +50,9 @@ function ContactPage() {
                 Direct Leadership Access
               </h2>
               <p className="mt-6 text-base leading-relaxed text-muted-foreground">
-                Share the outline of your search request or background. As a national recruiting firm operating exclusively within the United States, every inquiry is handled with complete discretion and answered promptly by our leadership team.
+                Share the outline of your search request or background. As a national recruiting
+                firm operating exclusively within the United States, every inquiry is handled with
+                complete discretion and answered promptly by our leadership team.
               </p>
 
               <dl className="mt-10 space-y-6 text-sm">
@@ -61,7 +64,9 @@ function ContactPage() {
                   <div>
                     <dt className="eyebrow text-muted-foreground">Office Address</dt>
                     <dd className="mt-1 text-base text-ink font-medium leading-relaxed">
-                      6852 Bethany Drive<br />Columbus, OH 43081
+                      6852 Bethany Drive
+                      <br />
+                      Columbus, OH 43081
                     </dd>
                   </div>
                 </div>
@@ -110,7 +115,8 @@ function ContactPage() {
                   <div>
                     <dt className="eyebrow text-muted-foreground">Search Scope</dt>
                     <dd className="mt-1 text-sm text-ink leading-relaxed">
-                      National Recruiting Firm across the United States · Partners, Associates, In-House Counsel, State Lobbyists & Federal Lobbyists
+                      National Recruiting Firm across the United States · Partners, Associates,
+                      In-House Counsel, State Lobbyists & Federal Lobbyists
                     </dd>
                   </div>
                 </div>

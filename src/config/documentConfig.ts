@@ -17,7 +17,8 @@ export interface DocumentDownloadConfig {
 
 export const INQUIRY_DOWNLOAD_CONFIG: DocumentDownloadConfig = {
   title: "Firm Overview & Practice Specializations Guide",
-  description: "Download our firm overview, practice areas (including State and Federal Lobbyists), and search questionnaire (PDF).",
+  description:
+    "Download our firm overview, practice areas (including State and Federal Lobbyists), and search questionnaire (PDF).",
   fileName: "bacon-legal-recruiting-overview.pdf",
   filePath: "/documents/bacon-legal-recruiting-overview.pdf",
   fileSizeBytes: "PDF Document",

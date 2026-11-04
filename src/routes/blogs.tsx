@@ -29,9 +29,7 @@ export const Route = createFileRoute("/blogs")({
   },
   head: (ctx) => {
     const search = ctx?.search as BlogsSearchParams | undefined;
-    const post = search?.article
-      ? BLOG_POSTS.find((p) => p.slug === search.article)
-      : null;
+    const post = search?.article ? BLOG_POSTS.find((p) => p.slug === search.article) : null;
 
     if (post) {
       return {
@@ -131,9 +129,7 @@ function BlogsPage() {
                       <p className="text-sm font-medium text-ink-foreground">
                         {currentPost.author}
                       </p>
-                      <p className="text-xs text-ink-foreground/70">
-                        {currentPost.authorRole}
-                      </p>
+                      <p className="text-xs text-ink-foreground/70">{currentPost.authorRole}</p>
                     </div>
                   </div>
 
@@ -197,14 +193,13 @@ function BlogsPage() {
                 </div>
                 <div>
                   <p className="eyebrow text-brass">About the Author</p>
-                  <h4 className="text-lg font-medium text-ink mt-1">
-                    Kevin Bacon · Founder & CEO
-                  </h4>
+                  <h4 className="text-lg font-medium text-ink mt-1">Kevin Bacon · Founder & CEO</h4>
                   <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
-                    Kevin Bacon is an attorney with more than 25 years of legal and legislative experience,
-                    having served in the Ohio House of Representatives (2007–2010) and as an Ohio State Senator
-                    (2011–2018). As founder of Bacon Legal Recruiting, a national recruiting firm, he conducts
-                    discreet permanent placements for law firms and corporate legal departments across the United States.
+                    Kevin Bacon is an attorney with more than 25 years of legal and legislative
+                    experience, having served in the Ohio House of Representatives (2007–2010) and
+                    as an Ohio State Senator (2011–2018). As founder of Bacon Legal Recruiting, a
+                    national recruiting firm, he conducts discreet permanent placements for law
+                    firms and corporate legal departments across the United States.
                   </p>
                   <div className="mt-4">
                     <Link
@@ -256,7 +251,8 @@ function BlogsPage() {
                     Blogs & Legal Market <span className="text-brass">Insights.</span>
                   </h1>
                   <p className="mt-6 text-base sm:text-lg leading-relaxed text-ink-foreground/80 font-display italic">
-                    Analysis, recruitment strategies, and lateral market intelligence from our national recruiting firm.
+                    Analysis, recruitment strategies, and lateral market intelligence from our
+                    national recruiting firm.
                   </p>
                 </div>
               </div>

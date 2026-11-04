@@ -74,8 +74,8 @@ function WhyChooseUsPage() {
                 Why Choose <span className="text-brass">Bacon Legal Recruiting</span>
               </h1>
               <p className="mt-6 text-base sm:text-lg leading-relaxed text-ink-foreground/80">
-                Finding the right fit for organizations and individual candidates is our specialty across the United States.
-                Here is what sets our search practice apart:
+                Finding the right fit for organizations and individual candidates is our specialty
+                across the United States. Here is what sets our search practice apart:
               </p>
             </div>
           </div>
@@ -119,9 +119,10 @@ function WhyChooseUsPage() {
                     dynamics, and long-term organizational stability.
                   </p>
                   <p>
-                    Every search is conducted with the utmost discretion. As a national recruiting firm, we specialize in reaching
-                    top-tier partners, corporate counsel, State Lobbyists, and Federal Lobbyists who are not actively posting on public
-                    job boards, creating opportunities that would otherwise remain unavailable.
+                    Every search is conducted with the utmost discretion. As a national recruiting
+                    firm, we specialize in reaching top-tier partners, corporate counsel, State
+                    Lobbyists, and Federal Lobbyists who are not actively posting on public job
+                    boards, creating opportunities that would otherwise remain unavailable.
                   </p>
                 </div>
 
@@ -157,7 +158,10 @@ function WhyChooseUsPage() {
                 <div className="border-l-4 border-brass bg-secondary/60 p-6 w-full text-left">
                   <p className="eyebrow text-brass">Client Assurance</p>
                   <p className="mt-2 text-base font-medium text-ink">
-                    “Our results speak for themselves. We will work diligently to place a candidate in every position we have been tasked to fill. We will continue to work with you and the candidate after the placement to ensure a smooth transition and onboarding process.”
+                    “Our results speak for themselves. We will work diligently to place a candidate
+                    in every position we have been tasked to fill. We will continue to work with you
+                    and the candidate after the placement to ensure a smooth transition and
+                    onboarding process.”
                   </p>
                   <p className="mt-3 text-xs text-muted-foreground">— Kevin Bacon, Founder & CEO</p>
                 </div>

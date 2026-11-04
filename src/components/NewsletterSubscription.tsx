@@ -83,7 +83,8 @@ export function NewsletterSubscription({
         <div className="max-w-xl">
           <p className="eyebrow text-brass">Legal Market Insights</p>
           <p className="mt-1 text-sm text-ink-foreground/80 font-normal">
-            Subscribe to our confidential newsletter for attorney market updates and lateral hiring trends.
+            Subscribe to our confidential newsletter for attorney market updates and lateral hiring
+            trends.
           </p>
 
           {status === "unconfigured" ? (
@@ -91,11 +92,10 @@ export function NewsletterSubscription({
               <div className="flex items-start gap-2">
                 <Info className="h-4 w-4 text-brass shrink-0 mt-0.5" />
                 <div>
-                  <p className="font-semibold text-brass">
-                    Email Validated ({submittedEmail})
-                  </p>
+                  <p className="font-semibold text-brass">Email Validated ({submittedEmail})</p>
                   <p className="mt-0.5 text-ink-foreground/70 leading-relaxed">
-                    Newsletter service is awaiting backend provider credentials (e.g., Mailchimp or SendGrid API key). Live deliveries will activate upon configuration.
+                    Newsletter service is awaiting backend provider credentials (e.g., Mailchimp or
+                    SendGrid API key). Live deliveries will activate upon configuration.
                   </p>
                   <button
                     type="button"
@@ -173,12 +173,11 @@ export function NewsletterSubscription({
               <div className="flex items-start gap-3">
                 <Info className="h-5 w-5 text-brass shrink-0 mt-0.5" />
                 <div>
-                  <p className="font-semibold text-ink text-sm">
-                    Subscription Request Validated
-                  </p>
+                  <p className="font-semibold text-ink text-sm">Subscription Request Validated</p>
                   <p className="mt-1 text-muted-foreground leading-relaxed">
-                    Your email address (<strong>{submittedEmail}</strong>) has been verified.
-                    The newsletter subscription backend is currently awaiting client provider credentials (e.g., Mailchimp, ConvertKit, or SendGrid API key).
+                    Your email address (<strong>{submittedEmail}</strong>) has been verified. The
+                    newsletter subscription backend is currently awaiting client provider
+                    credentials (e.g., Mailchimp, ConvertKit, or SendGrid API key).
                   </p>
                   <p className="mt-2 text-[0.7rem] text-brass uppercase tracking-wider font-medium">
                     Backend Connection Pending · No Spam
@@ -239,7 +238,8 @@ export function NewsletterSubscription({
               )}
 
               <p className="mt-3 text-[0.7rem] text-muted-foreground">
-                Completely confidential. We never share or sell contact details. Unsubscribe anytime.
+                Completely confidential. We never share or sell contact details. Unsubscribe
+                anytime.
               </p>
             </form>
           )}
