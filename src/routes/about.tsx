@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Linkedin } from "lucide-react";
+import { ArrowRight, Linkedin, Briefcase } from "lucide-react";
 import { SiteHeader } from "../components/SiteHeader";
 import { SiteFooter } from "../components/SiteFooter";
 import kevinPhoto from "../assets/kevin.png";
@@ -12,7 +12,7 @@ export const Route = createFileRoute("/about")({
       {
         name: "description",
         content:
-          "About Bacon Legal Recruiting — Experience. Reputation. Results. Founded and led by former attorney and legislator Kevin Bacon, delivering discreet permanent placements nationwide.",
+          "About Bacon Legal Recruiting — A National Recruiting Firm. Founded and led by attorney and former State Senator Kevin Bacon, delivering placements and assisting attorneys nationwide across the United States.",
       },
     ],
   }),
@@ -38,30 +38,36 @@ function AboutPage() {
                 Experience. Reputation. <span className="text-brass">Results.</span>
               </h1>
               <p className="mt-6 text-base sm:text-lg leading-relaxed text-ink-foreground/80 font-display italic">
-                Trusted legal placement you can count on.
+                A premier National Recruiting Firm — trusted legal placement you can count on.
               </p>
             </div>
           </div>
         </section>
 
-        {/* SECTION 1: ABOUT US CONTENT FIRST */}
+        {/* SECTION 1: ABOUT US CONTENT */}
         <section id="about" className="mx-auto max-w-6xl px-6 py-24">
           <div className="grid items-center gap-14 lg:grid-cols-12">
             <div className="lg:col-span-7">
-              <p className="eyebrow text-brass">Our Firm</p>
+              <p className="eyebrow text-brass">Our Firm · National Recruiting Firm</p>
               <h2 className="rule-brass mt-4 text-3xl sm:text-4xl text-ink">
-                Attorneys Recruiting Attorneys
+                Attorney-Led Executive Search
               </h2>
               <p className="mt-4 text-lg font-medium text-ink/80 italic font-display">
                 Discreet search solutions tailored to your firm’s unique culture.
               </p>
 
               <div className="mt-7 space-y-4 text-sm sm:text-base leading-relaxed text-muted-foreground">
+                <p className="text-ink font-medium">
+                  Founded and led by attorneys and industry experts, we understand that the right
+                  candidate is the perfect mix of experience, skill and compatibility. We have a
+                  national network of talent and recruit in all markets.
+                </p>
                 <p>
-                  At Bacon Legal Recruiting, we know that your team drives your success. We
-                  specialize in identifying and attracting the very top attorneys for law firms and
-                  corporations. We have a skilled and client friendly team motivated to achieve
-                  excellence.
+                  At Bacon Legal Recruiting, we know that your team drives your success. As a national
+                  recruiting firm recruiting strictly within the United States, we specialize in
+                  identifying and attracting the very top attorneys, State Lobbyists, and Federal
+                  Lobbyists for law firms and corporations. We have a skilled and client friendly team
+                  motivated to achieve excellence.
                 </p>
                 <p>
                   We recruit directly from the “passive” workforce. These are attorneys in the top
@@ -88,7 +94,7 @@ function AboutPage() {
                   Kevin has built a team here at Bacon Legal Recruiting that has a proven track
                   record of permanent placements for our law firms and corporations. Each and every
                   client is our number one client, and our focus is getting you the best partner,
-                  associate or in-house counsel attorney.
+                  associate, in-house counsel attorney, State Lobbyist, or Federal Lobbyist.
                 </p>
               </div>
 
@@ -101,13 +107,13 @@ function AboutPage() {
                 </p>
               </div>
 
-              <div className="mt-8">
+              <div className="mt-8 flex flex-wrap items-center gap-4">
                 <Link
                   to="/contact"
                   id="about-cta-button"
                   className="inline-flex items-center gap-2 bg-brass px-7 py-3.5 text-xs font-semibold tracking-[0.16em] uppercase text-ink transition-opacity hover:opacity-90 shadow-sm"
                 >
-                  Connect With Us
+                  Consult with an Attorney
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>
@@ -128,8 +134,7 @@ function AboutPage() {
                     25+ Years Experience
                   </p>
                   <p className="mt-2 text-sm leading-relaxed text-ink-foreground/80">
-                    Led by former attorney & legislator Kevin Bacon, delivering discreet permanent
-                    placements nationwide.
+                    Led by attorney and former State Senator Kevin Bacon, delivering placements and assisting attorneys nationwide.
                   </p>
                 </div>
               </div>
@@ -137,7 +142,47 @@ function AboutPage() {
           </div>
         </section>
 
-        {/* SECTION 2: LEADERSHIP TEAM DIRECTLY BELOW RENAMED TO "OUR LEADS" */}
+        {/* SECTION 2: CAREERS AT BACON LEGAL RECRUITING */}
+        <section id="careers-at-bacon" className="border-t border-border bg-background py-20">
+          <div className="mx-auto max-w-6xl px-6">
+            <div className="border border-border bg-card p-8 sm:p-12 shadow-sm rounded-sm">
+              <div className="max-w-3xl">
+                <div className="flex items-center gap-2.5 text-brass">
+                  <Briefcase className="h-4 w-4" />
+                  <p className="eyebrow text-brass">Join Our Team</p>
+                </div>
+                <h2 className="rule-brass mt-3 text-3xl sm:text-4xl text-ink font-normal">
+                  Careers at Bacon Legal Recruiting
+                </h2>
+                <div className="mt-6 text-base sm:text-lg leading-relaxed text-foreground/90 space-y-4">
+                  <p>
+                    We are looking for a full-time legal recruiter to work remotely. Independent
+                    contractors interested in searching for splits are also encouraged to apply.
+                    The recruiter can be located anywhere, but there is a preference for New York
+                    City, Los Angeles, Chicago, and Washington D.C.
+                  </p>
+                </div>
+                <div className="mt-8 flex flex-wrap items-center gap-4">
+                  <Link
+                    to="/contact"
+                    className="inline-flex items-center gap-2 bg-brass px-7 py-3 text-xs font-semibold tracking-[0.16em] uppercase text-ink transition-opacity hover:opacity-90 shadow-sm"
+                  >
+                    Apply or Inquire
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                  <a
+                    href="mailto:admin@baconlegalrecruiting.com"
+                    className="border border-ink/30 px-6 py-3 text-xs font-semibold tracking-[0.16em] uppercase text-ink hover:bg-ink hover:text-ink-foreground transition-colors"
+                  >
+                    admin@baconlegalrecruiting.com
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* SECTION 3: LEADERSHIP TEAM RENAMED TO "OUR LEADS" */}
         <section id="leads" className="border-t border-border bg-secondary/40 py-24">
           <div className="mx-auto max-w-6xl px-6">
             <div className="max-w-2xl">

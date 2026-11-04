@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { BRAND_LOGO, navItems } from "./SiteHeader";
+import { NewsletterSubscription } from "./NewsletterSubscription";
 
 export function SiteFooter() {
   return (
@@ -17,8 +18,8 @@ export function SiteFooter() {
             />
           </Link>
           <p className="mt-5 max-w-sm text-sm leading-relaxed text-ink-foreground/75 font-light">
-            Bacon Legal Recruiting — Attorney Search Experts. Specialist legal recruiting and
-            permanent placement for law firms and corporations nationwide.
+            Bacon Legal Recruiting — National Recruiting Firm. Specialist legal recruiting and
+            permanent placement for law firms and corporations across the United States.
           </p>
         </div>
 
@@ -43,6 +44,9 @@ export function SiteFooter() {
         <div>
           <p className="eyebrow text-brass">Contact</p>
           <ul className="mt-5 space-y-3 text-sm text-ink-foreground/75">
+            <li className="text-ink-foreground/75 leading-relaxed">
+              6852 Bethany Drive<br />Columbus, OH 43081
+            </li>
             <li>
               <a
                 href="mailto:admin@baconlegalrecruiting.com"
@@ -66,11 +70,16 @@ export function SiteFooter() {
         </div>
       </div>
 
+      {/* Embedded Newsletter in Footer */}
+      <div className="mx-auto max-w-6xl px-6 pb-12">
+        <NewsletterSubscription variant="footer" />
+      </div>
+
       <div className="border-t border-ink-foreground/10">
         <div className="mx-auto flex max-w-6xl flex-col sm:flex-row items-center justify-between gap-4 px-6 py-6 text-xs text-ink-foreground/60">
           <p>© 2025. Kevin Bacon Legal Recruiting. All Rights Reserved.</p>
           <p className="tracking-widest uppercase text-[0.65rem] text-brass">
-            Attorney Search Experts
+            National Recruiting Firm · Attorney Search Experts
           </p>
         </div>
       </div>

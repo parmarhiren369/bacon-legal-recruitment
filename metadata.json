@@ -1,6 +1,6 @@
 {
   "name": "Bacon Legal Recruiting",
-  "description": "Attorney Search Experts — specialist legal recruiting and permanent placement for law firms and corporations nationwide.",
+  "description": "National Recruiting Firm · Attorney Search Experts — specialist legal recruiting and permanent placement for law firms and corporations across the United States.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

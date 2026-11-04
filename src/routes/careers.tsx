@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, ShieldCheck, UserCheck, Lock, Award, CheckCircle2 } from "lucide-react";
+import { ArrowRight, UserCheck, Lock, Award } from "lucide-react";
 import { SiteHeader } from "../components/SiteHeader";
 import { SiteFooter } from "../components/SiteFooter";
 
@@ -10,7 +10,7 @@ export const Route = createFileRoute("/careers")({
       {
         name: "description",
         content:
-          "Explore legal career opportunities with Bacon Legal Recruiting. Discreet, confidential consultations for partners, associates, and corporate counsel nationwide.",
+          "Explore legal career opportunities with Bacon Legal Recruiting — a premier National Recruiting Firm. Discreet, confidential consultations for partners, skilled attorneys, corporate counsel, and lobbyists across the United States.",
       },
     ],
   }),
@@ -27,13 +27,13 @@ function CareersPage() {
         <section className="bg-ink text-ink-foreground py-20 lg:py-24 border-b border-border">
           <div className="mx-auto max-w-6xl px-6">
             <div className="max-w-3xl">
-              <p className="eyebrow text-brass">Careers</p>
+              <p className="eyebrow text-brass">Careers · National Recruiting Firm</p>
               <h1 className="mt-4 text-4xl sm:text-5xl lg:text-[3.25rem] font-normal leading-[1.15]">
                 Explore Opportunities for <span className="text-brass">Legal Talent.</span>
               </h1>
               <p className="mt-6 text-base sm:text-lg leading-relaxed text-ink-foreground/80 font-display italic">
-                Discreet, confidential consultations for partners, associates, and corporate
-                counsel.
+                Discreet, confidential consultations for partners, skilled attorneys, corporate
+                counsel, and lobbyists across the United States.
               </p>
             </div>
           </div>
@@ -51,10 +51,10 @@ function CareersPage() {
                 <div className="mt-6 space-y-4 text-sm sm:text-base leading-relaxed text-muted-foreground">
                   <p>
                     At Bacon Legal Recruiting, finding the right fit for organizations and
-                    individual candidates is our specialty.
+                    individual candidates is our specialty. As a national recruiting firm recruiting exclusively within the United States, we represent partners, skilled attorneys, in-house counsel, State Lobbyists, and Federal Lobbyists.
                   </p>
                   <p>
-                    We recruit directly from the “passive” workforce. These are attorneys in the top
+                    We recruit directly from the “passive” workforce. These are attorneys and policy leaders in the top
                     of the talent pool that are not job searching on public boards. Whether you are
                     a partner considering a lateral move, an experienced associate looking for your
                     next challenge, or seeking an in-house corporate role, all conversations begin
@@ -62,7 +62,7 @@ function CareersPage() {
                   </p>
                   <p>
                     We do not use job boards, as the talent pool on public boards often fails to
-                    represent the high-caliber legal practitioners our client firms and corporate
+                    represent the skilled attorneys our client firms and corporate
                     departments demand.
                   </p>
                 </div>
@@ -72,8 +72,7 @@ function CareersPage() {
                 <div className="border-l-4 border-brass bg-secondary/50 p-6 w-full text-left">
                   <p className="eyebrow text-brass">Our Commitment</p>
                   <p className="mt-2 text-sm leading-relaxed text-ink font-medium">
-                    100% confidential discussions with zero risk to your existing standing or
-                    practice.
+                    100% confidential discussions protecting your existing standing and practice.
                   </p>
                 </div>
                 <Link
@@ -81,7 +80,7 @@ function CareersPage() {
                   id="careers-cta-button"
                   className="mt-6 w-full text-center bg-brass px-8 py-4 text-xs font-semibold tracking-[0.16em] uppercase text-ink transition-opacity hover:opacity-90 shadow-sm"
                 >
-                  Connect With Us
+                  Consult with an Attorney
                 </Link>
                 <p className="mt-3 text-xs text-muted-foreground text-center lg:text-right w-full">
                   Discreet, confidential consultations.
@@ -117,8 +116,7 @@ function CareersPage() {
                 </div>
                 <h4 className="text-xl font-medium text-ink">Peer-to-Peer Dialogue</h4>
                 <p className="mt-3 text-sm text-muted-foreground leading-relaxed flex-1">
-                  You converse with former practicing attorneys and experienced legal executives who
-                  comprehend your practice area, client conflicts, and portable business.
+                  Consult with an Attorney who comprehends your practice area, client conflicts, and portable business. You converse directly with an experienced former practicing attorney and executive legal search directors.
                 </p>
               </div>
 
@@ -128,8 +126,7 @@ function CareersPage() {
                 </div>
                 <h4 className="text-xl font-medium text-ink">Unlisted Opportunities</h4>
                 <p className="mt-3 text-sm text-muted-foreground leading-relaxed flex-1">
-                  Many of our most lucrative lateral partner and General Counsel assignments are
-                  retained exclusively and never posted publicly.
+                  Many of our most lucrative lateral partner, General Counsel, and State and Federal Lobbyist assignments are retained exclusively. These opportunities are not posted publicly.
                 </p>
               </div>
             </div>

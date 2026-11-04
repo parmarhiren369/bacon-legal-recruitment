@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { CheckCircle2 } from "lucide-react";
+import { CheckCircle2, Download, FileText } from "lucide-react";
+import { INQUIRY_DOWNLOAD_CONFIG } from "../config/documentConfig";
 
 export function InquiryForm() {
   const [formSubmitted, setFormSubmitted] = useState(false);
@@ -93,6 +94,12 @@ export function InquiryForm() {
               <option value="Partner or associate seeking lateral opportunity">
                 Partner or associate seeking lateral opportunity
               </option>
+              <option value="In-house counsel recruitment">
+                In-house counsel recruitment
+              </option>
+              <option value="State or Federal Lobbyist recruitment">
+                State or Federal Lobbyist recruitment
+              </option>
               <option value="General inquiry">General inquiry</option>
             </select>
           </label>
@@ -109,15 +116,58 @@ export function InquiryForm() {
             />
           </label>
 
-          <button
-            type="submit"
-            id="contact-submit-button"
-            className="mt-4 bg-ink px-8 py-3.5 text-xs font-semibold tracking-[0.16em] uppercase text-ink-foreground transition-opacity hover:opacity-90 shadow-sm cursor-pointer"
-          >
-            Send Inquiry
-          </button>
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 mt-2">
+            <button
+              type="submit"
+              id="contact-submit-button"
+              className="bg-ink px-8 py-3.5 text-xs font-semibold tracking-[0.16em] uppercase text-ink-foreground transition-opacity hover:opacity-90 shadow-sm cursor-pointer"
+            >
+              Send Inquiry
+            </button>
+          </div>
         </form>
       )}
+
+      {/* DOCUMENT DOWNLOAD OPTION */}
+      <div className="mt-8 pt-6 border-t border-border">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-secondary/40 p-4 border border-border rounded-sm">
+          <div className="flex items-start gap-3">
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-sm bg-secondary text-brass border border-border">
+              <FileText className="h-5 w-5" />
+            </div>
+            <div>
+              <p className="eyebrow text-brass">Document Download</p>
+              <h4 className="text-sm font-medium text-ink mt-0.5">
+                {INQUIRY_DOWNLOAD_CONFIG.title}
+              </h4>
+              <p className="text-xs text-muted-foreground mt-0.5">
+                {INQUIRY_DOWNLOAD_CONFIG.description}
+              </p>
+            </div>
+          </div>
+
+          <button
+            type="button"
+            onClick={() => {
+              const link = document.createElement("a");
+              link.href = INQUIRY_DOWNLOAD_CONFIG.filePath;
+              link.download = INQUIRY_DOWNLOAD_CONFIG.fileName;
+              document.body.appendChild(link);
+              link.click();
+              document.body.removeChild(link);
+            }}
+            id="inquiry-download-button"
+            className="inline-flex items-center justify-center gap-2 bg-brass px-5 py-2.5 text-xs font-semibold tracking-[0.14em] uppercase text-ink transition-opacity hover:opacity-90 shadow-sm shrink-0 cursor-pointer"
+            title="Download firm overview (PDF)"
+          >
+            <Download className="h-4 w-4" />
+            Download PDF
+          </button>
+        </div>
+        <p className="mt-2 text-[0.68rem] text-muted-foreground italic">
+          Client note: To upload or update this document, replace the PDF file located in {INQUIRY_DOWNLOAD_CONFIG.uploadLocation}.
+        </p>
+      </div>
     </div>
   );
 }

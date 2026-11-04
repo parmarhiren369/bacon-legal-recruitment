@@ -77,11 +77,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Bacon Legal Recruiting | Attorney Search Experts" },
+      { title: "Bacon Legal Recruiting | National Recruiting Firm · Attorney Search Experts" },
       {
         name: "description",
         content:
-          "Bacon Legal Recruiting — Attorney Search Experts. Founded and led by attorneys and industry experts, specializing in permanent legal placement for law firms and corporations nationwide.",
+          "Bacon Legal Recruiting — National Recruiting Firm. Founded and led by attorneys and industry experts, specializing in permanent legal placement for law firms and corporations across the United States.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

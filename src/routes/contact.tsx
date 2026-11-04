@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Mail, Phone, ShieldCheck, ExternalLink } from "lucide-react";
+import { Mail, Phone, ShieldCheck, MapPin, ExternalLink } from "lucide-react";
 import { SiteHeader } from "../components/SiteHeader";
 import { SiteFooter } from "../components/SiteFooter";
 import { InquiryForm } from "../components/InquiryForm";
@@ -11,7 +11,7 @@ export const Route = createFileRoute("/contact")({
       {
         name: "description",
         content:
-          "Contact Bacon Legal Recruiting. Send a confidential inquiry for partner searches, associate placements, or corporate legal recruitment.",
+          "Contact Bacon Legal Recruiting — a premier National Recruiting Firm. Send a confidential inquiry or consult with an attorney for partner searches, associate placements, in-house counsel, State Lobbyists, or Federal Lobbyists across the United States.",
       },
     ],
   }),
@@ -28,13 +28,12 @@ function ContactPage() {
         <section className="bg-ink text-ink-foreground py-20 lg:py-24 border-b border-border">
           <div className="mx-auto max-w-6xl px-6">
             <div className="max-w-3xl">
-              <p className="eyebrow text-brass">Contact</p>
+              <p className="eyebrow text-brass">Contact · National Recruiting Firm</p>
               <h1 className="mt-4 text-4xl sm:text-5xl lg:text-[3.25rem] font-normal leading-[1.15]">
                 Begin a <span className="text-brass">Conversation.</span>
               </h1>
               <p className="mt-6 text-base sm:text-lg leading-relaxed text-ink-foreground/80 font-display italic">
-                Every inquiry is handled with complete discretion and answered promptly by our
-                leadership team.
+                Consult with an attorney. Every inquiry is handled with complete discretion and answered promptly by our leadership team.
               </p>
             </div>
           </div>
@@ -50,11 +49,24 @@ function ContactPage() {
                 Direct Leadership Access
               </h2>
               <p className="mt-6 text-base leading-relaxed text-muted-foreground">
-                Share the outline of your search request or background. Every inquiry is handled
-                with complete discretion and answered promptly by our leadership team.
+                Share the outline of your search request or background. As a national recruiting firm operating exclusively within the United States, every inquiry is handled with complete discretion and answered promptly by our leadership team.
               </p>
 
               <dl className="mt-10 space-y-6 text-sm">
+                {/* Business Address */}
+                <div className="flex items-start gap-4">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-sm bg-secondary border border-border text-brass">
+                    <MapPin className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <dt className="eyebrow text-muted-foreground">Office Address</dt>
+                    <dd className="mt-1 text-base text-ink font-medium leading-relaxed">
+                      6852 Bethany Drive<br />Columbus, OH 43081
+                    </dd>
+                  </div>
+                </div>
+
+                {/* Email Address */}
                 <div className="flex items-start gap-4">
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-sm bg-secondary border border-border text-brass">
                     <Mail className="h-5 w-5" />
@@ -72,6 +84,7 @@ function ContactPage() {
                   </div>
                 </div>
 
+                {/* Telephone */}
                 <div className="flex items-start gap-4">
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-sm bg-secondary border border-border text-brass">
                     <Phone className="h-5 w-5" />
@@ -89,6 +102,7 @@ function ContactPage() {
                   </div>
                 </div>
 
+                {/* Search Scope */}
                 <div className="flex items-start gap-4">
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-sm bg-secondary border border-border text-brass">
                     <ShieldCheck className="h-5 w-5" />
@@ -96,7 +110,7 @@ function ContactPage() {
                   <div>
                     <dt className="eyebrow text-muted-foreground">Search Scope</dt>
                     <dd className="mt-1 text-sm text-ink leading-relaxed">
-                      National Reach · Partners, Associates & In-House Counsel
+                      National Recruiting Firm across the United States · Partners, Associates, In-House Counsel, State Lobbyists & Federal Lobbyists
                     </dd>
                   </div>
                 </div>

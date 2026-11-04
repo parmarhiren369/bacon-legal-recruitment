@@ -7,7 +7,6 @@ import {
   Cpu,
   Award,
   ArrowRight,
-  ShieldCheck,
   CheckCircle2,
 } from "lucide-react";
 import { SiteHeader } from "../components/SiteHeader";
@@ -20,7 +19,7 @@ export const Route = createFileRoute("/why-choose-us")({
       {
         name: "description",
         content:
-          "Discover what sets Bacon Legal Recruiting apart: experienced attorney leadership, vast talent network, service-focused methodology, and a satisfaction guarantee.",
+          "Discover what sets Bacon Legal Recruiting apart: National Recruiting Firm led by an attorney and former State Senator, vast talent network across the United States, 97% retention rate, and a satisfaction guarantee.",
       },
     ],
   }),
@@ -30,8 +29,8 @@ export const Route = createFileRoute("/why-choose-us")({
 const whyChooseCards = [
   {
     icon: Scale,
-    title: "Experienced Legal Experts",
-    copy: "As attorneys and legal industry experts, we have a unique understanding of what is needed to fill a position with the right candidate.",
+    title: "Experienced Legal Acumen",
+    copy: "Led by an attorney with over 25 years in practice and legislation, our firm offers a unique insider understanding of what is needed to fill each position with the right candidate.",
   },
   {
     icon: UserCheck,
@@ -45,8 +44,8 @@ const whyChooseCards = [
   },
   {
     icon: Network,
-    title: "Vast Network",
-    copy: "Because of our background in the legal industry and our many contacts throughout the region, we have access to a wide range of highly qualified attorneys.",
+    title: "Vast National Network",
+    copy: "Because of our background in the legal and legislative community, we maintain access to a national network of over 500,000 attorney profiles and recruit across all U.S. markets.",
   },
   {
     icon: Cpu,
@@ -56,7 +55,7 @@ const whyChooseCards = [
   {
     icon: Award,
     title: "Satisfaction Guarantee",
-    copy: "Our results speak for themselves. We will work until we successfully place a candidate in every position we have been tasked to fill. We guarantee success.",
+    copy: "Our results speak for themselves. We will work diligently to place a candidate in every position we have been tasked to fill. We will continue to work with you and the candidate after the placement to ensure a smooth transition and onboarding process.",
   },
 ];
 
@@ -70,12 +69,12 @@ function WhyChooseUsPage() {
         <section className="bg-ink text-ink-foreground py-20 lg:py-24 border-b border-border">
           <div className="mx-auto max-w-6xl px-6">
             <div className="max-w-3xl">
-              <p className="eyebrow text-brass">Why Choose Us</p>
+              <p className="eyebrow text-brass">Why Choose Us · National Recruiting Firm</p>
               <h1 className="mt-4 text-4xl sm:text-5xl lg:text-[3.25rem] font-normal leading-[1.15]">
                 Why Choose <span className="text-brass">Bacon Legal Recruiting</span>
               </h1>
               <p className="mt-6 text-base sm:text-lg leading-relaxed text-ink-foreground/80">
-                Finding the right fit for organizations and individual candidates is our specialty.
+                Finding the right fit for organizations and individual candidates is our specialty across the United States.
                 Here is what sets our search practice apart:
               </p>
             </div>
@@ -120,8 +119,8 @@ function WhyChooseUsPage() {
                     dynamics, and long-term organizational stability.
                   </p>
                   <p>
-                    Every search is conducted with the utmost discretion. We specialize in reaching
-                    top-tier partners and corporate counsel who are not actively posting on public
+                    Every search is conducted with the utmost discretion. As a national recruiting firm, we specialize in reaching
+                    top-tier partners, corporate counsel, State Lobbyists, and Federal Lobbyists who are not actively posting on public
                     job boards, creating opportunities that would otherwise remain unavailable.
                   </p>
                 </div>
@@ -136,7 +135,7 @@ function WhyChooseUsPage() {
                   <div className="flex items-start gap-3">
                     <CheckCircle2 className="h-5 w-5 text-brass shrink-0 mt-0.5" />
                     <span className="text-sm font-medium text-ink">
-                      Nationwide reach with 500,000+ vetted attorney profiles
+                      Nationwide reach across all U.S. markets with 500,000+ attorney profiles
                     </span>
                   </div>
                   <div className="flex items-start gap-3">
@@ -148,7 +147,7 @@ function WhyChooseUsPage() {
                   <div className="flex items-start gap-3">
                     <CheckCircle2 className="h-5 w-5 text-brass shrink-0 mt-0.5" />
                     <span className="text-sm font-medium text-ink">
-                      97% long-term placement retention rate
+                      97% Retention Rate placing candidates in long term roles
                     </span>
                   </div>
                 </div>
@@ -158,8 +157,7 @@ function WhyChooseUsPage() {
                 <div className="border-l-4 border-brass bg-secondary/60 p-6 w-full text-left">
                   <p className="eyebrow text-brass">Client Assurance</p>
                   <p className="mt-2 text-base font-medium text-ink">
-                    “We will work until we successfully place a candidate in every position we have
-                    been tasked to fill. We guarantee success.”
+                    “Our results speak for themselves. We will work diligently to place a candidate in every position we have been tasked to fill. We will continue to work with you and the candidate after the placement to ensure a smooth transition and onboarding process.”
                   </p>
                   <p className="mt-3 text-xs text-muted-foreground">— Kevin Bacon, Founder & CEO</p>
                 </div>
@@ -167,7 +165,7 @@ function WhyChooseUsPage() {
                   to="/contact"
                   className="mt-6 w-full text-center inline-flex justify-center items-center gap-2 bg-brass px-7 py-3.5 text-xs font-semibold tracking-[0.16em] uppercase text-ink transition-opacity hover:opacity-90 shadow-sm"
                 >
-                  Connect With Us
+                  Consult with an Attorney
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>

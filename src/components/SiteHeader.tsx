@@ -11,6 +11,7 @@ export const navItems = [
   { label: "About Us", href: "/about" },
   { label: "Our Services", href: "/services" },
   { label: "Careers", href: "/careers" },
+  { label: "Blogs", href: "/blogs" },
 ] as const;
 
 export function SiteHeader() {
