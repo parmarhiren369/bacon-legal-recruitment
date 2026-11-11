@@ -1,9 +1,9 @@
 import { n as require_jsx_runtime } from "../_libs/react+tanstack__react-query.mjs";
 import { a as ShieldCheck, c as Phone, d as MapPin, f as Mail, y as ExternalLink } from "../_libs/lucide-react.mjs";
 import { n as SiteHeader } from "./SiteHeader-CAjx6o9A.mjs";
-import { n as SiteFooter } from "./SiteFooter-CzMrrXi4.mjs";
+import { n as SiteFooter } from "./SiteFooter-Bg0ZWkdL.mjs";
 import { t as InquiryForm } from "./InquiryForm-BZC5Ug12.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/contact-G5aHW78W.js
+//#region node_modules/.nitro/vite/services/ssr/assets/contact-CdMrp_3r.js
 var import_jsx_runtime = require_jsx_runtime();
 function ContactPage() {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
@@ -30,7 +30,7 @@ function ContactPage() {
 							}),
 							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 								className: "mt-6 text-base sm:text-lg leading-relaxed text-ink-foreground/80 font-display italic",
-								children: "Consult with an attorney. Every inquiry is handled with complete discretion and answered promptly by our leadership team."
+								children: "Consult with an expert. Every inquiry is handled with complete discretion and answered promptly by our leadership team."
 							})
 						]
 					})
@@ -132,7 +132,7 @@ function ContactPage() {
 									}),
 									/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 										className: "mt-2 text-sm leading-relaxed text-muted-foreground",
-										children: "Kevin Bacon Executive Recruiting, DBA “Bacon Legal Recruiting” is a member of the National Association of Legal Search Consultants (NALSC) and strictly adheres to its ethical standards."
+										children: "Bacon Legal Recruiting is a member of the National Association of Legal Search Consultants (NALSC). In addition, Kevin serves as an Officer on the NALSC Board of Directors, and our firm strictly adheres to its ethical standards."
 									}),
 									/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 										className: "mt-4",

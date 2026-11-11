@@ -1,5 +1,5 @@
 import { _ as createFileRoute, g as lazyRouteComponent } from "../_libs/@tanstack/react-router+[...].mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/blogs-TlgTvcqi.js
+//#region node_modules/.nitro/vite/services/ssr/assets/blogs-C7ghxBjA.js
 var BLOG_POSTS = [
 	{
 		id: "1",
@@ -95,7 +95,7 @@ var BLOG_POSTS = [
 		]
 	}
 ];
-var $$splitComponentImporter = () => import("./blogs-DwFmRejO.mjs");
+var $$splitComponentImporter = () => import("./blogs-Dzwy48di.mjs");
 var Route = createFileRoute("/blogs")({
 	validateSearch: (search) => {
 		return {

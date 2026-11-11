@@ -206,7 +206,7 @@ function BlogsPage() {
                       to="/contact"
                       className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-ink hover:text-brass transition-colors"
                     >
-                      Consult with an Attorney
+                      Consult with an Expert
                       <ArrowRight className="h-3.5 w-3.5" />
                     </Link>
                   </div>

@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Linkedin, Briefcase } from "lucide-react";
+import { ArrowRight, Linkedin } from "lucide-react";
 import { SiteHeader } from "../components/SiteHeader";
 import { SiteFooter } from "../components/SiteFooter";
 import kevinPhoto from "../assets/kevin.png";
@@ -113,7 +113,7 @@ function AboutPage() {
                   id="about-cta-button"
                   className="inline-flex items-center gap-2 bg-brass px-7 py-3.5 text-xs font-semibold tracking-[0.16em] uppercase text-ink transition-opacity hover:opacity-90 shadow-sm"
                 >
-                  Consult with an Attorney
+                  Consult with an Expert
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>
@@ -137,46 +137,6 @@ function AboutPage() {
                     Led by attorney and former State Senator Kevin Bacon, delivering placements and
                     assisting attorneys nationwide.
                   </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* SECTION 2: CAREERS AT BACON LEGAL RECRUITING */}
-        <section id="careers-at-bacon" className="border-t border-border bg-background py-20">
-          <div className="mx-auto max-w-6xl px-6">
-            <div className="border border-border bg-card p-8 sm:p-12 shadow-sm rounded-sm">
-              <div className="max-w-3xl">
-                <div className="flex items-center gap-2.5 text-brass">
-                  <Briefcase className="h-4 w-4" />
-                  <p className="eyebrow text-brass">Join Our Team</p>
-                </div>
-                <h2 className="rule-brass mt-3 text-3xl sm:text-4xl text-ink font-normal">
-                  Careers at Bacon Legal Recruiting
-                </h2>
-                <div className="mt-6 text-base sm:text-lg leading-relaxed text-foreground/90 space-y-4">
-                  <p>
-                    We are looking for a full-time legal recruiter to work remotely. Independent
-                    contractors interested in searching for splits are also encouraged to apply. The
-                    recruiter can be located anywhere, but there is a preference for New York City,
-                    Los Angeles, Chicago, and Washington D.C.
-                  </p>
-                </div>
-                <div className="mt-8 flex flex-wrap items-center gap-4">
-                  <Link
-                    to="/contact"
-                    className="inline-flex items-center gap-2 bg-brass px-7 py-3 text-xs font-semibold tracking-[0.16em] uppercase text-ink transition-opacity hover:opacity-90 shadow-sm"
-                  >
-                    Apply or Inquire
-                    <ArrowRight className="h-4 w-4" />
-                  </Link>
-                  <a
-                    href="mailto:admin@baconlegalrecruiting.com"
-                    className="border border-ink/30 px-6 py-3 text-xs font-semibold tracking-[0.16em] uppercase text-ink hover:bg-ink hover:text-ink-foreground transition-colors"
-                  >
-                    admin@baconlegalrecruiting.com
-                  </a>
                 </div>
               </div>
             </div>

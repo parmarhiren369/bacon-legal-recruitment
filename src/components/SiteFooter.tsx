@@ -79,7 +79,7 @@ export function SiteFooter() {
 
       <div className="border-t border-ink-foreground/10">
         <div className="mx-auto flex max-w-6xl flex-col sm:flex-row items-center justify-between gap-4 px-6 py-6 text-xs text-ink-foreground/60">
-          <p>© 2025. Kevin Bacon Legal Recruiting. All Rights Reserved.</p>
+          <p>© 2025. Bacon Legal Recruiting. All Rights Reserved.</p>
           <p className="tracking-widest uppercase text-[0.65rem] text-brass">
             National Recruiting Firm · Attorney Search Experts
           </p>

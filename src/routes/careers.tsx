@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, UserCheck, Lock, Award } from "lucide-react";
+import { ArrowRight, UserCheck, Lock, Award, Briefcase } from "lucide-react";
 import { SiteHeader } from "../components/SiteHeader";
 import { SiteFooter } from "../components/SiteFooter";
 
@@ -82,7 +82,7 @@ function CareersPage() {
                   id="careers-cta-button"
                   className="mt-6 w-full text-center bg-brass px-8 py-4 text-xs font-semibold tracking-[0.16em] uppercase text-ink transition-opacity hover:opacity-90 shadow-sm"
                 >
-                  Consult with an Attorney
+                  Consult with an Expert
                 </Link>
                 <p className="mt-3 text-xs text-muted-foreground text-center lg:text-right w-full">
                   Discreet, confidential consultations.
@@ -118,7 +118,7 @@ function CareersPage() {
                 </div>
                 <h4 className="text-xl font-medium text-ink">Peer-to-Peer Dialogue</h4>
                 <p className="mt-3 text-sm text-muted-foreground leading-relaxed flex-1">
-                  Consult with an Attorney who comprehends your practice area, client conflicts, and
+                  Consult with an Expert who comprehends your practice area, client conflicts, and
                   portable business. You converse directly with an experienced former practicing
                   attorney and executive legal search directors.
                 </p>
@@ -134,6 +134,44 @@ function CareersPage() {
                   Lobbyist assignments are retained exclusively. These opportunities are not posted
                   publicly.
                 </p>
+              </div>
+            </div>
+          </div>
+
+          {/* JOIN OUR TEAM / INTERNAL RECRUITER CAREERS */}
+          <div className="mt-16 border-t border-border pt-16">
+            <div className="border border-border bg-card p-8 sm:p-12 shadow-sm rounded-sm">
+              <div className="max-w-3xl">
+                <div className="flex items-center gap-2.5 text-brass">
+                  <Briefcase className="h-4 w-4" />
+                  <p className="eyebrow text-brass">Join Our Team</p>
+                </div>
+                <h2 className="rule-brass mt-3 text-3xl sm:text-4xl text-ink font-normal">
+                  Careers at Bacon Legal Recruiting
+                </h2>
+                <div className="mt-6 text-base sm:text-lg leading-relaxed text-foreground/90 space-y-4">
+                  <p>
+                    We are looking for a full-time legal recruiter to work remotely. Independent
+                    contractors interested in searching for splits are also encouraged to apply. The
+                    recruiter can be located anywhere, but there is a preference for New York City,
+                    Los Angeles, Chicago, and Washington D.C.
+                  </p>
+                </div>
+                <div className="mt-8 flex flex-wrap items-center gap-4">
+                  <Link
+                    to="/contact"
+                    className="inline-flex items-center gap-2 bg-brass px-7 py-3 text-xs font-semibold tracking-[0.16em] uppercase text-ink transition-opacity hover:opacity-90 shadow-sm"
+                  >
+                    Apply or Inquire
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                  <a
+                    href="mailto:admin@baconlegalrecruiting.com"
+                    className="border border-ink/30 px-6 py-3 text-xs font-semibold tracking-[0.16em] uppercase text-ink hover:bg-ink hover:text-ink-foreground transition-colors"
+                  >
+                    admin@baconlegalrecruiting.com
+                  </a>
+                </div>
               </div>
             </div>
           </div>

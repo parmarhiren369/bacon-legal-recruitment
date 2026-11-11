@@ -2,10 +2,10 @@ import { n as require_jsx_runtime } from "../_libs/react+tanstack__react-query.m
 import { y as Link } from "../_libs/@tanstack/react-router+[...].mjs";
 import { A as ArrowRight, _ as HeartHandshake, i as UserCheck, k as Award, l as Network, s as Scale, x as Cpu, y as ExternalLink } from "../_libs/lucide-react.mjs";
 import { n as SiteHeader } from "./SiteHeader-CAjx6o9A.mjs";
-import { n as SiteFooter } from "./SiteFooter-CzMrrXi4.mjs";
+import { n as SiteFooter } from "./SiteFooter-Bg0ZWkdL.mjs";
 import { t as kevin_default } from "./kevin-D_O7IVW8.mjs";
 import { t as InquiryForm } from "./InquiryForm-BZC5Ug12.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/routes-BAceSAs6.js
+//#region node_modules/.nitro/vite/services/ssr/assets/routes-BPvHztBz.js
 var import_jsx_runtime = require_jsx_runtime();
 var HERO_IMAGE = "/assets/hero-courthouse-BAtiTfSu.jpg";
 var ABOUT_IMAGE = kevin_default;
@@ -90,7 +90,7 @@ function Index() {
 											to: "/contact",
 											id: "hero-primary-cta",
 											className: "bg-brass px-8 py-3.5 text-xs font-semibold tracking-[0.16em] uppercase text-ink transition-opacity hover:opacity-90 shadow-md",
-											children: "Consult with an Attorney"
+											children: "Consult with an Expert"
 										}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Link, {
 											to: "/why-choose-us",
 											id: "hero-secondary-cta",
@@ -209,7 +209,7 @@ function Index() {
 											}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Link, {
 												to: "/contact",
 												className: "border border-ink px-7 py-3.5 text-xs font-semibold tracking-[0.16em] uppercase text-ink hover:bg-ink hover:text-ink-foreground transition-colors",
-												children: "Consult with an Attorney"
+												children: "Consult with an Expert"
 											})]
 										})
 									]
@@ -383,7 +383,7 @@ function Index() {
 												to: "/contact",
 												id: "placements-cta-button",
 												className: "inline-flex items-center gap-2 bg-brass px-8 py-3.5 text-xs font-semibold tracking-[0.16em] uppercase text-ink transition-opacity hover:opacity-90",
-												children: ["Consult with an Attorney", /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ArrowRight, { className: "h-4 w-4" })]
+												children: ["Consult with an Expert", /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ArrowRight, { className: "h-4 w-4" })]
 											})
 										})
 									]
@@ -472,7 +472,7 @@ function Index() {
 									}),
 									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 										className: "mt-5 space-y-4 text-sm sm:text-base leading-relaxed text-muted-foreground",
-										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: "Kevin Bacon Executive Recruiting, DBA “Bacon Legal Recruiting” was accepted into, and continues to be a member of, the National Association of Legal Search Consultants (NALSC)." }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: "Bacon Legal Recruiting is a member of the National Association of Legal Search Consultants (NALSC). In addition, Kevin serves as an Officer on the NALSC Board of Directors." }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 											className: "font-medium text-ink",
 											children: "To be a member of NALSC, members must comply with all its ethical requirements."
 										})]
@@ -534,7 +534,7 @@ function Index() {
 										}),
 										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 											className: "mt-6 text-base leading-relaxed text-muted-foreground",
-											children: "Consult with an attorney. Share the outline of your search request or background. As a national recruiting firm conducting searches within the United States, every inquiry is handled with complete discretion and answered promptly by our leadership team."
+											children: "Consult with an expert. Share the outline of your search request or background. As a national recruiting firm conducting searches within the United States, every inquiry is handled with complete discretion and answered promptly by our leadership team."
 										}),
 										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 											className: "mt-8",

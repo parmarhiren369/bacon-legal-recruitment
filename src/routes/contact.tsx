@@ -33,7 +33,7 @@ function ContactPage() {
                 Begin a <span className="text-brass">Conversation.</span>
               </h1>
               <p className="mt-6 text-base sm:text-lg leading-relaxed text-ink-foreground/80 font-display italic">
-                Consult with an attorney. Every inquiry is handled with complete discretion and
+                Consult with an expert. Every inquiry is handled with complete discretion and
                 answered promptly by our leadership team.
               </p>
             </div>
@@ -126,9 +126,9 @@ function ContactPage() {
               <div className="mt-12 border-l-4 border-brass bg-secondary/40 p-6 border border-border">
                 <p className="eyebrow text-brass">Professional Standards</p>
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                  Kevin Bacon Executive Recruiting, DBA “Bacon Legal Recruiting” is a member of the
-                  National Association of Legal Search Consultants (NALSC) and strictly adheres to
-                  its ethical standards.
+                  Bacon Legal Recruiting is a member of the National Association of Legal Search
+                  Consultants (NALSC). In addition, Kevin serves as an Officer on the NALSC Board of
+                  Directors, and our firm strictly adheres to its ethical standards.
                 </p>
                 <div className="mt-4">
                   <a

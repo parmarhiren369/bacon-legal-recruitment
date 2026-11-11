@@ -1,10 +1,10 @@
 import { n as require_jsx_runtime } from "../_libs/react+tanstack__react-query.mjs";
 import { y as Link } from "../_libs/@tanstack/react-router+[...].mjs";
-import { A as ArrowRight, D as Briefcase, m as Linkedin } from "../_libs/lucide-react.mjs";
+import { A as ArrowRight, m as Linkedin } from "../_libs/lucide-react.mjs";
 import { n as SiteHeader } from "./SiteHeader-CAjx6o9A.mjs";
-import { n as SiteFooter } from "./SiteFooter-CzMrrXi4.mjs";
+import { n as SiteFooter } from "./SiteFooter-Bg0ZWkdL.mjs";
 import { t as kevin_default } from "./kevin-D_O7IVW8.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/about-M-I40FP8.js
+//#region node_modules/.nitro/vite/services/ssr/assets/about-BT1neyBK.js
 var import_jsx_runtime = require_jsx_runtime();
 var marque_default = "/assets/marque-DX0zMwXE.png";
 var KEVIN_IMAGE = kevin_default;
@@ -92,7 +92,7 @@ function AboutPage() {
 										to: "/contact",
 										id: "about-cta-button",
 										className: "inline-flex items-center gap-2 bg-brass px-7 py-3.5 text-xs font-semibold tracking-[0.16em] uppercase text-ink transition-opacity hover:opacity-90 shadow-sm",
-										children: ["Consult with an Attorney", /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ArrowRight, { className: "h-4 w-4" })]
+										children: ["Consult with an Expert", /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ArrowRight, { className: "h-4 w-4" })]
 									})
 								})
 							]
@@ -119,48 +119,6 @@ function AboutPage() {
 								})]
 							})
 						})]
-					})
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("section", {
-					id: "careers-at-bacon",
-					className: "border-t border-border bg-background py-20",
-					children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-						className: "mx-auto max-w-6xl px-6",
-						children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-							className: "border border-border bg-card p-8 sm:p-12 shadow-sm rounded-sm",
-							children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-								className: "max-w-3xl",
-								children: [
-									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-										className: "flex items-center gap-2.5 text-brass",
-										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Briefcase, { className: "h-4 w-4" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-											className: "eyebrow text-brass",
-											children: "Join Our Team"
-										})]
-									}),
-									/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", {
-										className: "rule-brass mt-3 text-3xl sm:text-4xl text-ink font-normal",
-										children: "Careers at Bacon Legal Recruiting"
-									}),
-									/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-										className: "mt-6 text-base sm:text-lg leading-relaxed text-foreground/90 space-y-4",
-										children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: "We are looking for a full-time legal recruiter to work remotely. Independent contractors interested in searching for splits are also encouraged to apply. The recruiter can be located anywhere, but there is a preference for New York City, Los Angeles, Chicago, and Washington D.C." })
-									}),
-									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-										className: "mt-8 flex flex-wrap items-center gap-4",
-										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Link, {
-											to: "/contact",
-											className: "inline-flex items-center gap-2 bg-brass px-7 py-3 text-xs font-semibold tracking-[0.16em] uppercase text-ink transition-opacity hover:opacity-90 shadow-sm",
-											children: ["Apply or Inquire", /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ArrowRight, { className: "h-4 w-4" })]
-										}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("a", {
-											href: "mailto:admin@baconlegalrecruiting.com",
-											className: "border border-ink/30 px-6 py-3 text-xs font-semibold tracking-[0.16em] uppercase text-ink hover:bg-ink hover:text-ink-foreground transition-colors",
-											children: "admin@baconlegalrecruiting.com"
-										})]
-									})
-								]
-							})
-						})
 					})
 				}),
 				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("section", {

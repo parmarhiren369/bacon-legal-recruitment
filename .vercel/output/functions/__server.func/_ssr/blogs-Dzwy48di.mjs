@@ -3,9 +3,9 @@ import { n as require_jsx_runtime, r as require_react } from "../_libs/react+tan
 import { b as useNavigate, y as Link } from "../_libs/@tanstack/react-router+[...].mjs";
 import { A as ArrowRight, C as CircleCheck, O as BookOpen, S as Clock, T as Calendar, j as ArrowLeft, o as Share2, r as User } from "../_libs/lucide-react.mjs";
 import { n as SiteHeader } from "./SiteHeader-CAjx6o9A.mjs";
-import { n as SiteFooter, t as NewsletterSubscription } from "./SiteFooter-CzMrrXi4.mjs";
-import { n as Route, t as BLOG_POSTS } from "./blogs-TlgTvcqi.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/blogs-DwFmRejO.js
+import { n as SiteFooter, t as NewsletterSubscription } from "./SiteFooter-Bg0ZWkdL.mjs";
+import { n as Route, t as BLOG_POSTS } from "./blogs-C7ghxBjA.mjs";
+//#region node_modules/.nitro/vite/services/ssr/assets/blogs-Dzwy48di.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 function BlogsPage() {
@@ -154,7 +154,7 @@ function BlogsPage() {
 										children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Link, {
 											to: "/contact",
 											className: "inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-ink hover:text-brass transition-colors",
-											children: ["Consult with an Attorney", /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ArrowRight, { className: "h-3.5 w-3.5" })]
+											children: ["Consult with an Expert", /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ArrowRight, { className: "h-3.5 w-3.5" })]
 										})
 									})
 								] })]

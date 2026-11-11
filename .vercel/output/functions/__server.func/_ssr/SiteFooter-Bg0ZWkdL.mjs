@@ -3,7 +3,7 @@ import { n as require_jsx_runtime, r as require_react } from "../_libs/react+tan
 import { y as Link } from "../_libs/@tanstack/react-router+[...].mjs";
 import { A as ArrowRight, C as CircleCheck, f as Mail, g as Info, w as CircleAlert } from "../_libs/lucide-react.mjs";
 import { r as navItems, t as BRAND_LOGO } from "./SiteHeader-CAjx6o9A.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/SiteFooter-CzMrrXi4.js
+//#region node_modules/.nitro/vite/services/ssr/assets/SiteFooter-Bg0ZWkdL.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 function NewsletterSubscription({ variant = "section", className = "" }) {
@@ -334,7 +334,7 @@ function SiteFooter() {
 				className: "border-t border-ink-foreground/10",
 				children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 					className: "mx-auto flex max-w-6xl flex-col sm:flex-row items-center justify-between gap-4 px-6 py-6 text-xs text-ink-foreground/60",
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: "© 2025. Kevin Bacon Legal Recruiting. All Rights Reserved." }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: "© 2025. Bacon Legal Recruiting. All Rights Reserved." }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 						className: "tracking-widest uppercase text-[0.65rem] text-brass",
 						children: "National Recruiting Firm · Attorney Search Experts"
 					})]

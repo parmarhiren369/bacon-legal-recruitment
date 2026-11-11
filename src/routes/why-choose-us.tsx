@@ -26,6 +26,9 @@ export const Route = createFileRoute("/why-choose-us")({
   component: WhyChooseUsPage,
 });
 
+const PLACEMENTS_IMAGE =
+  "https://images.unsplash.com/photo-1603796846097-bee99e4a601f?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb";
+
 const whyChooseCards = [
   {
     icon: Scale,
@@ -169,9 +172,89 @@ function WhyChooseUsPage() {
                   to="/contact"
                   className="mt-6 w-full text-center inline-flex justify-center items-center gap-2 bg-brass px-7 py-3.5 text-xs font-semibold tracking-[0.16em] uppercase text-ink transition-opacity hover:opacity-90 shadow-sm"
                 >
-                  Consult with an Attorney
+                  Consult with an Expert
                   <ArrowRight className="h-4 w-4" />
                 </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* TRACK RECORD & PLACEMENTS SECTION */}
+        <section className="bg-ink text-ink-foreground py-24">
+          <div className="mx-auto max-w-6xl px-6">
+            <div className="grid items-center gap-14 lg:grid-cols-12">
+              <div className="lg:col-span-7">
+                <p className="eyebrow text-brass">Our Track Record</p>
+                <h2 className="mt-4 text-3xl sm:text-4xl text-ink-foreground font-normal">
+                  Our Placements
+                </h2>
+                <p className="mt-4 text-lg font-medium text-brass italic font-display">
+                  We work with each client until their search request is filled.
+                </p>
+
+                {/* Stat block */}
+                <div className="mt-8 flex items-baseline gap-4 border-y border-brass/30 py-6">
+                  <span className="font-display text-6xl sm:text-7xl font-light text-brass tabular-nums">
+                    97%
+                  </span>
+                  <div>
+                    <p className="text-lg sm:text-xl font-medium text-ink-foreground">
+                      Retention Rate placing candidates in long term roles.
+                    </p>
+                    <p className="mt-1 text-xs tracking-wider uppercase text-ink-foreground/60">
+                      Proven Permanent Retention
+                    </p>
+                  </div>
+                </div>
+
+                <div className="mt-8 space-y-4 text-sm sm:text-base leading-relaxed text-ink-foreground/80">
+                  <p>
+                    We have access to well over 500,000 attorney profiles in our database which is
+                    constantly updated.
+                  </p>
+                  <p>
+                    As a national recruiting firm, we have recruiters working for Bacon Legal
+                    Recruiting that have a network of recruiter partners across the United States
+                    that conduct searches for us in almost every legal market.
+                  </p>
+                  <p className="font-medium text-ink-foreground">
+                    Our candidates are high quality experienced professionals who are well
+                    positioned to make significant contributions to the organizations they join.
+                  </p>
+                </div>
+
+                <div className="mt-10">
+                  <Link
+                    to="/contact"
+                    className="inline-flex items-center gap-2 bg-brass px-8 py-3.5 text-xs font-semibold tracking-[0.16em] uppercase text-ink transition-opacity hover:opacity-90"
+                  >
+                    Consult with an Expert
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </div>
+              </div>
+
+              <div className="lg:col-span-5">
+                <div className="relative">
+                  <img
+                    src={PLACEMENTS_IMAGE}
+                    alt="Attorneys collaborating in modern law firm"
+                    width={1200}
+                    height={1200}
+                    loading="lazy"
+                    className="w-full object-cover rounded-sm border border-brass/30 shadow-2xl"
+                  />
+                  <div className="mt-4 border-l-2 border-brass pl-4">
+                    <p className="text-xs uppercase tracking-widest text-brass">
+                      500,000+ Attorney Profiles
+                    </p>
+                    <p className="mt-1 text-xs text-ink-foreground/70">
+                      Constantly refreshed nationwide legal database and partner recruiter network
+                      across the United States.
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

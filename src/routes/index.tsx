@@ -121,7 +121,7 @@ function Index() {
                   id="hero-primary-cta"
                   className="bg-brass px-8 py-3.5 text-xs font-semibold tracking-[0.16em] uppercase text-ink transition-opacity hover:opacity-90 shadow-md"
                 >
-                  Consult with an Attorney
+                  Consult with an Expert
                 </Link>
                 <Link
                   to="/why-choose-us"
@@ -243,7 +243,7 @@ function Index() {
                     to="/contact"
                     className="border border-ink px-7 py-3.5 text-xs font-semibold tracking-[0.16em] uppercase text-ink hover:bg-ink hover:text-ink-foreground transition-colors"
                   >
-                    Consult with an Attorney
+                    Consult with an Expert
                   </Link>
                 </div>
               </div>
@@ -401,7 +401,7 @@ function Index() {
                     id="placements-cta-button"
                     className="inline-flex items-center gap-2 bg-brass px-8 py-3.5 text-xs font-semibold tracking-[0.16em] uppercase text-ink transition-opacity hover:opacity-90"
                   >
-                    Consult with an Attorney
+                    Consult with an Expert
                     <ArrowRight className="h-4 w-4" />
                   </Link>
                 </div>
@@ -484,9 +484,9 @@ function Index() {
 
               <div className="mt-5 space-y-4 text-sm sm:text-base leading-relaxed text-muted-foreground">
                 <p>
-                  Kevin Bacon Executive Recruiting, DBA “Bacon Legal Recruiting” was accepted into,
-                  and continues to be a member of, the National Association of Legal Search
-                  Consultants (NALSC).
+                  Bacon Legal Recruiting is a member of the National Association of Legal Search
+                  Consultants (NALSC). In addition, Kevin serves as an Officer on the NALSC Board of
+                  Directors.
                 </p>
                 <p className="font-medium text-ink">
                   To be a member of NALSC, members must comply with all its ethical requirements.
@@ -549,8 +549,8 @@ function Index() {
                   Begin a conversation.
                 </h2>
                 <p className="mt-6 text-base leading-relaxed text-muted-foreground">
-                  Consult with an attorney. Share the outline of your search request or background.
-                  As a national recruiting firm conducting searches within the United States, every
+                  Consult with an expert. Share the outline of your search request or background. As
+                  a national recruiting firm conducting searches within the United States, every
                   inquiry is handled with complete discretion and answered promptly by our
                   leadership team.
                 </p>
