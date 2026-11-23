@@ -1,40 +1,31 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
-import {
-  ArrowRight,
-  ArrowLeft,
-  Calendar,
-  Clock,
-  User,
-  Share2,
-  CheckCircle2,
-  BookOpen,
-} from "lucide-react";
+import { ArrowRight, ArrowLeft, Calendar, Clock, User, Share2, CheckCircle2 } from "lucide-react";
 import { SiteHeader } from "../components/SiteHeader";
 import { SiteFooter } from "../components/SiteFooter";
 import { NewsletterSubscription } from "../components/NewsletterSubscription";
-import { BLOG_POSTS, type BlogPost } from "../data/blogPosts";
+import { BLOG_POSTS } from "../data/blogPosts";
 
 interface BlogsSearchParams {
-  article?: string;
-  category?: string;
+  article?: string | undefined;
 }
 
 export const Route = createFileRoute("/blogs")({
   validateSearch: (search: Record<string, unknown>): BlogsSearchParams => {
     return {
-      article: (search.article as string) || undefined,
-      category: (search.category as string) || undefined,
+      article: typeof search["article"] === "string" ? search["article"] : undefined,
     };
   },
   head: (ctx) => {
-    const search = ctx?.search as BlogsSearchParams | undefined;
-    const post = search?.article ? BLOG_POSTS.find((p) => p.slug === search.article) : null;
+    const search = ctx as
+      { search?: BlogsSearchParams; match?: { search?: BlogsSearchParams } } | undefined;
+    const articleSlug = search?.match?.search?.article ?? search?.search?.article;
+    const post = articleSlug ? BLOG_POSTS.find((p) => p.slug === articleSlug) : null;
 
     if (post) {
       return {
         meta: [
-          { title: `${post.title} | Bacon Legal Recruiting Blogs` },
+          { title: `${post.title} | Bacon Bits & Blogs · Bacon Legal Recruiting` },
           { name: "description", content: post.summary },
           { property: "og:title", content: post.title },
           { property: "og:description", content: post.summary },
@@ -45,11 +36,11 @@ export const Route = createFileRoute("/blogs")({
 
     return {
       meta: [
-        { title: "Blogs & Legal Market Insights | Bacon Legal Recruiting" },
+        { title: "Bacon Bits & Blogs | Bacon Legal Recruiting" },
         {
           name: "description",
           content:
-            "Expert insights, lateral partner hiring analysis, lobbyist recruitment, and attorney career guidance from Bacon Legal Recruiting — a premier national recruiting firm.",
+            "BACON BITS and legal market blog articles from Bacon Legal Recruiting — short yet informative and entertaining news bits in the legal market, lateral partner hiring analysis, lobbyist recruitment, and attorney career guidance.",
         },
       ],
     };
@@ -58,21 +49,11 @@ export const Route = createFileRoute("/blogs")({
 });
 
 function BlogsPage() {
-  const { article, category } = Route.useSearch();
+  const { article } = Route.useSearch();
   const navigate = useNavigate({ from: "/blogs" });
-  const [selectedCategory, setSelectedCategory] = useState<string>(category || "All");
   const [copiedNotification, setCopiedNotification] = useState(false);
 
-  const categories = ["All", ...Array.from(new Set(BLOG_POSTS.map((p) => p.category)))];
-
   const currentPost = article ? BLOG_POSTS.find((p) => p.slug === article) : null;
-
-  const filteredPosts = BLOG_POSTS.filter((post) => {
-    if (selectedCategory !== "All" && post.category !== selectedCategory) {
-      return false;
-    }
-    return true;
-  });
 
   const handleShare = () => {
     if (typeof navigator !== "undefined" && navigator.clipboard) {
@@ -87,7 +68,7 @@ function BlogsPage() {
       <SiteHeader />
 
       <main>
-        {/* If viewing a single blog article */}
+        {/* If viewing a single article */}
         {currentPost ? (
           <article className="pb-20">
             {/* ARTICLE HEADER HERO */}
@@ -104,7 +85,7 @@ function BlogsPage() {
 
                 <div className="flex flex-wrap items-center gap-4 text-xs tracking-wider uppercase text-brass">
                   <span className="bg-brass/20 text-brass px-3 py-1 font-semibold rounded-xs">
-                    {currentPost.category}
+                    {currentPost.articleType === "bacon-bits" ? "BACON BITS" : currentPost.category}
                   </span>
                   <span className="flex items-center gap-1.5 text-ink-foreground/70">
                     <Calendar className="h-3.5 w-3.5" />
@@ -234,13 +215,13 @@ function BlogsPage() {
               </div>
             </div>
 
-            {/* Newsletter Subscription directly below article */}
+            {/* BACON BITS Subscription directly below article */}
             <div className="mt-16">
               <NewsletterSubscription variant="section" />
             </div>
           </article>
         ) : (
-          /* BLOG LISTING VIEW */
+          /* UNIFIED BLOG & BACON BITS LISTING VIEW */
           <div>
             {/* HERO / INTRO BANNER */}
             <section className="bg-ink text-ink-foreground py-20 lg:py-24 border-b border-border">
@@ -248,42 +229,20 @@ function BlogsPage() {
                 <div className="max-w-3xl">
                   <p className="eyebrow text-brass">Our Perspective</p>
                   <h1 className="mt-4 text-4xl sm:text-5xl lg:text-[3.25rem] font-normal leading-[1.15]">
-                    Blogs & Legal Market <span className="text-brass">Insights.</span>
+                    Bacon Bits & <span className="text-brass">Blogs.</span>
                   </h1>
                   <p className="mt-6 text-base sm:text-lg leading-relaxed text-ink-foreground/80 font-display italic">
-                    Analysis, recruitment strategies, and lateral market intelligence from our
-                    national recruiting firm.
+                    Short yet informative and entertaining news bits in the legal market, alongside
+                    recruitment strategies and market commentary from our national recruiting firm.
                   </p>
                 </div>
               </div>
             </section>
 
-            {/* CATEGORIES & BLOG POSTS GRID */}
+            {/* UNIFIED ARTICLES GRID (BACON BITS + REGULAR BLOG ARTICLES) */}
             <section className="mx-auto max-w-6xl px-6 py-20">
-              {/* Category Filter Tabs */}
-              <div className="flex flex-wrap items-center gap-2 border-b border-border pb-6">
-                <span className="text-xs uppercase tracking-wider text-muted-foreground font-semibold mr-2">
-                  Category:
-                </span>
-                {categories.map((cat) => (
-                  <button
-                    key={cat}
-                    type="button"
-                    onClick={() => setSelectedCategory(cat)}
-                    className={`px-4 py-2 text-xs font-semibold uppercase tracking-wider transition-all cursor-pointer rounded-xs ${
-                      selectedCategory === cat
-                        ? "bg-ink text-ink-foreground shadow-sm"
-                        : "bg-secondary text-muted-foreground hover:text-ink hover:bg-secondary/80"
-                    }`}
-                  >
-                    {cat}
-                  </button>
-                ))}
-              </div>
-
-              {/* POSTS GRID */}
-              <div className="mt-12 grid gap-10 sm:grid-cols-2">
-                {filteredPosts.map((post) => (
+              <div className="grid gap-10 sm:grid-cols-2">
+                {BLOG_POSTS.map((post) => (
                   <article
                     key={post.id}
                     className="flex flex-col border border-border bg-card shadow-sm transition-all hover:border-brass/50 hover:shadow-md rounded-sm overflow-hidden"
@@ -296,7 +255,7 @@ function BlogsPage() {
                         className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
                       />
                       <span className="absolute top-4 left-4 bg-ink/90 text-brass px-3 py-1 text-[0.68rem] font-semibold tracking-wider uppercase backdrop-blur-xs border border-brass/30">
-                        {post.category}
+                        {post.articleType === "bacon-bits" ? "BACON BITS" : post.category}
                       </span>
                     </div>
 
@@ -346,23 +305,9 @@ function BlogsPage() {
                   </article>
                 ))}
               </div>
-
-              {filteredPosts.length === 0 && (
-                <div className="py-20 text-center">
-                  <BookOpen className="mx-auto h-12 w-12 text-muted-foreground/50" />
-                  <p className="mt-4 text-lg font-medium text-ink">No articles in this category.</p>
-                  <button
-                    type="button"
-                    onClick={() => setSelectedCategory("All")}
-                    className="mt-3 text-xs uppercase tracking-wider text-brass hover:underline"
-                  >
-                    View all articles
-                  </button>
-                </div>
-              )}
             </section>
 
-            {/* Newsletter Subscription on Blogs Page */}
+            {/* BACON BITS Subscription on Bacon Bits & Blogs Page */}
             <NewsletterSubscription variant="section" />
           </div>
         )}

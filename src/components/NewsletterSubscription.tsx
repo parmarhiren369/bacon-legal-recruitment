@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Mail, CheckCircle2, AlertCircle, Info, ArrowRight } from "lucide-react";
+import { subscribeToBaconBits } from "../functions/brevo";
 
 interface NewsletterSubscriptionProps {
   variant?: "section" | "footer" | "card";
@@ -40,40 +41,25 @@ export function NewsletterSubscription({
     const trimmedEmail = email.trim();
     setStatus("loading");
 
-    // Check if an external newsletter service endpoint or API key is configured
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const env = (import.meta as any).env || {};
-    const newsletterEndpoint = env.VITE_NEWSLETTER_ENDPOINT || env.NEWSLETTER_ENDPOINT;
+    try {
+      const result = await subscribeToBaconBits({
+        data: { email: trimmedEmail },
+      });
 
-    if (newsletterEndpoint) {
-      try {
-        const res = await fetch(newsletterEndpoint, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email: trimmedEmail }),
-        });
-
-        if (res.ok) {
-          setStatus("success");
-          setSubmittedEmail(trimmedEmail);
-          setEmail("");
-        } else if (res.status === 409) {
-          setErrorMessage("This email address is already subscribed.");
-          setStatus("idle");
-        } else {
-          setErrorMessage("Unable to complete subscription at this time. Please try again later.");
-          setStatus("idle");
-        }
-      } catch {
-        setErrorMessage("Network error connecting to newsletter provider. Please try again.");
+      if (result.status === "success") {
+        setStatus("success");
+        setSubmittedEmail(result.email);
+        setEmail("");
+      } else if (result.status === "unconfigured") {
+        setStatus("unconfigured");
+        setSubmittedEmail(result.email);
+      } else {
+        setErrorMessage(result.message);
         setStatus("idle");
       }
-    } else {
-      // Backend newsletter service is not yet connected with live credentials (e.g. Mailchimp, ConvertKit, SendGrid).
-      // Per instructions: "Do not show a fake subscription success message when no subscription service is connected."
-      // Instead, we validate the email and explicitly report that the live newsletter provider is awaiting credentials.
-      setStatus("unconfigured");
-      setSubmittedEmail(trimmedEmail);
+    } catch {
+      setErrorMessage("Network error connecting to Brevo. Please try again.");
+      setStatus("idle");
     }
   };
 
@@ -81,10 +67,12 @@ export function NewsletterSubscription({
     return (
       <div className={`pt-6 border-t border-ink-foreground/10 ${className}`}>
         <div className="max-w-xl">
-          <p className="eyebrow text-brass">Legal Market Insights</p>
+          <p className="eyebrow text-brass">BACON BITS</p>
           <p className="mt-1 text-sm text-ink-foreground/80 font-normal">
-            Subscribe to our confidential newsletter for attorney market updates and lateral hiring
-            trends.
+            Short yet informative and entertaining news bits in the legal market.
+          </p>
+          <p className="mt-1 text-sm text-ink-foreground/90 font-medium">
+            Subscribe to get the latest “Sizzle."
           </p>
 
           {status === "unconfigured" ? (
@@ -94,8 +82,8 @@ export function NewsletterSubscription({
                 <div>
                   <p className="font-semibold text-brass">Email Validated ({submittedEmail})</p>
                   <p className="mt-0.5 text-ink-foreground/70 leading-relaxed">
-                    Newsletter service is awaiting backend provider credentials (e.g., Mailchimp or
-                    SendGrid API key). Live deliveries will activate upon configuration.
+                    BACON BITS subscription is prepared for Brevo and is currently pending backend
+                    Brevo API credentials. Live subscriptions will activate upon configuration.
                   </p>
                   <button
                     type="button"
@@ -113,7 +101,7 @@ export function NewsletterSubscription({
           ) : status === "success" ? (
             <div className="mt-3 flex items-center gap-2 text-xs text-brass">
               <CheckCircle2 className="h-4 w-4 shrink-0" />
-              <span>Subscription confirmed for {submittedEmail}.</span>
+              <span>Subscribed to BACON BITS for {submittedEmail}.</span>
             </div>
           ) : (
             <form onSubmit={handleSubscribe} className="mt-3">
@@ -128,7 +116,7 @@ export function NewsletterSubscription({
                       if (errorMessage) setErrorMessage(null);
                     }}
                     placeholder="attorney@firm.com"
-                    aria-label="Email address for newsletter"
+                    aria-label="Email address for BACON BITS"
                     className="w-full rounded-sm border border-ink-foreground/20 bg-ink-foreground/5 py-2 pl-9 pr-3 text-xs text-ink-foreground placeholder:text-ink-foreground/40 focus:border-brass focus:outline-none transition-colors"
                   />
                 </div>
@@ -137,7 +125,7 @@ export function NewsletterSubscription({
                   disabled={status === "loading"}
                   className="bg-brass px-5 py-2 text-xs font-semibold tracking-wider uppercase text-ink transition-opacity hover:opacity-90 shrink-0 cursor-pointer disabled:opacity-50"
                 >
-                  {status === "loading" ? "Validating..." : "Subscribe"}
+                  {status === "loading" ? "Submitting..." : "Subscribe"}
                 </button>
               </div>
 
@@ -154,18 +142,17 @@ export function NewsletterSubscription({
     );
   }
 
-  // Section variant (used on Blogs page or at bottom of pages)
+  // Section variant (used on Bacon Bits & Blogs page or at bottom of pages)
   return (
     <section className={`border-t border-border bg-secondary/50 py-16 ${className}`}>
       <div className="mx-auto max-w-6xl px-6">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="eyebrow text-brass">Stay Informed</p>
+          <p className="eyebrow text-brass">BACON BITS</p>
           <h3 className="mt-2 text-2xl sm:text-3xl text-ink font-normal">
-            Bacon Legal Market Insights
+            Short yet informative and entertaining news bits in the legal market.
           </h3>
-          <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
-            Receive exclusive perspective on lateral partner movements, General Counsel searches,
-            State & Federal Lobbyist recruitment, and hiring trends across the United States.
+          <p className="mt-3 text-sm font-medium text-ink leading-relaxed">
+            Subscribe to get the latest “Sizzle."
           </p>
 
           {status === "unconfigured" ? (
@@ -173,14 +160,16 @@ export function NewsletterSubscription({
               <div className="flex items-start gap-3">
                 <Info className="h-5 w-5 text-brass shrink-0 mt-0.5" />
                 <div>
-                  <p className="font-semibold text-ink text-sm">Subscription Request Validated</p>
+                  <p className="font-semibold text-ink text-sm">
+                    Email Validated — Brevo Integration Pending
+                  </p>
                   <p className="mt-1 text-muted-foreground leading-relaxed">
-                    Your email address (<strong>{submittedEmail}</strong>) has been verified. The
-                    newsletter subscription backend is currently awaiting client provider
-                    credentials (e.g., Mailchimp, ConvertKit, or SendGrid API key).
+                    Your email address (<strong>{submittedEmail}</strong>) has been verified. BACON
+                    BITS subscription management is configured for Brevo and is currently awaiting
+                    Brevo API credentials on the server.
                   </p>
                   <p className="mt-2 text-[0.7rem] text-brass uppercase tracking-wider font-medium">
-                    Backend Connection Pending · No Spam
+                    Brevo Configuration Pending · No Spam
                   </p>
                   <button
                     type="button"
@@ -200,7 +189,7 @@ export function NewsletterSubscription({
               <CheckCircle2 className="mx-auto h-8 w-8 text-brass" />
               <h4 className="mt-2 text-base font-medium text-ink">Subscription Active</h4>
               <p className="mt-1 text-xs text-muted-foreground">
-                Thank you. You are subscribed to Bacon Legal Market Insights with {submittedEmail}.
+                Thank you. You are subscribed to BACON BITS with {submittedEmail}.
               </p>
             </div>
           ) : (
@@ -216,7 +205,7 @@ export function NewsletterSubscription({
                       if (errorMessage) setErrorMessage(null);
                     }}
                     placeholder="Enter your professional email"
-                    aria-label="Professional email address"
+                    aria-label="Email address for BACON BITS"
                     className="w-full rounded-sm border border-border bg-card py-3 pl-10 pr-4 text-sm text-foreground placeholder:text-muted-foreground/60 focus:border-brass focus:outline-none transition-colors shadow-sm"
                   />
                 </div>
@@ -225,7 +214,7 @@ export function NewsletterSubscription({
                   disabled={status === "loading"}
                   className="inline-flex items-center justify-center gap-2 bg-ink px-6 py-3 text-xs font-semibold tracking-[0.14em] uppercase text-ink-foreground transition-opacity hover:opacity-90 shadow-sm shrink-0 cursor-pointer disabled:opacity-50"
                 >
-                  {status === "loading" ? "Checking..." : "Subscribe"}
+                  {status === "loading" ? "Submitting..." : "Subscribe"}
                   <ArrowRight className="h-3.5 w-3.5" />
                 </button>
               </div>

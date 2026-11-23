@@ -72,7 +72,7 @@ export function SiteFooter() {
         </div>
       </div>
 
-      {/* Embedded Newsletter in Footer */}
+      {/* Embedded BACON BITS Subscription in Footer */}
       <div className="mx-auto max-w-6xl px-6 pb-12">
         <NewsletterSubscription variant="footer" />
       </div>

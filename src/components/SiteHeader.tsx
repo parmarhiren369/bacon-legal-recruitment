@@ -11,7 +11,7 @@ export const navItems = [
   { label: "About Us", href: "/about" },
   { label: "Our Services", href: "/services" },
   { label: "Careers", href: "/careers" },
-  { label: "Blogs", href: "/blogs" },
+  { label: "Bacon Bits & Blogs", href: "/blogs" },
 ] as const;
 
 export function SiteHeader() {
@@ -41,7 +41,7 @@ export function SiteHeader() {
             <Link
               key={item.label}
               to={item.href}
-              className="text-[0.72rem] font-medium tracking-[0.14em] uppercase text-muted-foreground transition-colors hover:text-ink [&.active]:text-ink [&.active]:font-semibold"
+              className="whitespace-nowrap text-[0.72rem] font-medium tracking-[0.14em] uppercase text-muted-foreground transition-colors hover:text-ink [&.active]:text-ink [&.active]:font-semibold"
               activeProps={{
                 className: "text-ink font-semibold",
               }}
