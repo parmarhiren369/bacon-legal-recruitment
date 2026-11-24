@@ -1,6 +1,6 @@
 import { B as SYM_ASYNC_ITERATOR, G as SerovalDepthLimitError, H as SYM_ITERATOR, J as SerovalMissingInstanceError, K as SerovalDeserializationError, R as SYMBOL_REF, T as ERROR_CONSTRUCTOR, U as SYM_TO_STRING_TAG, V as SYM_IS_CONCAT_SPREADABLE, W as SerovalConflictedNodeIdError, Y as SerovalMissingPluginError, Z as SerovalPluginValidationError, at as createSequence, ct as deserializeString, et as SerovalUnsupportedNodeError, gt as sequenceToIterator, ht as resolvePlugins, k as PROMISE_CONSTRUCTOR, mt as isStream, nt as Stream, pt as isSequence, q as SerovalMalformedNodeError, rt as TEMPORAL_TYPE_NAME, ut as getReference, vt as streamToAsyncIterable, w as CONSTANT_VAL } from "./@tanstack/react-router+[...].mjs";
 import { l as decodeArrayBuffer, u as getTypedArrayConstructor } from "./@tanstack/router-core+[...].mjs";
-//#region node_modules/seroval/dist/read-CSKXLr9t.js
+//#region node_modules/seroval/dist/read-B3lBprVF.js
 function isValidKey(key) {
 	switch (key) {
 		case "constructor":
@@ -198,12 +198,24 @@ function deserializeDictionary(ctx, depth, node, result) {
 	}
 	return result;
 }
+function constructError(create) {
+	const limit = Error.stackTraceLimit;
+	if (typeof limit !== "number") return create();
+	Reflect.set(Error, "stackTraceLimit", 0);
+	try {
+		return create();
+	} finally {
+		Reflect.set(Error, "stackTraceLimit", limit);
+	}
+}
 function deserializeAggregateError(ctx, depth, node) {
-	return deserializeDictionary(ctx, depth, node, assignIndexedValue(ctx, node.i, new AggregateError([], deserializeString(node.m))));
+	const message = deserializeString(node.m);
+	return deserializeDictionary(ctx, depth, node, assignIndexedValue(ctx, node.i, constructError(() => new AggregateError([], message))));
 }
 function deserializeError(ctx, depth, node) {
 	const construct = deserializeKnownValue(node, ERROR_CONSTRUCTOR, node.s);
-	return deserializeDictionary(ctx, depth, node, assignIndexedValue(ctx, node.i, new construct(deserializeString(node.m))));
+	const message = deserializeString(node.m);
+	return deserializeDictionary(ctx, depth, node, assignIndexedValue(ctx, node.i, constructError(() => new construct(message))));
 }
 function deserializePromise(ctx, depth, node) {
 	const deferred = PROMISE_CONSTRUCTOR();
@@ -346,7 +358,7 @@ function deserialize$1(ctx, depth, node) {
 		case 14: return deserializeAggregateError(ctx, depth, node);
 		case 13: return deserializeError(ctx, depth, node);
 		case 12: return deserializePromise(ctx, depth, node);
-		case 17: return deserializeKnownValue(node, SYMBOL_REF, node.s);
+		case 17: return assignIndexedValue(ctx, node.i, deserializeKnownValue(node, SYMBOL_REF, node.s));
 		case 21: return deserializeBoxed(ctx, depth, node);
 		case 25: return deserializePlugin(ctx, depth, node);
 		case 22: return deserializePromiseConstructor(ctx, node);

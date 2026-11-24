@@ -1,13 +1,13 @@
 import { r as __toESM } from "../_runtime.mjs";
 import { n as require_jsx_runtime, r as require_react, t as QueryClientProvider } from "../_libs/react+tanstack__react-query.mjs";
 import { _ as createFileRoute, d as Scripts, f as HeadContent, g as lazyRouteComponent, h as Outlet, m as createRouter, v as createRootRouteWithContext, x as useRouter, y as Link } from "../_libs/@tanstack/react-router+[...].mjs";
-import { t as BRAND_LOGO } from "./SiteHeader-CAjx6o9A.mjs";
-import { n as Route$7 } from "./blogs-C7ghxBjA.mjs";
+import { t as BRAND_LOGO } from "./SiteHeader-Dzra1Mlm.mjs";
+import { n as Route$7 } from "./blogs-DXqxZrX9.mjs";
 import { t as QueryClient } from "../_libs/tanstack__query-core.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/router-ddxdlGGA.js
+//#region node_modules/.nitro/vite/services/ssr/assets/router-DDgEtDpW.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
-var styles_default = "/assets/styles-I1ihISEk.css";
+var styles_default = "/assets/styles-CwEWbdUn.css";
 function reportLovableError(error, context = {}) {
 	if (typeof window === "undefined") return;
 	window.__lovableEvents?.captureException?.(error, {
@@ -160,7 +160,7 @@ function RootComponent() {
 		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Outlet, {})
 	});
 }
-var $$splitComponentImporter$5 = () => import("./routes-BPvHztBz.mjs");
+var $$splitComponentImporter$5 = () => import("./routes-Bt8jgsn7.mjs");
 var Route$5 = createFileRoute("/")({
 	head: () => ({ meta: [
 		{ title: "Bacon Legal Recruiting | National Recruiting Firm · Attorney Search Experts" },
@@ -183,7 +183,7 @@ var Route$5 = createFileRoute("/")({
 	] }),
 	component: lazyRouteComponent($$splitComponentImporter$5, "component")
 });
-var $$splitComponentImporter$4 = () => import("./about-BT1neyBK.mjs");
+var $$splitComponentImporter$4 = () => import("./about-BfQbCBOm.mjs");
 var Route$4 = createFileRoute("/about")({
 	head: () => ({ meta: [{ title: "About Us | Bacon Legal Recruiting" }, {
 		name: "description",
@@ -191,7 +191,7 @@ var Route$4 = createFileRoute("/about")({
 	}] }),
 	component: lazyRouteComponent($$splitComponentImporter$4, "component")
 });
-var $$splitComponentImporter$3 = () => import("./careers-DFkodweN.mjs");
+var $$splitComponentImporter$3 = () => import("./careers-B8mt-fVn.mjs");
 var Route$3 = createFileRoute("/careers")({
 	head: () => ({ meta: [{ title: "Careers | Bacon Legal Recruiting" }, {
 		name: "description",
@@ -199,7 +199,7 @@ var Route$3 = createFileRoute("/careers")({
 	}] }),
 	component: lazyRouteComponent($$splitComponentImporter$3, "component")
 });
-var $$splitComponentImporter$2 = () => import("./contact-CdMrp_3r.mjs");
+var $$splitComponentImporter$2 = () => import("./contact-Di9C3niK.mjs");
 var Route$2 = createFileRoute("/contact")({
 	head: () => ({ meta: [{ title: "Contact Us & Send an Inquiry | Bacon Legal Recruiting" }, {
 		name: "description",
@@ -207,7 +207,7 @@ var Route$2 = createFileRoute("/contact")({
 	}] }),
 	component: lazyRouteComponent($$splitComponentImporter$2, "component")
 });
-var $$splitComponentImporter$1 = () => import("./services-Dy4MwyMa.mjs");
+var $$splitComponentImporter$1 = () => import("./services-DnLVw4ur.mjs");
 var Route$1 = createFileRoute("/services")({
 	head: () => ({ meta: [{ title: "Our Services | Bacon Legal Recruiting" }, {
 		name: "description",
@@ -215,7 +215,7 @@ var Route$1 = createFileRoute("/services")({
 	}] }),
 	component: lazyRouteComponent($$splitComponentImporter$1, "component")
 });
-var $$splitComponentImporter = () => import("./why-choose-us-CggOVGXm.mjs");
+var $$splitComponentImporter = () => import("./why-choose-us-o9TbpRGU.mjs");
 var Route = createFileRoute("/why-choose-us")({
 	head: () => ({ meta: [{ title: "Why Choose Us | Bacon Legal Recruiting" }, {
 		name: "description",

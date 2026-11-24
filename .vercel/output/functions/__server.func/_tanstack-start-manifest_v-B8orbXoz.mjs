@@ -1,4 +1,4 @@
-//#region node_modules/.nitro/vite/services/ssr/assets/_tanstack-start-manifest_v-BkDTOwvE.js
+//#region node_modules/.nitro/vite/services/ssr/assets/_tanstack-start-manifest_v-B8orbXoz.js
 var tsrStartManifest = () => ({ routes: {
 	__root__: {
 		filePath: "/app/applet/src/routes/__root.tsx",
@@ -11,23 +11,23 @@ var tsrStartManifest = () => ({ routes: {
 			"/services",
 			"/why-choose-us"
 		],
-		preloads: ["/assets/index-BGxcU4G8.js"],
+		preloads: ["/assets/index-DctISJ-F.js"],
 		scripts: [{ attrs: {
 			type: "module",
 			async: !0,
-			src: "/assets/index-BGxcU4G8.js"
+			src: "/assets/index-DctISJ-F.js"
 		} }]
 	},
 	"/": {
 		filePath: "/app/applet/src/routes/index.tsx",
 		children: void 0,
 		preloads: [
-			"/assets/routes-BJnBb5En.js",
-			"/assets/SiteFooter-K1TnkiVc.js",
-			"/assets/award-DoEKBz6J.js",
-			"/assets/scale-BvPS9xla.js",
-			"/assets/InquiryForm-J97tcSsF.js",
-			"/assets/user-check-EF4SFWNP.js",
+			"/assets/routes-BBlX5xRl.js",
+			"/assets/SiteFooter-DfReSQ4I.js",
+			"/assets/award-BYjsgnV1.js",
+			"/assets/scale-DT-B8iKR.js",
+			"/assets/InquiryForm-BNCX0Y8k.js",
+			"/assets/user-check-DTcAdWQH.js",
 			"/assets/kevin-D3dRvpQw.js"
 		]
 	},
@@ -35,55 +35,55 @@ var tsrStartManifest = () => ({ routes: {
 		filePath: "/app/applet/src/routes/about.tsx",
 		children: void 0,
 		preloads: [
-			"/assets/about-CVfi8cZM.js",
-			"/assets/SiteFooter-K1TnkiVc.js",
+			"/assets/about-BxwGAUXQ.js",
+			"/assets/SiteFooter-DfReSQ4I.js",
 			"/assets/kevin-D3dRvpQw.js"
 		]
 	},
 	"/blogs": {
 		filePath: "/app/applet/src/routes/blogs.tsx",
 		children: void 0,
-		preloads: ["/assets/blogs-BgLCAE1X.js", "/assets/SiteFooter-K1TnkiVc.js"]
+		preloads: ["/assets/blogs-RRJN1X9K.js", "/assets/SiteFooter-DfReSQ4I.js"]
 	},
 	"/careers": {
 		filePath: "/app/applet/src/routes/careers.tsx",
 		children: void 0,
 		preloads: [
-			"/assets/careers-DKVd3WcS.js",
-			"/assets/SiteFooter-K1TnkiVc.js",
-			"/assets/award-DoEKBz6J.js",
-			"/assets/briefcase-BpDETU4u.js",
-			"/assets/user-check-EF4SFWNP.js"
+			"/assets/careers-D9BpTxkZ.js",
+			"/assets/SiteFooter-DfReSQ4I.js",
+			"/assets/award-BYjsgnV1.js",
+			"/assets/briefcase-CsqNcz7P.js",
+			"/assets/user-check-DTcAdWQH.js"
 		]
 	},
 	"/contact": {
 		filePath: "/app/applet/src/routes/contact.tsx",
 		children: void 0,
 		preloads: [
-			"/assets/contact-De9aCbRA.js",
-			"/assets/SiteFooter-K1TnkiVc.js",
-			"/assets/InquiryForm-J97tcSsF.js"
+			"/assets/contact-DqlcSvnq.js",
+			"/assets/SiteFooter-DfReSQ4I.js",
+			"/assets/InquiryForm-BNCX0Y8k.js"
 		]
 	},
 	"/services": {
 		filePath: "/app/applet/src/routes/services.tsx",
 		children: void 0,
 		preloads: [
-			"/assets/services-CxK1HX4u.js",
-			"/assets/SiteFooter-K1TnkiVc.js",
-			"/assets/award-DoEKBz6J.js",
-			"/assets/briefcase-BpDETU4u.js"
+			"/assets/services-BapgnCYs.js",
+			"/assets/SiteFooter-DfReSQ4I.js",
+			"/assets/award-BYjsgnV1.js",
+			"/assets/briefcase-CsqNcz7P.js"
 		]
 	},
 	"/why-choose-us": {
 		filePath: "/app/applet/src/routes/why-choose-us.tsx",
 		children: void 0,
 		preloads: [
-			"/assets/why-choose-us-Dwzj1t9D.js",
-			"/assets/SiteFooter-K1TnkiVc.js",
-			"/assets/award-DoEKBz6J.js",
-			"/assets/scale-BvPS9xla.js",
-			"/assets/user-check-EF4SFWNP.js"
+			"/assets/why-choose-us-C3GWZYdw.js",
+			"/assets/SiteFooter-DfReSQ4I.js",
+			"/assets/award-BYjsgnV1.js",
+			"/assets/scale-DT-B8iKR.js",
+			"/assets/user-check-DTcAdWQH.js"
 		]
 	}
 } });

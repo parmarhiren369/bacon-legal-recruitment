@@ -1,9 +1,34 @@
 import { _ as createFileRoute, g as lazyRouteComponent } from "../_libs/@tanstack/react-router+[...].mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/blogs-C7ghxBjA.js
+//#region node_modules/.nitro/vite/services/ssr/assets/blogs-DXqxZrX9.js
 var BLOG_POSTS = [
+	{
+		id: "bacon-bits-1",
+		slug: "bacon-bits-national-lateral-and-policy-sizzle",
+		articleType: "bacon-bits",
+		title: "BACON BITS: National Lateral Partner & Policy Hiring Sizzle",
+		category: "BACON BITS",
+		date: "March 2026",
+		readTime: "2 min read",
+		author: "Kevin Bacon",
+		authorRole: "Founder & CEO, Bacon Legal Recruiting",
+		featuredImage: "/assets/insight-skyline-BBsKkMeY.jpg",
+		summary: "Short yet informative and entertaining news bits in the legal market: why passive partner outreach, state and federal lobbyist demand, and Traditional Labor experience are setting the pace nationwide.",
+		content: [
+			"Across major legal markets in the United States, managing partners are discovering an uncomfortable truth about hiring: the attorneys you actually want to hire are almost never updating their resumes on public job boards.",
+			"While inbound postings keep hiring committees busy sifting through mismatches, the sharpest lateral partners, corporate counsel, State Lobbyists, and Federal Lobbyists are heads-down serving clients. Getting their attention requires peer-to-peer discretion—someone who speaks the language of law firm economics, client conflicts, and legislative calendars.",
+			"Meanwhile, demand for Traditional Labor & Employment specialists and well-connected State and Federal Lobbyists continues to accelerate as law firms and corporations navigate fast-moving regulatory agendas across state capitals and Washington, D.C.",
+			"The takeaway for both firms and passive candidates is simple: thoughtful preparation beats noisy job blasts every time—and that is how we maintain a 97% retention rate placing candidates in long-term roles."
+		],
+		keyTakeaways: [
+			"Top lateral talent engages through discreet, peer-to-peer outreach—not public job boards.",
+			"State & Federal Lobbyists and Traditional Labor counsel remain among the most competitive U.S. searches.",
+			"Subscribe to BACON BITS below to get the latest “Sizzle.”"
+		]
+	},
 	{
 		id: "1",
 		slug: "navigating-lateral-partner-moves",
+		articleType: "blog",
 		title: "Navigating Lateral Partner Moves: What Top Law Firms Look for in 2026",
 		category: "Lateral Partner Search",
 		date: "February 24, 2026",
@@ -16,7 +41,7 @@ var BLOG_POSTS = [
 			"The legal recruitment landscape for lateral partners has matured significantly over recent years. While portable books of business remain a key baseline metric, AmLaw and leading boutique law firms increasingly prioritize practice group compatibility, client transition predictability, and long-term retention.",
 			"As a national recruiting firm, Bacon Legal Recruiting works intimately with both hiring committees and prospective partners. We frequently observe that the most successful lateral acquisitions begin months before any official questionnaire or LPQ is drafted. Understanding the nuanced economics of both the originating and destination firms is crucial.",
 			"Furthermore, client conflict clearance is now one of the most critical stages in any lateral move. Firms are taking earlier, more rigorous approaches to ethical and business conflicts, requiring partners to thoroughly evaluate prospective synergy with existing firm clients.",
-			"Our peer-to-peer approach—consulting with an attorney who has spent decades inside both private practice and state government—ensures partners receive realistic, objective assessments of market value, portability, and cultural alignment without risking their current standing."
+			"Our peer-to-peer approach—consulting with an expert who has spent decades inside both private practice and state government—ensures partners receive realistic, objective assessments of market value, portability, and cultural alignment without risking their current standing."
 		],
 		keyTakeaways: [
 			"Rigorous due diligence on client conflict clearances must occur early.",
@@ -27,6 +52,7 @@ var BLOG_POSTS = [
 	{
 		id: "2",
 		slug: "rise-of-state-and-federal-lobbyist-recruitment",
+		articleType: "blog",
 		title: "The Growing Demand for State and Federal Lobbyists in Legal Practice",
 		category: "Policy & Government Relations",
 		date: "January 18, 2026",
@@ -51,6 +77,7 @@ var BLOG_POSTS = [
 	{
 		id: "3",
 		slug: "passive-workforce-recruiting-advantage",
+		articleType: "blog",
 		title: "Why Passive Attorney Recruiting Outperforms Public Job Boards",
 		category: "Recruitment Strategy",
 		date: "December 12, 2025",
@@ -74,6 +101,7 @@ var BLOG_POSTS = [
 	{
 		id: "4",
 		slug: "traditional-labor-and-employment-trends",
+		articleType: "blog",
 		title: "Surging Demand for Traditional Labor & Employment Counsel",
 		category: "Practice Areas",
 		date: "November 5, 2025",
@@ -95,19 +123,17 @@ var BLOG_POSTS = [
 		]
 	}
 ];
-var $$splitComponentImporter = () => import("./blogs-Dzwy48di.mjs");
+var $$splitComponentImporter = () => import("./blogs-BUJ232Tr.mjs");
 var Route = createFileRoute("/blogs")({
 	validateSearch: (search) => {
-		return {
-			article: search.article || void 0,
-			category: search.category || void 0
-		};
+		return { article: typeof search["article"] === "string" ? search["article"] : void 0 };
 	},
 	head: (ctx) => {
-		const search = ctx?.search;
-		const post = search?.article ? BLOG_POSTS.find((p) => p.slug === search.article) : null;
+		const search = ctx;
+		const articleSlug = search?.match?.search?.article ?? search?.search?.article;
+		const post = articleSlug ? BLOG_POSTS.find((p) => p.slug === articleSlug) : null;
 		if (post) return { meta: [
-			{ title: `${post.title} | Bacon Legal Recruiting Blogs` },
+			{ title: `${post.title} | Bacon Bits & Blogs · Bacon Legal Recruiting` },
 			{
 				name: "description",
 				content: post.summary
@@ -125,9 +151,9 @@ var Route = createFileRoute("/blogs")({
 				content: post.featuredImage
 			}
 		] };
-		return { meta: [{ title: "Blogs & Legal Market Insights | Bacon Legal Recruiting" }, {
+		return { meta: [{ title: "Bacon Bits & Blogs | Bacon Legal Recruiting" }, {
 			name: "description",
-			content: "Expert insights, lateral partner hiring analysis, lobbyist recruitment, and attorney career guidance from Bacon Legal Recruiting — a premier national recruiting firm."
+			content: "BACON BITS and legal market blog articles from Bacon Legal Recruiting — short yet informative and entertaining news bits in the legal market, lateral partner hiring analysis, lobbyist recruitment, and attorney career guidance."
 		}] };
 	},
 	component: lazyRouteComponent($$splitComponentImporter, "component")

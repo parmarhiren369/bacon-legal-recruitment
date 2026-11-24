@@ -1,10 +1,10 @@
 import { n as require_jsx_runtime } from "../_libs/react+tanstack__react-query.mjs";
 import { y as Link } from "../_libs/@tanstack/react-router+[...].mjs";
-import { A as ArrowRight, m as Linkedin } from "../_libs/lucide-react.mjs";
-import { n as SiteHeader } from "./SiteHeader-CAjx6o9A.mjs";
-import { n as SiteFooter } from "./SiteFooter-Bg0ZWkdL.mjs";
+import { k as ArrowRight, m as Linkedin } from "../_libs/lucide-react.mjs";
+import { n as SiteHeader } from "./SiteHeader-Dzra1Mlm.mjs";
+import { n as SiteFooter } from "./SiteFooter-eNIsP4Mf.mjs";
 import { t as kevin_default } from "./kevin-D_O7IVW8.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/about-BT1neyBK.js
+//#region node_modules/.nitro/vite/services/ssr/assets/about-BfQbCBOm.js
 var import_jsx_runtime = require_jsx_runtime();
 var marque_default = "/assets/marque-DX0zMwXE.png";
 var KEVIN_IMAGE = kevin_default;

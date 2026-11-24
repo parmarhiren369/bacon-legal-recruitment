@@ -2,7 +2,7 @@ import { r as __toESM } from "../_runtime.mjs";
 import { n as require_jsx_runtime, r as require_react } from "../_libs/react+tanstack__react-query.mjs";
 import { y as Link } from "../_libs/@tanstack/react-router+[...].mjs";
 import { t as X, u as Menu } from "../_libs/lucide-react.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/SiteHeader-CAjx6o9A.js
+//#region node_modules/.nitro/vite/services/ssr/assets/SiteHeader-Dzra1Mlm.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 var BRAND_LOGO = "/assets/bacon-legal-logo-YbguWpL6.png";
@@ -28,7 +28,7 @@ var navItems = [
 		href: "/careers"
 	},
 	{
-		label: "Blogs",
+		label: "Bacon Bits & Blogs",
 		href: "/blogs"
 	}
 ];
@@ -57,7 +57,7 @@ function SiteHeader() {
 					"aria-label": "Main Navigation",
 					children: navItems.map((item) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Link, {
 						to: item.href,
-						className: "text-[0.72rem] font-medium tracking-[0.14em] uppercase text-muted-foreground transition-colors hover:text-ink [&.active]:text-ink [&.active]:font-semibold",
+						className: "whitespace-nowrap text-[0.72rem] font-medium tracking-[0.14em] uppercase text-muted-foreground transition-colors hover:text-ink [&.active]:text-ink [&.active]:font-semibold",
 						activeProps: { className: "text-ink font-semibold" },
 						children: item.label
 					}, item.label))

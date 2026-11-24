@@ -1,9 +1,9 @@
 import { n as require_jsx_runtime } from "../_libs/react+tanstack__react-query.mjs";
 import { y as Link } from "../_libs/@tanstack/react-router+[...].mjs";
-import { A as ArrowRight, C as CircleCheck, _ as HeartHandshake, i as UserCheck, k as Award, l as Network, s as Scale, x as Cpu } from "../_libs/lucide-react.mjs";
-import { n as SiteHeader } from "./SiteHeader-CAjx6o9A.mjs";
-import { n as SiteFooter } from "./SiteFooter-Bg0ZWkdL.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/why-choose-us-CggOVGXm.js
+import { C as CircleCheck, O as Award, _ as HeartHandshake, i as UserCheck, k as ArrowRight, l as Network, s as Scale, x as Cpu } from "../_libs/lucide-react.mjs";
+import { n as SiteHeader } from "./SiteHeader-Dzra1Mlm.mjs";
+import { n as SiteFooter } from "./SiteFooter-eNIsP4Mf.mjs";
+//#region node_modules/.nitro/vite/services/ssr/assets/why-choose-us-o9TbpRGU.js
 var import_jsx_runtime = require_jsx_runtime();
 var PLACEMENTS_IMAGE = "https://images.unsplash.com/photo-1603796846097-bee99e4a601f?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb";
 var whyChooseCards = [

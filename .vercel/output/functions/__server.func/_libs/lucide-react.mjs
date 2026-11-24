@@ -156,19 +156,6 @@ var Award = createLucideIcon("award", [["path", {
 * This source code is licensed under the ISC license.
 * See the LICENSE file in the root directory of this source tree.
 */
-var BookOpen = createLucideIcon("book-open", [["path", {
-	d: "M12 7v14",
-	key: "1akyts"
-}], ["path", {
-	d: "M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z",
-	key: "ruj8y"
-}]]);
-/**
-* @license lucide-react v0.575.0 - ISC
-*
-* This source code is licensed under the ISC license.
-* See the LICENSE file in the root directory of this source tree.
-*/
 var Briefcase = createLucideIcon("briefcase", [["path", {
 	d: "M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16",
 	key: "jecpp"
@@ -829,4 +816,4 @@ var X = createLucideIcon("x", [["path", {
 	key: "d8bk6v"
 }]]);
 //#endregion
-export { ArrowRight as A, CircleCheck as C, Briefcase as D, Building as E, BookOpen as O, Clock as S, Calendar as T, HeartHandshake as _, ShieldCheck as a, Download as b, Phone as c, MapPin as d, Mail as f, Info as g, Landmark as h, UserCheck as i, ArrowLeft as j, Award as k, Network as l, Linkedin as m, Users as n, Share2 as o, Lock as p, User as r, Scale as s, X as t, Menu as u, FileText as v, CircleAlert as w, Cpu as x, ExternalLink as y };
+export { ArrowLeft as A, CircleCheck as C, Briefcase as D, Building as E, Award as O, Clock as S, Calendar as T, HeartHandshake as _, ShieldCheck as a, Download as b, Phone as c, MapPin as d, Mail as f, Info as g, Landmark as h, UserCheck as i, ArrowRight as k, Network as l, Linkedin as m, Users as n, Share2 as o, Lock as p, User as r, Scale as s, X as t, Menu as u, FileText as v, CircleAlert as w, Cpu as x, ExternalLink as y };

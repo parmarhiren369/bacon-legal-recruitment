@@ -1,3 +1,168 @@
+//#region node_modules/@tanstack/query-core/build/modern/subscribable.js
+/**
+* The base class behind everything in Query that you can subscribe to: `QueryCache`, `MutationCache`,
+* the observers, and the `FocusManager`/`OnlineManager` behind `focusManager` and `onlineManager`.
+* Subclasses decide what a listener receives and when it is called.
+*/
+var Subscribable = class {
+	constructor() {
+		this.listeners = /* @__PURE__ */ new Set();
+		this.subscribe = this.subscribe.bind(this);
+	}
+	/**
+	* Registers a listener to be called on every update this object notifies about. Returns a function
+	* that removes the listener again — call it to stop listening. The base class never drops a listener
+	* on its own, though some subclasses clear all of theirs in `destroy()`.
+	* @param listener - Called on each update, with whatever the subclass passes to its subscribers.
+	* @returns A function that removes the listener.
+	* @example
+	* ```ts
+	* const unsubscribe = subscribable.subscribe(() => {
+	*   // react to the update
+	* })
+	*
+	* unsubscribe()
+	* ```
+	*/
+	subscribe(listener) {
+		this.listeners.add(listener);
+		this.onSubscribe();
+		return () => {
+			this.listeners.delete(listener);
+			this.onUnsubscribe();
+		};
+	}
+	/**
+	* Returns `true` while at least one listener is registered, `false` once they have all unsubscribed.
+	* @returns `true` if at least one listener is registered.
+	*/
+	hasListeners() {
+		return this.listeners.size > 0;
+	}
+	/**
+	* Called after a listener is added. Does nothing here; subclasses override it, e.g. to start
+	* tracking what they observe once the first listener subscribes.
+	*/
+	onSubscribe() {}
+	/**
+	* Called after a listener is removed. Does nothing here; subclasses override it, e.g. to clean up
+	* once the last listener unsubscribes.
+	*/
+	onUnsubscribe() {}
+};
+//#endregion
+//#region node_modules/@tanstack/query-core/build/modern/focusManager.js
+/**
+* The `FocusManager` manages the focus state within TanStack Query.
+*
+* It can be used to change the default event listeners or to manually change the focus state.
+*/
+var FocusManager = class extends Subscribable {
+	#focused;
+	#cleanup;
+	#setup;
+	constructor() {
+		super();
+		this.#setup = (onFocus) => {
+			if (typeof window !== "undefined" && window.addEventListener) {
+				const listener = () => onFocus();
+				window.addEventListener("visibilitychange", listener, false);
+				return () => {
+					window.removeEventListener("visibilitychange", listener);
+				};
+			}
+		};
+	}
+	onSubscribe() {
+		if (!this.#cleanup) this.setEventListener(this.#setup);
+	}
+	onUnsubscribe() {
+		if (!this.hasListeners()) {
+			this.#cleanup?.();
+			this.#cleanup = void 0;
+		}
+	}
+	/**
+	* `setEventListener` can be used to set a custom event listener that will
+	* be used to determine the focus state. The provided `setup` function
+	* receives a `setFocused` callback: call it with a `boolean` to manually
+	* set the focus state, or with no arguments to re-evaluate the current
+	* focus state and notify subscribers.
+	* @param setup - Receives the `setFocused` callback, registers the event listener, and may return
+	* a cleanup function that is called when the listener is replaced or no longer needed.
+	* @example
+	* ```ts
+	* import { focusManager } from '@tanstack/query-core'
+	*
+	* focusManager.setEventListener((handleFocus) => {
+	*   const listener = () => handleFocus()
+	*   // Listen to visibilitychange
+	*   if (typeof window !== 'undefined' && window.addEventListener) {
+	*     window.addEventListener('visibilitychange', listener, false)
+	*   }
+	*
+	*   return () => {
+	*     // Be sure to unsubscribe if a new handler is set
+	*     window.removeEventListener('visibilitychange', listener)
+	*   }
+	* })
+	* ```
+	*/
+	setEventListener(setup) {
+		this.#setup = setup;
+		this.#cleanup?.();
+		this.#cleanup = setup((focused) => {
+			if (typeof focused === "boolean") this.setFocused(focused);
+			else this.onFocus();
+		});
+	}
+	/**
+	* `setFocused` can be used to manually set the focus state. Set `undefined`
+	* to fall back to the default focus check.
+	* @param focused - The focus state, or `undefined` to use the default focus check.
+	* @example
+	* ```ts
+	* import { focusManager } from '@tanstack/query-core'
+	*
+	* // Set focused
+	* focusManager.setFocused(true)
+	*
+	* // Set unfocused
+	* focusManager.setFocused(false)
+	*
+	* // Fallback to the default focus check
+	* focusManager.setFocused(undefined)
+	* ```
+	*/
+	setFocused(focused) {
+		if (this.#focused !== focused) {
+			this.#focused = focused;
+			this.onFocus();
+		}
+	}
+	/**
+	* `onFocus` notifies all subscribed listeners with the current focus state.
+	*/
+	onFocus() {
+		const isFocused = this.isFocused();
+		this.listeners.forEach((listener) => {
+			listener(isFocused);
+		});
+	}
+	/**
+	* `isFocused` can be used to get the current focus state.
+	* @returns The focus state set with `setFocused`, or otherwise whether the document is visible.
+	*/
+	isFocused() {
+		if (typeof this.#focused === "boolean") return this.#focused;
+		return globalThis.document?.visibilityState !== "hidden";
+	}
+};
+/**
+* Singleton instance of {@link FocusManager}, used to manage and observe the focus state within TanStack Query.
+*/
+var focusManager = new FocusManager();
+//#endregion
 //#region node_modules/@tanstack/query-core/build/modern/timeoutManager.js
 var defaultTimeoutProvider = {
 	setTimeout: (callback, delay) => setTimeout(callback, delay),
@@ -285,6 +450,7 @@ function partialMatchKey(a, b) {
 	if (a === b) return true;
 	if (typeof a !== typeof b) return false;
 	if (a && b && typeof a === "object" && typeof b === "object") {
+		if (Array.isArray(a) !== Array.isArray(b)) return false;
 		if (Array.isArray(a) && Array.isArray(b)) {
 			if (b.length > a.length) return false;
 			for (let i = 0; i < b.length; i++) if (!partialMatchKey(a[i], b[i])) return false;
@@ -386,28 +552,18 @@ function replaceData(prevData, data, options) {
 	return data;
 }
 /**
-* Returns a new array with `item` added at the end. If that makes the array longer than `max`,
-* excess items are removed from the start.
+* Adds an item to one end of a new array. If the result exceeds `max`, removes
+* excess items from the opposite end.
 * @param items - The current items.
-* @param item - The value to append.
-* @param max - The maximum number of items to keep. `0` (the default) means no limit.
+* @param item - The value to add.
+* @param max - The maximum number of items to keep. Omit it or use `0` for no limit.
+* @param prepend - Pass `true` to add at the start. The default is to add at the end.
 * @returns A new array with `item` added.
 */
-function addToEnd(items, item, max = 0) {
-	const newItems = [...items, item];
-	return max && newItems.length > max ? newItems.slice(-max) : newItems;
-}
-/**
-* Returns a new array with `item` added at the start. If that makes the array longer than `max`,
-* excess items are removed from the end.
-* @param items - The current items.
-* @param item - The value to prepend.
-* @param max - The maximum number of items to keep. `0` (the default) means no limit.
-* @returns A new array with `item` added.
-*/
-function addToStart(items, item, max = 0) {
-	const newItems = [item, ...items];
-	return max && newItems.length > max ? newItems.slice(0, max) : newItems;
+function addToArray(items, item, max, prepend) {
+	const newItems = prepend ? [item, ...items] : [...items, item];
+	if (max && newItems.length > max) return prepend ? newItems.slice(0, max) : newItems.slice(-max);
+	return newItems;
 }
 /**
 * Sentinel value that can be passed as a query's `queryFn` to conditionally disable the query (equivalent
@@ -474,170 +630,106 @@ var isServerFn = () => isServer$1;
 */
 var isServer = () => isServerFn();
 //#endregion
-//#region node_modules/@tanstack/query-core/build/modern/subscribable.js
+//#region node_modules/@tanstack/query-core/build/modern/infiniteQueryBehavior.js
 /**
-* The base class behind everything in Query that you can subscribe to: `QueryCache`, `MutationCache`,
-* the observers, and the `FocusManager`/`OnlineManager` behind `focusManager` and `onlineManager`.
-* Subclasses decide what a listener receives and when it is called.
+* Creates the behavior that fetches the pages of an infinite query: the next or previous page for
+* `fetchNextPage`/`fetchPreviousPage`, or all pages again from the start on a refetch.
+* @param pages - The number of pages to fetch from the start when all pages are fetched again,
+* e.g. from the `pages` option of `queryClient.infiniteQuery`. Defaults to the number of cached
+* pages.
+* @returns The query behavior to set on an infinite query.
 */
-var Subscribable = class {
-	constructor() {
-		this.listeners = /* @__PURE__ */ new Set();
-		this.subscribe = this.subscribe.bind(this);
-	}
-	/**
-	* Registers a listener to be called on every update this object notifies about. Returns a function
-	* that removes the listener again — call it to stop listening. The base class never drops a listener
-	* on its own, though some subclasses clear all of theirs in `destroy()`.
-	* @param listener - Called on each update, with whatever the subclass passes to its subscribers.
-	* @returns A function that removes the listener.
-	* @example
-	* ```ts
-	* const unsubscribe = subscribable.subscribe(() => {
-	*   // react to the update
-	* })
-	*
-	* unsubscribe()
-	* ```
-	*/
-	subscribe(listener) {
-		this.listeners.add(listener);
-		this.onSubscribe();
-		return () => {
-			this.listeners.delete(listener);
-			this.onUnsubscribe();
+function infiniteQueryBehavior(pages) {
+	return { onFetch: (context, query) => {
+		const options = context.options;
+		const direction = context.fetchOptions?.meta?.fetchMore?.direction;
+		const oldPages = context.state.data?.pages || [];
+		const oldPageParams = context.state.data?.pageParams || [];
+		let result = {
+			pages: [],
+			pageParams: []
 		};
-	}
-	/**
-	* Returns `true` while at least one listener is registered, `false` once they have all unsubscribed.
-	* @returns `true` if at least one listener is registered.
-	*/
-	hasListeners() {
-		return this.listeners.size > 0;
-	}
-	/**
-	* Called after a listener is added. Does nothing here; subclasses override it, e.g. to start
-	* tracking what they observe once the first listener subscribes.
-	*/
-	onSubscribe() {}
-	/**
-	* Called after a listener is removed. Does nothing here; subclasses override it, e.g. to clean up
-	* once the last listener unsubscribes.
-	*/
-	onUnsubscribe() {}
-};
-//#endregion
-//#region node_modules/@tanstack/query-core/build/modern/focusManager.js
-/**
-* The `FocusManager` manages the focus state within TanStack Query.
-*
-* It can be used to change the default event listeners or to manually change the focus state.
-*/
-var FocusManager = class extends Subscribable {
-	#focused;
-	#cleanup;
-	#setup;
-	constructor() {
-		super();
-		this.#setup = (onFocus) => {
-			if (typeof window !== "undefined" && window.addEventListener) {
-				const listener = () => onFocus();
-				window.addEventListener("visibilitychange", listener, false);
-				return () => {
-					window.removeEventListener("visibilitychange", listener);
+		let currentPage = 0;
+		const fetchFn = async () => {
+			let cancelled = false;
+			const signalContext = context;
+			const addSignalProperty = (object) => {
+				addConsumeAwareSignal(object, () => context.signal, () => cancelled = true, signalContext[fetchSignal]);
+			};
+			const queryFn = ensureQueryFn(context.options, context.fetchOptions);
+			const fetchPage = async (data, param, previous) => {
+				if (cancelled) return Promise.reject(context.signal.reason);
+				if (param == null && data.pages.length) return Promise.resolve(data);
+				const createQueryFnContext = () => {
+					const queryFnContext = {
+						client: context.client,
+						queryKey: context.queryKey,
+						pageParam: param,
+						direction: previous ? "backward" : "forward",
+						meta: context.options.meta
+					};
+					addSignalProperty(queryFnContext);
+					return queryFnContext;
 				};
+				const queryFnContext = createQueryFnContext();
+				const page = await queryFn(queryFnContext);
+				const { maxPages } = context.options;
+				return {
+					pages: addToArray(data.pages, page, maxPages, previous),
+					pageParams: addToArray(data.pageParams, param, maxPages, previous)
+				};
+			};
+			if (direction && oldPages.length) {
+				const previous = direction === "backward";
+				const pageParamFn = previous ? getPreviousPageParam : getNextPageParam;
+				const oldData = {
+					pages: oldPages,
+					pageParams: oldPageParams
+				};
+				result = await fetchPage(oldData, pageParamFn(options, oldData), previous);
+			} else {
+				const remainingPages = pages ?? oldPages.length;
+				do {
+					const param = currentPage === 0 ? oldPageParams[0] === void 0 ? options.initialPageParam : oldPageParams[0] : getNextPageParam(options, result);
+					if (currentPage > 0 && param == null) break;
+					result = await fetchPage(result, param);
+					currentPage++;
+				} while (currentPage < remainingPages);
 			}
+			return result;
 		};
-	}
-	onSubscribe() {
-		if (!this.#cleanup) this.setEventListener(this.#setup);
-	}
-	onUnsubscribe() {
-		if (!this.hasListeners()) {
-			this.#cleanup?.();
-			this.#cleanup = void 0;
-		}
-	}
-	/**
-	* `setEventListener` can be used to set a custom event listener that will
-	* be used to determine the focus state. The provided `setup` function
-	* receives a `setFocused` callback: call it with a `boolean` to manually
-	* set the focus state, or with no arguments to re-evaluate the current
-	* focus state and notify subscribers.
-	* @param setup - Receives the `setFocused` callback, registers the event listener, and may return
-	* a cleanup function that is called when the listener is replaced or no longer needed.
-	* @example
-	* ```ts
-	* import { focusManager } from '@tanstack/query-core'
-	*
-	* focusManager.setEventListener((handleFocus) => {
-	*   const listener = () => handleFocus()
-	*   // Listen to visibilitychange
-	*   if (typeof window !== 'undefined' && window.addEventListener) {
-	*     window.addEventListener('visibilitychange', listener, false)
-	*   }
-	*
-	*   return () => {
-	*     // Be sure to unsubscribe if a new handler is set
-	*     window.removeEventListener('visibilitychange', listener)
-	*   }
-	* })
-	* ```
-	*/
-	setEventListener(setup) {
-		this.#setup = setup;
-		this.#cleanup?.();
-		this.#cleanup = setup((focused) => {
-			if (typeof focused === "boolean") this.setFocused(focused);
-			else this.onFocus();
-		});
-	}
-	/**
-	* `setFocused` can be used to manually set the focus state. Set `undefined`
-	* to fall back to the default focus check.
-	* @param focused - The focus state, or `undefined` to use the default focus check.
-	* @example
-	* ```ts
-	* import { focusManager } from '@tanstack/query-core'
-	*
-	* // Set focused
-	* focusManager.setFocused(true)
-	*
-	* // Set unfocused
-	* focusManager.setFocused(false)
-	*
-	* // Fallback to the default focus check
-	* focusManager.setFocused(undefined)
-	* ```
-	*/
-	setFocused(focused) {
-		if (this.#focused !== focused) {
-			this.#focused = focused;
-			this.onFocus();
-		}
-	}
-	/**
-	* `onFocus` notifies all subscribed listeners with the current focus state.
-	*/
-	onFocus() {
-		const isFocused = this.isFocused();
-		this.listeners.forEach((listener) => {
-			listener(isFocused);
-		});
-	}
-	/**
-	* `isFocused` can be used to get the current focus state.
-	* @returns The focus state set with `setFocused`, or otherwise whether the document is visible.
-	*/
-	isFocused() {
-		if (typeof this.#focused === "boolean") return this.#focused;
-		return globalThis.document?.visibilityState !== "hidden";
-	}
-};
+		if (context.options.persister) context.fetchFn = () => {
+			return context.options.persister?.(fetchFn, {
+				client: context.client,
+				queryKey: context.queryKey,
+				meta: context.options.meta,
+				signal: context.signal
+			}, query);
+		};
+		else context.fetchFn = fetchFn;
+	} };
+}
 /**
-* Singleton instance of {@link FocusManager}, used to manage and observe the focus state within TanStack Query.
+* Computes the page param of the page after the last one, with the `getNextPageParam` option.
+* @param options - The infinite query options.
+* @param data - The current pages and page params.
+* @returns The next page param, or `undefined` if there are no pages yet.
 */
-var focusManager = new FocusManager();
+function getNextPageParam(options, { pages, pageParams }) {
+	const lastIndex = pages.length - 1;
+	return pages.length > 0 ? options.getNextPageParam(pages[lastIndex], pages, pageParams[lastIndex], pageParams) : void 0;
+}
+/**
+* Computes the page param of the page before the first one, with the `getPreviousPageParam`
+* option.
+* @param options - The infinite query options.
+* @param data - The current pages and page params.
+* @returns The previous page param, or `undefined` if there are no pages yet or no
+* `getPreviousPageParam` option.
+*/
+function getPreviousPageParam(options, { pages, pageParams }) {
+	return pages.length > 0 ? options.getPreviousPageParam?.(pages[0], pages, pageParams[0], pageParams) : void 0;
+}
 //#endregion
 //#region node_modules/@tanstack/query-core/build/modern/notifyManager.js
 /**
@@ -765,6 +857,50 @@ function createNotifyManager() {
 * Handles scheduling and batching callbacks in TanStack Query.
 */
 var notifyManager = createNotifyManager();
+//#endregion
+//#region node_modules/@tanstack/query-core/build/modern/removable.js
+/**
+* The base class for cache entries that are garbage collected once nothing is using them —
+* `Query` and `Mutation` both extend it. `gcTime` controls how long an unused entry is kept.
+*/
+var Removable = class {
+	#gcTimeout;
+	/**
+	* Clears the pending garbage collection timeout, so the entry is no longer scheduled for removal.
+	* A subclass may override this to release what it holds on to as well — `Query` also cancels any
+	* in-flight fetch.
+	*/
+	destroy() {
+		this.clearGcTimeout();
+	}
+	/**
+	* Schedules the entry to be removed from its cache after `gcTime`, replacing any timeout scheduled
+	* before. Nothing is scheduled if `gcTime` is `Infinity`.
+	*/
+	scheduleGc() {
+		this.clearGcTimeout();
+		if (isValidTimeout(this.gcTime)) this.#gcTimeout = timeoutManager.setTimeout(() => {
+			this.optionalRemove();
+		}, this.gcTime);
+	}
+	/**
+	* Updates `gcTime`, keeping the longest one seen so far. Without a value, it defaults to 5 minutes
+	* on the client and `Infinity` on the server.
+	* @param newGcTime - The `gcTime` from the latest options, if any.
+	*/
+	updateGcTime(newGcTime) {
+		this.gcTime = Math.max(this.gcTime || 0, newGcTime ?? (isServer() ? Infinity : 3e5));
+	}
+	/**
+	* Cancels the scheduled removal, if there is one.
+	*/
+	clearGcTimeout() {
+		if (this.#gcTimeout !== void 0) {
+			timeoutManager.clearTimeout(this.#gcTimeout);
+			this.#gcTimeout = void 0;
+		}
+	}
+};
 //#endregion
 //#region node_modules/@tanstack/query-core/build/modern/onlineManager.js
 /**
@@ -1015,152 +1151,6 @@ function createRetryer(config) {
 	};
 }
 //#endregion
-//#region node_modules/@tanstack/query-core/build/modern/removable.js
-/**
-* The base class for cache entries that are garbage collected once nothing is using them —
-* `Query` and `Mutation` both extend it. `gcTime` controls how long an unused entry is kept.
-*/
-var Removable = class {
-	#gcTimeout;
-	/**
-	* Clears the pending garbage collection timeout, so the entry is no longer scheduled for removal.
-	* A subclass may override this to release what it holds on to as well — `Query` also cancels any
-	* in-flight fetch.
-	*/
-	destroy() {
-		this.clearGcTimeout();
-	}
-	/**
-	* Schedules the entry to be removed from its cache after `gcTime`, replacing any timeout scheduled
-	* before. Nothing is scheduled if `gcTime` is `Infinity`.
-	*/
-	scheduleGc() {
-		this.clearGcTimeout();
-		if (isValidTimeout(this.gcTime)) this.#gcTimeout = timeoutManager.setTimeout(() => {
-			this.optionalRemove();
-		}, this.gcTime);
-	}
-	/**
-	* Updates `gcTime`, keeping the longest one seen so far. Without a value, it defaults to 5 minutes
-	* on the client and `Infinity` on the server.
-	* @param newGcTime - The `gcTime` from the latest options, if any.
-	*/
-	updateGcTime(newGcTime) {
-		this.gcTime = Math.max(this.gcTime || 0, newGcTime ?? (isServer() ? Infinity : 3e5));
-	}
-	/**
-	* Cancels the scheduled removal, if there is one.
-	*/
-	clearGcTimeout() {
-		if (this.#gcTimeout !== void 0) {
-			timeoutManager.clearTimeout(this.#gcTimeout);
-			this.#gcTimeout = void 0;
-		}
-	}
-};
-//#endregion
-//#region node_modules/@tanstack/query-core/build/modern/infiniteQueryBehavior.js
-/**
-* Creates the behavior that fetches the pages of an infinite query: the next or previous page for
-* `fetchNextPage`/`fetchPreviousPage`, or all pages again from the start on a refetch.
-* @param pages - The number of pages to fetch from the start when all pages are fetched again,
-* e.g. from the `pages` option of `queryClient.infiniteQuery`. Defaults to the number of cached
-* pages.
-* @returns The query behavior to set on an infinite query.
-*/
-function infiniteQueryBehavior(pages) {
-	return { onFetch: (context, query) => {
-		const options = context.options;
-		const direction = context.fetchOptions?.meta?.fetchMore?.direction;
-		const oldPages = context.state.data?.pages || [];
-		const oldPageParams = context.state.data?.pageParams || [];
-		let result = {
-			pages: [],
-			pageParams: []
-		};
-		let currentPage = 0;
-		const fetchFn = async () => {
-			let cancelled = false;
-			const signalContext = context;
-			const addSignalProperty = (object) => {
-				addConsumeAwareSignal(object, () => context.signal, () => cancelled = true, signalContext[fetchSignal]);
-			};
-			const queryFn = ensureQueryFn(context.options, context.fetchOptions);
-			const fetchPage = async (data, param, previous) => {
-				if (cancelled) return Promise.reject(context.signal.reason);
-				if (param == null && data.pages.length) return Promise.resolve(data);
-				const createQueryFnContext = () => {
-					const queryFnContext = {
-						client: context.client,
-						queryKey: context.queryKey,
-						pageParam: param,
-						direction: previous ? "backward" : "forward",
-						meta: context.options.meta
-					};
-					addSignalProperty(queryFnContext);
-					return queryFnContext;
-				};
-				const queryFnContext = createQueryFnContext();
-				const page = await queryFn(queryFnContext);
-				const { maxPages } = context.options;
-				const addTo = previous ? addToStart : addToEnd;
-				return {
-					pages: addTo(data.pages, page, maxPages),
-					pageParams: addTo(data.pageParams, param, maxPages)
-				};
-			};
-			if (direction && oldPages.length) {
-				const previous = direction === "backward";
-				const pageParamFn = previous ? getPreviousPageParam : getNextPageParam;
-				const oldData = {
-					pages: oldPages,
-					pageParams: oldPageParams
-				};
-				result = await fetchPage(oldData, pageParamFn(options, oldData), previous);
-			} else {
-				const remainingPages = pages ?? oldPages.length;
-				do {
-					const param = currentPage === 0 ? oldPageParams[0] === void 0 ? options.initialPageParam : oldPageParams[0] : getNextPageParam(options, result);
-					if (currentPage > 0 && param == null) break;
-					result = await fetchPage(result, param);
-					currentPage++;
-				} while (currentPage < remainingPages);
-			}
-			return result;
-		};
-		if (context.options.persister) context.fetchFn = () => {
-			return context.options.persister?.(fetchFn, {
-				client: context.client,
-				queryKey: context.queryKey,
-				meta: context.options.meta,
-				signal: context.signal
-			}, query);
-		};
-		else context.fetchFn = fetchFn;
-	} };
-}
-/**
-* Computes the page param of the page after the last one, with the `getNextPageParam` option.
-* @param options - The infinite query options.
-* @param data - The current pages and page params.
-* @returns The next page param, or `undefined` if there are no pages yet.
-*/
-function getNextPageParam(options, { pages, pageParams }) {
-	const lastIndex = pages.length - 1;
-	return pages.length > 0 ? options.getNextPageParam(pages[lastIndex], pages, pageParams[lastIndex], pageParams) : void 0;
-}
-/**
-* Computes the page param of the page before the first one, with the `getPreviousPageParam`
-* option.
-* @param options - The infinite query options.
-* @param data - The current pages and page params.
-* @returns The previous page param, or `undefined` if there are no pages yet or no
-* `getPreviousPageParam` option.
-*/
-function getPreviousPageParam(options, { pages, pageParams }) {
-	return pages.length > 0 ? options.getPreviousPageParam?.(pages[0], pages, pageParams[0], pageParams) : void 0;
-}
-//#endregion
 //#region node_modules/@tanstack/query-core/build/modern/query.js
 /**
 * Represents a single cached query. A `Query` holds the query's key, options,
@@ -1299,14 +1289,14 @@ var Query = class extends Removable {
 		return promise ? promise.then(noop).catch(noop) : Promise.resolve();
 	}
 	/**
-	* Clears the query's garbage collection timeout and silently cancels any
-	* in-flight fetch. Called by `QueryCache` when the query is removed from
+	* Silently cancels any in-flight fetch, then clears the query's garbage
+	* collection timeout. Called by `QueryCache` when the query is removed from
 	* the cache.
 	* @see {@link Query#cancel}
 	*/
 	destroy() {
-		super.destroy();
 		this.cancel({ silent: true });
+		super.destroy();
 	}
 	/**
 	* The state the query was created with.
@@ -1446,7 +1436,7 @@ var Query = class extends Removable {
 	* @internal
 	* @param observer - The observer to remove. When the last observer is removed, the in-flight
 	* fetch is cancelled if its abort signal was consumed (otherwise only its retries are stopped),
-	* and garbage collection is scheduled.
+	* and garbage collection is scheduled if the query is still in the cache.
 	*/
 	removeObserver(observer) {
 		const index = this.observers.indexOf(observer);
@@ -1455,7 +1445,7 @@ var Query = class extends Removable {
 			if (!this.observers.length) {
 				if (this.#retryer) if (this.#abortSignalConsumed || this.state.fetchStatus === "paused" && this.state.status === "pending") this.#retryer.cancel({ revert: true });
 				else this.#retryer.cancelRetry();
-				this.scheduleGc();
+				this.#scheduleGcIfCached();
 			}
 			this.#cache.notify({
 				type: "observerRemoved",
@@ -1628,12 +1618,15 @@ var Query = class extends Removable {
 					this.#retryer = void 0;
 					this.#fetchPromise = void 0;
 				}
-				this.scheduleGc();
+				this.#scheduleGcIfCached();
 			}
 		})();
 		this.#fetchPromise = fetchPromise;
 		retryer.start();
 		return fetchPromise;
+	}
+	#scheduleGcIfCached() {
+		if (this.#cache.get(this.queryHash) === this) this.scheduleGc();
 	}
 	#dispatch(action) {
 		const reducer = (state) => {
@@ -1656,7 +1649,7 @@ var Query = class extends Removable {
 					...fetchState(state.data, this.options),
 					fetchMeta: action.meta ?? null
 				};
-				case "success":
+				case "success": {
 					const newState = {
 						...state,
 						...successState(action.data, action.dataUpdatedAt),
@@ -1669,7 +1662,8 @@ var Query = class extends Removable {
 					};
 					this.#revertState = action.manual ? newState : void 0;
 					return newState;
-				case "error":
+				}
+				case "error": {
 					const error = action.error;
 					return {
 						...state,
@@ -1682,6 +1676,7 @@ var Query = class extends Removable {
 						status: "error",
 						isInvalidated: true
 					};
+				}
 				case "invalidate": return {
 					...state,
 					isInvalidated: true
@@ -1833,11 +1828,12 @@ var Mutation = class extends Removable {
 	/**
 	* Unsubscribes an observer from the mutation.
 	* @internal
-	* @param observer - The observer to remove. Garbage collection is scheduled afterwards.
+	* @param observer - The observer to remove. Schedules garbage collection if the mutation
+	* is still in the cache.
 	*/
 	removeObserver(observer) {
 		this.#observers = this.#observers.filter((x) => x !== observer);
-		this.scheduleGc();
+		if (this.#mutationCache.has(this)) this.scheduleGc();
 		this.#mutationCache.notify({
 			type: "observerRemoved",
 			mutation: this,
@@ -2136,12 +2132,13 @@ var MutationCache = class extends Subscribable {
 		});
 	}
 	/**
-	* Removes a mutation from the cache.
+	* Removes a mutation from the cache and clears its garbage collection timer.
 	* @internal
 	* @param mutation - The mutation to remove, also from its scope's queue.
 	*/
 	remove(mutation) {
 		if (this.#mutations.delete(mutation)) {
+			mutation.destroy();
 			const scope = scopeFor(mutation);
 			if (typeof scope === "string") {
 				const scopedMutations = this.#scopes.get(scope);
@@ -2157,6 +2154,15 @@ var MutationCache = class extends Subscribable {
 			type: "removed",
 			mutation
 		});
+	}
+	/**
+	* Checks whether this cache still holds the given mutation.
+	* @internal
+	* @param mutation - The mutation to check.
+	* @returns Whether the mutation is in the cache.
+	*/
+	has(mutation) {
+		return this.#mutations.has(mutation);
 	}
 	/**
 	* Checks whether a mutation can run now, given the other mutations in its `scope`.
@@ -2185,7 +2191,8 @@ var MutationCache = class extends Subscribable {
 		else return Promise.resolve();
 	}
 	/**
-	* Removes all mutations from the cache.
+	* Removes all mutations and clears their garbage collection timers.
+	* Mutations that are already running continue to execute.
 	* @example
 	* ```ts
 	* const mutationCache = queryClient.getMutationCache()
@@ -2198,6 +2205,7 @@ var MutationCache = class extends Subscribable {
 			const mutations = this.getAll();
 			this.#mutations.clear();
 			this.#scopes.clear();
+			mutations.forEach((mutation) => mutation.destroy());
 			mutations.forEach((mutation) => {
 				this.notify({
 					type: "removed",
@@ -2971,20 +2979,24 @@ var QueryClient = class {
 	* Asynchronous method to fetch and cache an infinite query, resolving with an
 	* {@link InfiniteData} object or throwing with the error.
 	*
-	* Behaves like {@link QueryClient#query}, accepting the same options (minus
-	* `initialPageParam`), plus the required `initialPageParam`, and an optional `pages` /
-	* `getNextPageParam` pair used to refetch a fixed number of pages from the start.
+	* Requires `initialPageParam` and `getNextPageParam`. Use `pages` to specify how many
+	* pages to fetch. If you omit `pages`, the client fetches up to the number of cached
+	* pages, or one page if the cache has no pages.
 	*
 	* This method replaces the deprecated `fetchInfiniteQuery`, and — combined with
 	* `{ staleTime: 'static' }` — the deprecated `ensureInfiniteQueryData`.
-	* @param options - The infinite query options, including the `queryKey`, the `queryFn`, and the
-	* `initialPageParam`.
+	* @param options - The query to fetch and the options that control which pages to fetch.
 	* @returns A promise that resolves to the {@link InfiniteData}, or to the result of `select` if
 	* provided. It rejects with the error from the fetch or from `select`.
 	* @example
 	* ```ts
 	* try {
-	*   const data = await queryClient.infiniteQuery({ queryKey, queryFn, initialPageParam: 0 })
+	*   const data = await queryClient.infiniteQuery({
+	*     queryKey,
+	*     queryFn,
+	*     initialPageParam: 0,
+	*     getNextPageParam: (lastPage) => lastPage.nextCursor,
+	*   })
 	*   console.log(data.pages)
 	* } catch (error) {
 	*   console.log(error)
@@ -2997,8 +3009,7 @@ var QueryClient = class {
 	}
 	/**
 	* Fetches and caches an infinite query, or returns its cached data if it isn't stale.
-	* @param options - The infinite query options, including the `queryKey`, the `queryFn`, and the
-	* `initialPageParam`.
+	* @param options - The infinite query options, including `initialPageParam` and `getNextPageParam`.
 	* @returns A promise that resolves to the cached or fetched {@link InfiniteData}, or rejects with
 	* the fetch error.
 	* @deprecated Use queryClient.infiniteQuery(options) instead. This method will be removed in the next major version.
@@ -3010,8 +3021,7 @@ var QueryClient = class {
 	/**
 	* Fetches and caches an infinite query like {@link QueryClient#fetchInfiniteQuery}, but ignores
 	* the result and any error.
-	* @param options - The infinite query options, including the `queryKey`, the `queryFn`, and the
-	* `initialPageParam`.
+	* @param options - The infinite query options, including `initialPageParam` and `getNextPageParam`.
 	* @returns A promise that resolves once the fetch settles. It never rejects.
 	* @deprecated Use queryClient.infiniteQuery(options) instead. You can swallow errors with `.catch(noop)`. This method will be removed in the next major version.
 	*/
@@ -3021,8 +3031,7 @@ var QueryClient = class {
 	/**
 	* Returns the cached data of an infinite query, or fetches it if there is none. With
 	* `revalidateIfStale`, stale cached data is also refetched in the background.
-	* @param options - The infinite query options. If the query has no cached data yet, it is fetched
-	* with these options.
+	* @param options - The infinite query options, including `initialPageParam` and `getNextPageParam`.
 	* @returns A promise that resolves to the cached {@link InfiniteData}, or to the fetched data if
 	* nothing was cached yet.
 	* @deprecated Use queryClient.infiniteQuery({ ...options, staleTime: 'static' }) instead. This method will be removed in the next major version.
@@ -3235,6 +3244,8 @@ var QueryClient = class {
 	}
 	/**
 	* Clears both the query cache and the mutation cache this client is connected to.
+	* This clears their garbage collection timers and cancels in-flight query fetches.
+	* Running mutations continue to execute.
 	* @example
 	* ```ts
 	* import { QueryClient } from '@tanstack/query-core'

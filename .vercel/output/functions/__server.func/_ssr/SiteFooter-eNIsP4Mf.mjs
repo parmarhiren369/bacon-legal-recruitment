@@ -1,11 +1,28 @@
 import { r as __toESM } from "../_runtime.mjs";
 import { n as require_jsx_runtime, r as require_react } from "../_libs/react+tanstack__react-query.mjs";
 import { y as Link } from "../_libs/@tanstack/react-router+[...].mjs";
-import { A as ArrowRight, C as CircleCheck, f as Mail, g as Info, w as CircleAlert } from "../_libs/lucide-react.mjs";
-import { r as navItems, t as BRAND_LOGO } from "./SiteHeader-CAjx6o9A.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/SiteFooter-Bg0ZWkdL.js
+import { C as CircleCheck, f as Mail, g as Info, k as ArrowRight, w as CircleAlert } from "../_libs/lucide-react.mjs";
+import { r as navItems, t as BRAND_LOGO } from "./SiteHeader-Dzra1Mlm.mjs";
+import { t as getServerFnById } from "../__23tanstack-start-server-fn-resolver-Ccs42NPs.mjs";
+import { a as TSS_SERVER_FUNCTION, l as createServerFn } from "./createServerFn-yTfeHp1H.mjs";
+import { n as stringType, t as objectType } from "../_libs/zod.mjs";
+//#region node_modules/.nitro/vite/services/ssr/assets/SiteFooter-eNIsP4Mf.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
+var createSsrRpc = (functionId) => {
+	const url = "/_serverFn/" + functionId;
+	const serverFnMeta = { id: functionId };
+	const fn = async (...args) => {
+		return (await getServerFnById(functionId, { origin: "server" }))(...args);
+	};
+	return Object.assign(fn, {
+		url,
+		serverFnMeta,
+		[TSS_SERVER_FUNCTION]: true
+	});
+};
+var subscribeInputSchema = objectType({ email: stringType().trim().min(1, "Please enter an email address.").email("Please enter a valid email address (e.g., attorney@firm.com).") });
+var subscribeToBaconBits = createServerFn({ method: "POST" }).validator(subscribeInputSchema).handler(createSsrRpc("2c27b57f3bd397c4dedc0a831fedafe7951bb1d354dd1069a01529a497ab6a20"));
 function NewsletterSubscription({ variant = "section", className = "" }) {
 	const [email, setEmail] = (0, import_react.useState)("");
 	const [errorMessage, setErrorMessage] = (0, import_react.useState)(null);
@@ -27,45 +44,22 @@ function NewsletterSubscription({ variant = "section", className = "" }) {
 		}
 		const trimmedEmail = email.trim();
 		setStatus("loading");
-		const env = {
-			"BASE_URL": "/",
-			"DEV": false,
-			"MODE": "production",
-			"PROD": true,
-			"SSR": true,
-			"TSS_DEV_SERVER": "false",
-			"TSS_DEV_SSR_STYLES_BASEPATH": "/",
-			"TSS_DEV_SSR_STYLES_ENABLED": "true",
-			"TSS_DISABLE_CSRF_MIDDLEWARE_WARNING": "false",
-			"TSS_INLINE_CSS_ENABLED": "false",
-			"TSS_ROUTER_BASEPATH": "",
-			"TSS_SERVER_FN_BASE": "/_serverFn/"
-		};
-		const newsletterEndpoint = env.VITE_NEWSLETTER_ENDPOINT || env.NEWSLETTER_ENDPOINT;
-		if (newsletterEndpoint) try {
-			const res = await fetch(newsletterEndpoint, {
-				method: "POST",
-				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify({ email: trimmedEmail })
-			});
-			if (res.ok) {
+		try {
+			const result = await subscribeToBaconBits({ data: { email: trimmedEmail } });
+			if (result.status === "success") {
 				setStatus("success");
-				setSubmittedEmail(trimmedEmail);
+				setSubmittedEmail(result.email);
 				setEmail("");
-			} else if (res.status === 409) {
-				setErrorMessage("This email address is already subscribed.");
-				setStatus("idle");
+			} else if (result.status === "unconfigured") {
+				setStatus("unconfigured");
+				setSubmittedEmail(result.email);
 			} else {
-				setErrorMessage("Unable to complete subscription at this time. Please try again later.");
+				setErrorMessage(result.message);
 				setStatus("idle");
 			}
 		} catch {
-			setErrorMessage("Network error connecting to newsletter provider. Please try again.");
+			setErrorMessage("Network error connecting to Brevo. Please try again.");
 			setStatus("idle");
-		}
-		else {
-			setStatus("unconfigured");
-			setSubmittedEmail(trimmedEmail);
 		}
 	};
 	if (variant === "footer") return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
@@ -75,11 +69,15 @@ function NewsletterSubscription({ variant = "section", className = "" }) {
 			children: [
 				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 					className: "eyebrow text-brass",
-					children: "Legal Market Insights"
+					children: "BACON BITS"
 				}),
 				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 					className: "mt-1 text-sm text-ink-foreground/80 font-normal",
-					children: "Subscribe to our confidential newsletter for attorney market updates and lateral hiring trends."
+					children: "Short yet informative and entertaining news bits in the legal market."
+				}),
+				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+					className: "mt-1 text-sm text-ink-foreground/90 font-medium",
+					children: "Subscribe to get the latest “Sizzle.\""
 				}),
 				status === "unconfigured" ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 					className: "mt-3 rounded-sm border border-brass/40 bg-ink-foreground/5 p-3.5 text-xs text-ink-foreground/90",
@@ -96,7 +94,7 @@ function NewsletterSubscription({ variant = "section", className = "" }) {
 							}),
 							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 								className: "mt-0.5 text-ink-foreground/70 leading-relaxed",
-								children: "Newsletter service is awaiting backend provider credentials (e.g., Mailchimp or SendGrid API key). Live deliveries will activate upon configuration."
+								children: "BACON BITS subscription is prepared for Brevo and is currently pending backend Brevo API credentials. Live subscriptions will activate upon configuration."
 							}),
 							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
 								type: "button",
@@ -112,7 +110,7 @@ function NewsletterSubscription({ variant = "section", className = "" }) {
 				}) : status === "success" ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 					className: "mt-3 flex items-center gap-2 text-xs text-brass",
 					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CircleCheck, { className: "h-4 w-4 shrink-0" }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: [
-						"Subscription confirmed for ",
+						"Subscribed to BACON BITS for ",
 						submittedEmail,
 						"."
 					] })]
@@ -131,14 +129,14 @@ function NewsletterSubscription({ variant = "section", className = "" }) {
 									if (errorMessage) setErrorMessage(null);
 								},
 								placeholder: "attorney@firm.com",
-								"aria-label": "Email address for newsletter",
+								"aria-label": "Email address for BACON BITS",
 								className: "w-full rounded-sm border border-ink-foreground/20 bg-ink-foreground/5 py-2 pl-9 pr-3 text-xs text-ink-foreground placeholder:text-ink-foreground/40 focus:border-brass focus:outline-none transition-colors"
 							})]
 						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
 							type: "submit",
 							disabled: status === "loading",
 							className: "bg-brass px-5 py-2 text-xs font-semibold tracking-wider uppercase text-ink transition-opacity hover:opacity-90 shrink-0 cursor-pointer disabled:opacity-50",
-							children: status === "loading" ? "Validating..." : "Subscribe"
+							children: status === "loading" ? "Submitting..." : "Subscribe"
 						})]
 					}), errorMessage && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 						className: "mt-2 flex items-center gap-1.5 text-xs text-red-400",
@@ -157,15 +155,15 @@ function NewsletterSubscription({ variant = "section", className = "" }) {
 				children: [
 					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 						className: "eyebrow text-brass",
-						children: "Stay Informed"
+						children: "BACON BITS"
 					}),
 					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", {
 						className: "mt-2 text-2xl sm:text-3xl text-ink font-normal",
-						children: "Bacon Legal Market Insights"
+						children: "Short yet informative and entertaining news bits in the legal market."
 					}),
 					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-						className: "mt-3 text-sm text-muted-foreground leading-relaxed",
-						children: "Receive exclusive perspective on lateral partner movements, General Counsel searches, State & Federal Lobbyist recruitment, and hiring trends across the United States."
+						className: "mt-3 text-sm font-medium text-ink leading-relaxed",
+						children: "Subscribe to get the latest “Sizzle.\""
 					}),
 					status === "unconfigured" ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 						className: "mt-6 mx-auto max-w-lg rounded-sm border border-brass/50 bg-card p-5 text-left text-xs shadow-sm",
@@ -174,19 +172,19 @@ function NewsletterSubscription({ variant = "section", className = "" }) {
 							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Info, { className: "h-5 w-5 text-brass shrink-0 mt-0.5" }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
 								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 									className: "font-semibold text-ink text-sm",
-									children: "Subscription Request Validated"
+									children: "Email Validated — Brevo Integration Pending"
 								}),
 								/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
 									className: "mt-1 text-muted-foreground leading-relaxed",
 									children: [
 										"Your email address (",
 										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: submittedEmail }),
-										") has been verified. The newsletter subscription backend is currently awaiting client provider credentials (e.g., Mailchimp, ConvertKit, or SendGrid API key)."
+										") has been verified. BACON BITS subscription management is configured for Brevo and is currently awaiting Brevo API credentials on the server."
 									]
 								}),
 								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 									className: "mt-2 text-[0.7rem] text-brass uppercase tracking-wider font-medium",
-									children: "Backend Connection Pending · No Spam"
+									children: "Brevo Configuration Pending · No Spam"
 								}),
 								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
 									type: "button",
@@ -210,7 +208,7 @@ function NewsletterSubscription({ variant = "section", className = "" }) {
 							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
 								className: "mt-1 text-xs text-muted-foreground",
 								children: [
-									"Thank you. You are subscribed to Bacon Legal Market Insights with ",
+									"Thank you. You are subscribed to BACON BITS with ",
 									submittedEmail,
 									"."
 								]
@@ -232,14 +230,14 @@ function NewsletterSubscription({ variant = "section", className = "" }) {
 											if (errorMessage) setErrorMessage(null);
 										},
 										placeholder: "Enter your professional email",
-										"aria-label": "Professional email address",
+										"aria-label": "Email address for BACON BITS",
 										className: "w-full rounded-sm border border-border bg-card py-3 pl-10 pr-4 text-sm text-foreground placeholder:text-muted-foreground/60 focus:border-brass focus:outline-none transition-colors shadow-sm"
 									})]
 								}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
 									type: "submit",
 									disabled: status === "loading",
 									className: "inline-flex items-center justify-center gap-2 bg-ink px-6 py-3 text-xs font-semibold tracking-[0.14em] uppercase text-ink-foreground transition-opacity hover:opacity-90 shadow-sm shrink-0 cursor-pointer disabled:opacity-50",
-									children: [status === "loading" ? "Checking..." : "Subscribe", /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ArrowRight, { className: "h-3.5 w-3.5" })]
+									children: [status === "loading" ? "Submitting..." : "Subscribe", /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ArrowRight, { className: "h-3.5 w-3.5" })]
 								})]
 							}),
 							errorMessage && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
