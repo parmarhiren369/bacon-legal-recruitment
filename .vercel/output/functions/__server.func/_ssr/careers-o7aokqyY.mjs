@@ -2,8 +2,8 @@ import { n as require_jsx_runtime } from "../_libs/react+tanstack__react-query.m
 import { y as Link } from "../_libs/@tanstack/react-router+[...].mjs";
 import { D as Briefcase, O as Award, i as UserCheck, k as ArrowRight, p as Lock } from "../_libs/lucide-react.mjs";
 import { n as SiteHeader } from "./SiteHeader-Dzra1Mlm.mjs";
-import { n as SiteFooter } from "./SiteFooter-eNIsP4Mf.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/careers-B8mt-fVn.js
+import { n as SiteFooter } from "./SiteFooter-CNcLccSQ.mjs";
+//#region node_modules/.nitro/vite/services/ssr/assets/careers-o7aokqyY.js
 var import_jsx_runtime = require_jsx_runtime();
 function CareersPage() {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {

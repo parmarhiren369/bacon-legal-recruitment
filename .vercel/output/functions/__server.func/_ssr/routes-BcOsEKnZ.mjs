@@ -2,10 +2,10 @@ import { n as require_jsx_runtime } from "../_libs/react+tanstack__react-query.m
 import { y as Link } from "../_libs/@tanstack/react-router+[...].mjs";
 import { O as Award, _ as HeartHandshake, i as UserCheck, k as ArrowRight, l as Network, s as Scale, x as Cpu, y as ExternalLink } from "../_libs/lucide-react.mjs";
 import { n as SiteHeader } from "./SiteHeader-Dzra1Mlm.mjs";
-import { n as SiteFooter } from "./SiteFooter-eNIsP4Mf.mjs";
+import { n as SiteFooter } from "./SiteFooter-CNcLccSQ.mjs";
 import { t as kevin_default } from "./kevin-D_O7IVW8.mjs";
 import { t as InquiryForm } from "./InquiryForm-BZC5Ug12.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/routes-Bt8jgsn7.js
+//#region node_modules/.nitro/vite/services/ssr/assets/routes-BcOsEKnZ.js
 var import_jsx_runtime = require_jsx_runtime();
 var HERO_IMAGE = "/assets/hero-courthouse-BAtiTfSu.jpg";
 var ABOUT_IMAGE = kevin_default;

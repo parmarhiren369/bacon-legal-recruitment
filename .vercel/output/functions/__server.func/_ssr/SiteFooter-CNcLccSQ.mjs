@@ -6,7 +6,7 @@ import { r as navItems, t as BRAND_LOGO } from "./SiteHeader-Dzra1Mlm.mjs";
 import { t as getServerFnById } from "../__23tanstack-start-server-fn-resolver-Ccs42NPs.mjs";
 import { a as TSS_SERVER_FUNCTION, l as createServerFn } from "./createServerFn-yTfeHp1H.mjs";
 import { n as stringType, t as objectType } from "../_libs/zod.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/SiteFooter-eNIsP4Mf.js
+//#region node_modules/.nitro/vite/services/ssr/assets/SiteFooter-CNcLccSQ.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 var createSsrRpc = (functionId) => {
@@ -67,13 +67,21 @@ function NewsletterSubscription({ variant = "section", className = "" }) {
 		children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 			className: "max-w-xl",
 			children: [
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-					className: "eyebrow text-brass",
-					children: "BACON BITS"
+				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+					className: "flex flex-wrap items-center justify-between gap-2",
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Link, {
+						to: "/blogs",
+						className: "eyebrow text-brass hover:underline",
+						children: "BACON BITS"
+					}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Link, {
+						to: "/blogs",
+						className: "inline-flex items-center gap-1 text-[0.7rem] font-semibold tracking-wider uppercase text-brass hover:text-ink-foreground transition-colors",
+						children: ["Read Bacon Bits & Blogs", /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ArrowRight, { className: "h-3 w-3" })]
+					})]
 				}),
 				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 					className: "mt-1 text-sm text-ink-foreground/80 font-normal",
-					children: "Short yet informative and entertaining news bits in the legal market."
+					children: "Short yet Informative and Entertaining News Bits in the Legal Market."
 				}),
 				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 					className: "mt-1 text-sm text-ink-foreground/90 font-medium",
@@ -159,7 +167,7 @@ function NewsletterSubscription({ variant = "section", className = "" }) {
 					}),
 					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", {
 						className: "mt-2 text-2xl sm:text-3xl text-ink font-normal",
-						children: "Short yet informative and entertaining news bits in the legal market."
+						children: "Short yet Informative and Entertaining News Bits in the Legal Market."
 					}),
 					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 						className: "mt-3 text-sm font-medium text-ink leading-relaxed",

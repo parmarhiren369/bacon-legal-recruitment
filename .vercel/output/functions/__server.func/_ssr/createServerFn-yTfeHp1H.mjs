@@ -1,4 +1,4 @@
-import { Bt as isRedirect, Vt as parseRedirect } from "../_libs/@tanstack/react-router+[...].mjs";
+import { Bt as parseRedirect, zt as isRedirect } from "../_libs/@tanstack/react-router+[...].mjs";
 import { a as mergeHeaders } from "../_libs/@tanstack/router-core+[...].mjs";
 import { AsyncLocalStorage } from "node:async_hooks";
 //#region node_modules/.nitro/vite/services/ssr/assets/createServerFn-yTfeHp1H.js

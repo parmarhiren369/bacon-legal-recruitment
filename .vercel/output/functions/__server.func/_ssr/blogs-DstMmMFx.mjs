@@ -1,5 +1,5 @@
 import { _ as createFileRoute, g as lazyRouteComponent } from "../_libs/@tanstack/react-router+[...].mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/blogs-DXqxZrX9.js
+//#region node_modules/.nitro/vite/services/ssr/assets/blogs-DstMmMFx.js
 var BLOG_POSTS = [
 	{
 		id: "bacon-bits-1",
@@ -12,7 +12,7 @@ var BLOG_POSTS = [
 		author: "Kevin Bacon",
 		authorRole: "Founder & CEO, Bacon Legal Recruiting",
 		featuredImage: "/assets/insight-skyline-BBsKkMeY.jpg",
-		summary: "Short yet informative and entertaining news bits in the legal market: why passive partner outreach, state and federal lobbyist demand, and Traditional Labor experience are setting the pace nationwide.",
+		summary: "Short yet Informative and Entertaining News Bits in the Legal Market — why passive partner outreach, state and federal lobbyist demand, and Traditional Labor experience are setting the pace nationwide.",
 		content: [
 			"Across major legal markets in the United States, managing partners are discovering an uncomfortable truth about hiring: the attorneys you actually want to hire are almost never updating their resumes on public job boards.",
 			"While inbound postings keep hiring committees busy sifting through mismatches, the sharpest lateral partners, corporate counsel, State Lobbyists, and Federal Lobbyists are heads-down serving clients. Getting their attention requires peer-to-peer discretion—someone who speaks the language of law firm economics, client conflicts, and legislative calendars.",
@@ -60,6 +60,9 @@ var BLOG_POSTS = [
 		author: "Kevin Bacon",
 		authorRole: "Founder & CEO, Bacon Legal Recruiting",
 		featuredImage: "https://images.unsplash.com/photo-1541872703-74c5e44368f9?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb",
+		featuredImageAlt: "President Barack Obama on the telephone in the White House",
+		secondaryImage: "/assets/george-w-bush-zYzjrdfg.jpg",
+		secondaryImageAlt: "President George W. Bush on the telephone in the Oval Office",
 		summary: "With rapid legislative and regulatory shifts across both state capitals and Washington D.C., law firms and corporations are actively expanding their government affairs and lobbying benches.",
 		content: [
 			"Government relations practices within major law firms and multinational corporations have evolved from auxiliary advisory units into primary revenue drivers and risk-mitigation pillars. Organizations must navigate evolving regulatory frameworks, state legislative chambers, and federal policymaking bodies.",
@@ -123,7 +126,7 @@ var BLOG_POSTS = [
 		]
 	}
 ];
-var $$splitComponentImporter = () => import("./blogs-BUJ232Tr.mjs");
+var $$splitComponentImporter = () => import("./blogs-DfqQ6AJb.mjs");
 var Route = createFileRoute("/blogs")({
 	validateSearch: (search) => {
 		return { article: typeof search["article"] === "string" ? search["article"] : void 0 };
@@ -153,7 +156,7 @@ var Route = createFileRoute("/blogs")({
 		] };
 		return { meta: [{ title: "Bacon Bits & Blogs | Bacon Legal Recruiting" }, {
 			name: "description",
-			content: "BACON BITS and legal market blog articles from Bacon Legal Recruiting — short yet informative and entertaining news bits in the legal market, lateral partner hiring analysis, lobbyist recruitment, and attorney career guidance."
+			content: "Short yet Informative and Entertaining News Bits in the Legal Market. BACON BITS and legal market blog articles from Bacon Legal Recruiting — lateral partner hiring analysis, lobbyist recruitment, and attorney career guidance."
 		}] };
 	},
 	component: lazyRouteComponent($$splitComponentImporter, "component")

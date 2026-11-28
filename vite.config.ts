@@ -23,6 +23,7 @@ export default defineConfig({
     server: { entry: "server" },
     prerender: {
       enabled: true,
+      filter: ({ path }: { path: string }) => !path.includes("?"),
     },
   },
 });

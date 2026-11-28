@@ -1,18 +1,23 @@
 import { r as __toESM } from "../_runtime.mjs";
 import { n as require_jsx_runtime, r as require_react } from "../_libs/react+tanstack__react-query.mjs";
-import { b as useNavigate, y as Link } from "../_libs/@tanstack/react-router+[...].mjs";
+import { y as Link } from "../_libs/@tanstack/react-router+[...].mjs";
 import { A as ArrowLeft, C as CircleCheck, S as Clock, T as Calendar, k as ArrowRight, o as Share2, r as User } from "../_libs/lucide-react.mjs";
 import { n as SiteHeader } from "./SiteHeader-Dzra1Mlm.mjs";
-import { n as SiteFooter, t as NewsletterSubscription } from "./SiteFooter-eNIsP4Mf.mjs";
-import { n as Route, t as BLOG_POSTS } from "./blogs-DXqxZrX9.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/blogs-BUJ232Tr.js
+import { n as SiteFooter, t as NewsletterSubscription } from "./SiteFooter-CNcLccSQ.mjs";
+import { n as Route, t as BLOG_POSTS } from "./blogs-DstMmMFx.mjs";
+//#region node_modules/.nitro/vite/services/ssr/assets/blogs-DfqQ6AJb.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 function BlogsPage() {
 	const { article } = Route.useSearch();
-	const navigate = useNavigate({ from: "/blogs" });
 	const [copiedNotification, setCopiedNotification] = (0, import_react.useState)(false);
 	const currentPost = article ? BLOG_POSTS.find((p) => p.slug === article) : null;
+	(0, import_react.useEffect)(() => {
+		if (typeof window !== "undefined") window.scrollTo({
+			top: 0,
+			behavior: "instant"
+		});
+	}, [article]);
 	const handleShare = () => {
 		if (typeof navigator !== "undefined" && navigator.clipboard) {
 			navigator.clipboard.writeText(window.location.href);
@@ -32,10 +37,10 @@ function BlogsPage() {
 						children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 							className: "mx-auto max-w-4xl px-6",
 							children: [
-								/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
-									type: "button",
-									onClick: () => navigate({ search: {} }),
-									className: "inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-brass hover:text-ink-foreground transition-colors mb-6 cursor-pointer",
+								/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Link, {
+									to: "/blogs",
+									search: {},
+									className: "inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-brass hover:text-ink-foreground transition-colors mb-6",
 									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(ArrowLeft, { className: "h-4 w-4" }), "Back to all articles"]
 								}),
 								/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
@@ -86,11 +91,28 @@ function BlogsPage() {
 					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 						className: "mx-auto max-w-4xl px-6 pt-12",
 						children: [
-							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+							currentPost.secondaryImage ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "grid grid-cols-1 sm:grid-cols-2 gap-4",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+									className: "overflow-hidden rounded-sm border border-border shadow-lg bg-secondary",
+									children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
+										src: currentPost.featuredImage,
+										alt: currentPost.featuredImageAlt ?? currentPost.title,
+										className: "w-full aspect-[3/2] object-cover object-top"
+									})
+								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+									className: "overflow-hidden rounded-sm border border-border shadow-lg bg-secondary",
+									children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
+										src: currentPost.secondaryImage,
+										alt: currentPost.secondaryImageAlt ?? currentPost.title,
+										className: "w-full aspect-[3/2] object-cover object-top"
+									})
+								})]
+							}) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 								className: "overflow-hidden rounded-sm border border-border shadow-lg",
 								children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
 									src: currentPost.featuredImage,
-									alt: currentPost.title,
+									alt: currentPost.featuredImageAlt ?? currentPost.title,
 									className: "w-full aspect-[16/9] object-cover"
 								})
 							}),
@@ -155,10 +177,10 @@ function BlogsPage() {
 							}),
 							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 								className: "mt-12 pt-8 border-t border-border flex justify-between items-center",
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
-									type: "button",
-									onClick: () => navigate({ search: {} }),
-									className: "inline-flex items-center gap-2 border border-ink px-6 py-2.5 text-xs font-semibold tracking-widest uppercase text-ink hover:bg-ink hover:text-ink-foreground transition-colors cursor-pointer",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Link, {
+									to: "/blogs",
+									search: {},
+									className: "inline-flex items-center gap-2 border border-ink px-6 py-2.5 text-xs font-semibold tracking-widest uppercase text-ink hover:bg-ink hover:text-ink-foreground transition-colors",
 									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(ArrowLeft, { className: "h-4 w-4" }), "All Articles"]
 								}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Link, {
 									to: "/contact",
@@ -194,7 +216,7 @@ function BlogsPage() {
 								}),
 								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 									className: "mt-6 text-base sm:text-lg leading-relaxed text-ink-foreground/80 font-display italic",
-									children: "Short yet informative and entertaining news bits in the legal market, alongside recruitment strategies and market commentary from our national recruiting firm."
+									children: "Short yet Informative and Entertaining News Bits in the Legal Market."
 								})
 							]
 						})
@@ -206,13 +228,28 @@ function BlogsPage() {
 						className: "grid gap-10 sm:grid-cols-2",
 						children: BLOG_POSTS.map((post) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("article", {
 							className: "flex flex-col border border-border bg-card shadow-sm transition-all hover:border-brass/50 hover:shadow-md rounded-sm overflow-hidden",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-								className: "relative aspect-[16/10] w-full overflow-hidden bg-secondary",
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Link, {
+								to: "/blogs",
+								search: { article: post.slug },
+								className: "group relative block aspect-[16/10] w-full overflow-hidden bg-secondary",
+								children: [post.secondaryImage ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+									className: "grid h-full w-full grid-cols-2 gap-0.5 bg-border transition-transform duration-500 group-hover:scale-105",
+									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
+										src: post.featuredImage,
+										alt: post.featuredImageAlt ?? post.title,
+										loading: "lazy",
+										className: "h-full w-full object-cover object-[62%_top]"
+									}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
+										src: post.secondaryImage,
+										alt: post.secondaryImageAlt ?? post.title,
+										loading: "lazy",
+										className: "h-full w-full object-cover object-[35%_top]"
+									})]
+								}) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
 									src: post.featuredImage,
-									alt: post.title,
+									alt: post.featuredImageAlt ?? post.title,
 									loading: "lazy",
-									className: "h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+									className: "h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
 								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
 									className: "absolute top-4 left-4 bg-ink/90 text-brass px-3 py-1 text-[0.68rem] font-semibold tracking-wider uppercase backdrop-blur-xs border border-brass/30",
 									children: post.articleType === "bacon-bits" ? "BACON BITS" : post.category
@@ -236,10 +273,10 @@ function BlogsPage() {
 									}),
 									/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", {
 										className: "mt-3 text-2xl font-normal text-ink leading-snug",
-										children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
-											type: "button",
-											onClick: () => navigate({ search: { article: post.slug } }),
-											className: "text-left hover:text-brass transition-colors cursor-pointer",
+										children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Link, {
+											to: "/blogs",
+											search: { article: post.slug },
+											className: "text-left hover:text-brass transition-colors",
 											children: post.title
 										})
 									}),
@@ -252,10 +289,10 @@ function BlogsPage() {
 										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", {
 											className: "text-xs text-muted-foreground flex items-center gap-1.5",
 											children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(User, { className: "h-3.5 w-3.5 text-brass" }), post.author]
-										}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
-											type: "button",
-											onClick: () => navigate({ search: { article: post.slug } }),
-											className: "inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-ink hover:text-brass transition-colors cursor-pointer",
+										}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Link, {
+											to: "/blogs",
+											search: { article: post.slug },
+											className: "inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-ink hover:text-brass transition-colors",
 											children: ["Read More", /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ArrowRight, { className: "h-3.5 w-3.5" })]
 										})]
 									})
