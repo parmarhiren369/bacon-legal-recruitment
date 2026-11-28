@@ -1,4 +1,5 @@
 import insightSkyline from "../assets/insight-skyline.jpg";
+import georgeWBushPhoto from "../assets/george-w-bush.jpg";
 
 export type ArticleType = "bacon-bits" | "blog";
 
@@ -13,11 +14,15 @@ export interface BlogPost {
   author: string;
   authorRole: string;
   featuredImage: string;
+  featuredImageAlt?: string;
+  secondaryImage?: string;
+  secondaryImageAlt?: string;
   summary: string;
   content: string[];
   keyTakeaways?: string[];
 }
 
+// Add new BACON BITS or blog articles by appending a BlogPost entry to BLOG_POSTS below.
 export const BLOG_POSTS: BlogPost[] = [
   {
     id: "bacon-bits-1",
@@ -31,7 +36,7 @@ export const BLOG_POSTS: BlogPost[] = [
     authorRole: "Founder & CEO, Bacon Legal Recruiting",
     featuredImage: insightSkyline,
     summary:
-      "Short yet informative and entertaining news bits in the legal market: why passive partner outreach, state and federal lobbyist demand, and Traditional Labor experience are setting the pace nationwide.",
+      "Short yet Informative and Entertaining News Bits in the Legal Market — why passive partner outreach, state and federal lobbyist demand, and Traditional Labor experience are setting the pace nationwide.",
     content: [
       "Across major legal markets in the United States, managing partners are discovering an uncomfortable truth about hiring: the attorneys you actually want to hire are almost never updating their resumes on public job boards.",
       "While inbound postings keep hiring committees busy sifting through mismatches, the sharpest lateral partners, corporate counsel, State Lobbyists, and Federal Lobbyists are heads-down serving clients. Getting their attention requires peer-to-peer discretion—someone who speaks the language of law firm economics, client conflicts, and legislative calendars.",
@@ -82,6 +87,9 @@ export const BLOG_POSTS: BlogPost[] = [
     authorRole: "Founder & CEO, Bacon Legal Recruiting",
     featuredImage:
       "https://images.unsplash.com/photo-1541872703-74c5e44368f9?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb",
+    featuredImageAlt: "President Barack Obama on the telephone in the White House",
+    secondaryImage: georgeWBushPhoto,
+    secondaryImageAlt: "President George W. Bush on the telephone in the Oval Office",
     summary:
       "With rapid legislative and regulatory shifts across both state capitals and Washington D.C., law firms and corporations are actively expanding their government affairs and lobbying benches.",
     content: [

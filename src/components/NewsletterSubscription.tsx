@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "@tanstack/react-router";
 import { Mail, CheckCircle2, AlertCircle, Info, ArrowRight } from "lucide-react";
 import { subscribeToBaconBits } from "../functions/brevo";
 
@@ -67,9 +68,20 @@ export function NewsletterSubscription({
     return (
       <div className={`pt-6 border-t border-ink-foreground/10 ${className}`}>
         <div className="max-w-xl">
-          <p className="eyebrow text-brass">BACON BITS</p>
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <Link to="/blogs" className="eyebrow text-brass hover:underline">
+              BACON BITS
+            </Link>
+            <Link
+              to="/blogs"
+              className="inline-flex items-center gap-1 text-[0.7rem] font-semibold tracking-wider uppercase text-brass hover:text-ink-foreground transition-colors"
+            >
+              Read Bacon Bits &amp; Blogs
+              <ArrowRight className="h-3 w-3" />
+            </Link>
+          </div>
           <p className="mt-1 text-sm text-ink-foreground/80 font-normal">
-            Short yet informative and entertaining news bits in the legal market.
+            Short yet Informative and Entertaining News Bits in the Legal Market.
           </p>
           <p className="mt-1 text-sm text-ink-foreground/90 font-medium">
             Subscribe to get the latest “Sizzle."
@@ -149,7 +161,7 @@ export function NewsletterSubscription({
         <div className="mx-auto max-w-2xl text-center">
           <p className="eyebrow text-brass">BACON BITS</p>
           <h3 className="mt-2 text-2xl sm:text-3xl text-ink font-normal">
-            Short yet informative and entertaining news bits in the legal market.
+            Short yet Informative and Entertaining News Bits in the Legal Market.
           </h3>
           <p className="mt-3 text-sm font-medium text-ink leading-relaxed">
             Subscribe to get the latest “Sizzle."

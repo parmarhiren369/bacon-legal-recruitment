@@ -1,5 +1,5 @@
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { useState } from "react";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 import { ArrowRight, ArrowLeft, Calendar, Clock, User, Share2, CheckCircle2 } from "lucide-react";
 import { SiteHeader } from "../components/SiteHeader";
 import { SiteFooter } from "../components/SiteFooter";
@@ -40,7 +40,7 @@ export const Route = createFileRoute("/blogs")({
         {
           name: "description",
           content:
-            "BACON BITS and legal market blog articles from Bacon Legal Recruiting — short yet informative and entertaining news bits in the legal market, lateral partner hiring analysis, lobbyist recruitment, and attorney career guidance.",
+            "Short yet Informative and Entertaining News Bits in the Legal Market. BACON BITS and legal market blog articles from Bacon Legal Recruiting — lateral partner hiring analysis, lobbyist recruitment, and attorney career guidance.",
         },
       ],
     };
@@ -50,10 +50,15 @@ export const Route = createFileRoute("/blogs")({
 
 function BlogsPage() {
   const { article } = Route.useSearch();
-  const navigate = useNavigate({ from: "/blogs" });
   const [copiedNotification, setCopiedNotification] = useState(false);
 
   const currentPost = article ? BLOG_POSTS.find((p) => p.slug === article) : null;
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      window.scrollTo({ top: 0, behavior: "instant" });
+    }
+  }, [article]);
 
   const handleShare = () => {
     if (typeof navigator !== "undefined" && navigator.clipboard) {
@@ -74,14 +79,14 @@ function BlogsPage() {
             {/* ARTICLE HEADER HERO */}
             <section className="bg-ink text-ink-foreground py-16 lg:py-20 border-b border-border">
               <div className="mx-auto max-w-4xl px-6">
-                <button
-                  type="button"
-                  onClick={() => navigate({ search: {} })}
-                  className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-brass hover:text-ink-foreground transition-colors mb-6 cursor-pointer"
+                <Link
+                  to="/blogs"
+                  search={{}}
+                  className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-brass hover:text-ink-foreground transition-colors mb-6"
                 >
                   <ArrowLeft className="h-4 w-4" />
                   Back to all articles
-                </button>
+                </Link>
 
                 <div className="flex flex-wrap items-center gap-4 text-xs tracking-wider uppercase text-brass">
                   <span className="bg-brass/20 text-brass px-3 py-1 font-semibold rounded-xs">
@@ -128,14 +133,33 @@ function BlogsPage() {
 
             {/* ARTICLE CONTENT */}
             <div className="mx-auto max-w-4xl px-6 pt-12">
-              {/* Featured Image */}
-              <div className="overflow-hidden rounded-sm border border-border shadow-lg">
-                <img
-                  src={currentPost.featuredImage}
-                  alt={currentPost.title}
-                  className="w-full aspect-[16/9] object-cover"
-                />
-              </div>
+              {/* Featured Image(s) */}
+              {currentPost.secondaryImage ? (
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="overflow-hidden rounded-sm border border-border shadow-lg bg-secondary">
+                    <img
+                      src={currentPost.featuredImage}
+                      alt={currentPost.featuredImageAlt ?? currentPost.title}
+                      className="w-full aspect-[3/2] object-cover object-top"
+                    />
+                  </div>
+                  <div className="overflow-hidden rounded-sm border border-border shadow-lg bg-secondary">
+                    <img
+                      src={currentPost.secondaryImage}
+                      alt={currentPost.secondaryImageAlt ?? currentPost.title}
+                      className="w-full aspect-[3/2] object-cover object-top"
+                    />
+                  </div>
+                </div>
+              ) : (
+                <div className="overflow-hidden rounded-sm border border-border shadow-lg">
+                  <img
+                    src={currentPost.featuredImage}
+                    alt={currentPost.featuredImageAlt ?? currentPost.title}
+                    className="w-full aspect-[16/9] object-cover"
+                  />
+                </div>
+              )}
 
               {/* Lead Summary */}
               <div className="mt-10 border-l-2 border-brass pl-6 py-2 bg-secondary/40 text-base sm:text-lg italic text-ink font-display leading-relaxed">
@@ -196,14 +220,14 @@ function BlogsPage() {
 
               {/* Bottom Back Button */}
               <div className="mt-12 pt-8 border-t border-border flex justify-between items-center">
-                <button
-                  type="button"
-                  onClick={() => navigate({ search: {} })}
-                  className="inline-flex items-center gap-2 border border-ink px-6 py-2.5 text-xs font-semibold tracking-widest uppercase text-ink hover:bg-ink hover:text-ink-foreground transition-colors cursor-pointer"
+                <Link
+                  to="/blogs"
+                  search={{}}
+                  className="inline-flex items-center gap-2 border border-ink px-6 py-2.5 text-xs font-semibold tracking-widest uppercase text-ink hover:bg-ink hover:text-ink-foreground transition-colors"
                 >
                   <ArrowLeft className="h-4 w-4" />
                   All Articles
-                </button>
+                </Link>
 
                 <Link
                   to="/contact"
@@ -232,8 +256,7 @@ function BlogsPage() {
                     Bacon Bits & <span className="text-brass">Blogs.</span>
                   </h1>
                   <p className="mt-6 text-base sm:text-lg leading-relaxed text-ink-foreground/80 font-display italic">
-                    Short yet informative and entertaining news bits in the legal market, alongside
-                    recruitment strategies and market commentary from our national recruiting firm.
+                    Short yet Informative and Entertaining News Bits in the Legal Market.
                   </p>
                 </div>
               </div>
@@ -247,17 +270,38 @@ function BlogsPage() {
                     key={post.id}
                     className="flex flex-col border border-border bg-card shadow-sm transition-all hover:border-brass/50 hover:shadow-md rounded-sm overflow-hidden"
                   >
-                    <div className="relative aspect-[16/10] w-full overflow-hidden bg-secondary">
-                      <img
-                        src={post.featuredImage}
-                        alt={post.title}
-                        loading="lazy"
-                        className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
-                      />
+                    <Link
+                      to="/blogs"
+                      search={{ article: post.slug }}
+                      className="group relative block aspect-[16/10] w-full overflow-hidden bg-secondary"
+                    >
+                      {post.secondaryImage ? (
+                        <div className="grid h-full w-full grid-cols-2 gap-0.5 bg-border transition-transform duration-500 group-hover:scale-105">
+                          <img
+                            src={post.featuredImage}
+                            alt={post.featuredImageAlt ?? post.title}
+                            loading="lazy"
+                            className="h-full w-full object-cover object-[62%_top]"
+                          />
+                          <img
+                            src={post.secondaryImage}
+                            alt={post.secondaryImageAlt ?? post.title}
+                            loading="lazy"
+                            className="h-full w-full object-cover object-[35%_top]"
+                          />
+                        </div>
+                      ) : (
+                        <img
+                          src={post.featuredImage}
+                          alt={post.featuredImageAlt ?? post.title}
+                          loading="lazy"
+                          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                      )}
                       <span className="absolute top-4 left-4 bg-ink/90 text-brass px-3 py-1 text-[0.68rem] font-semibold tracking-wider uppercase backdrop-blur-xs border border-brass/30">
                         {post.articleType === "bacon-bits" ? "BACON BITS" : post.category}
                       </span>
-                    </div>
+                    </Link>
 
                     <div className="p-8 flex flex-col flex-1">
                       <div className="flex items-center gap-3 text-xs text-muted-foreground">
@@ -273,13 +317,13 @@ function BlogsPage() {
                       </div>
 
                       <h2 className="mt-3 text-2xl font-normal text-ink leading-snug">
-                        <button
-                          type="button"
-                          onClick={() => navigate({ search: { article: post.slug } })}
-                          className="text-left hover:text-brass transition-colors cursor-pointer"
+                        <Link
+                          to="/blogs"
+                          search={{ article: post.slug }}
+                          className="text-left hover:text-brass transition-colors"
                         >
                           {post.title}
-                        </button>
+                        </Link>
                       </h2>
 
                       <p className="mt-4 text-sm text-muted-foreground leading-relaxed flex-1">
@@ -292,14 +336,14 @@ function BlogsPage() {
                           {post.author}
                         </span>
 
-                        <button
-                          type="button"
-                          onClick={() => navigate({ search: { article: post.slug } })}
-                          className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-ink hover:text-brass transition-colors cursor-pointer"
+                        <Link
+                          to="/blogs"
+                          search={{ article: post.slug }}
+                          className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-ink hover:text-brass transition-colors"
                         >
                           Read More
                           <ArrowRight className="h-3.5 w-3.5" />
-                        </button>
+                        </Link>
                       </div>
                     </div>
                   </article>
